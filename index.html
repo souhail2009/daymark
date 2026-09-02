@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="daymark">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<title>daymark</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg1: #f7ecdd;
+    --bg2: #f1e0c9;
+    --green: #2f5147;
+    --green-dark: #223f36;
+    --card: #faf6ee;
+    --card-2: #f3ede1;
+    --text: #2b2b26;
+    --muted: #8c8577;
+    --border: #e6dcc8;
+    --orange: #e0703f;
+    --blue: #4f7cd9;
+    --red: #cf6a52;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: linear-gradient(160deg, var(--bg1), var(--bg2));
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    padding-bottom: 90px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 20px 18px 30px; }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: var(--green);
+    position: relative;
+  }
+  .logo::after {
+    content: ''; position: absolute; top: 9px; left: 9px;
+    width: 12px; height: 12px; border-radius: 50%;
+    border: 2.5px solid #fff;
+  }
+  .logo::before {
+    content: ''; position: absolute; top: 6px; right: 7px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--orange);
+  }
+  .brand-name { font-weight: 700; font-size: 18px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer; color: var(--green);
+  }
+  .header-icons { display: flex; gap: 8px; }
+
+  .eyebrow {
+    font-family: 'Inter'; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1.hero {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px; line-height: 1.12; font-weight: 700;
+    color: var(--green-dark); margin: 0 0 10px;
+  }
+  h1.hero em { font-style: italic; color: var(--green); }
+  .sub { color: #6b6558; font-size: 15px; margin-bottom: 22px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .card-meta { font-size: 13px; color: var(--muted); }
+  .card-meta b { color: var(--green-dark); }
+
+  .task-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 4px; border-bottom: 1px solid var(--border);
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: #fff; background: transparent;
+  }
+  .task-check.done { background: var(--green); border-color: var(--green); }
+  .task-title { flex: 1; font-size: 15px; }
+  .task-title.done { text-decoration: line-through; color: var(--muted); }
+  .task-time { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .task-del { background: none; border: none; color: var(--muted); font-size: 16px; cursor: pointer; padding: 2px 6px; }
+  .task-del:hover { color: var(--red); }
+
+  .empty-state { text-align: center; padding: 26px 10px; }
+  .empty-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    background: #f3d9c9; margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .empty-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 19px; margin-bottom: 6px; }
+  .empty-desc { font-size: 13.5px; color: var(--muted); line-height: 1.5; max-width: 300px; margin: 0 auto; }
+
+  .add-row { display: flex; gap: 8px; margin-top: 14px; }
+  .add-row input[type=text] {
+    flex: 1; min-width: 0; background: var(--card-2);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px; font-size: 14px; font-family: inherit; color: var(--text);
+  }
+  .add-row input[type=time] {
+    width: 92px; background: var(--card-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 8px; font-size: 13px; font-family: inherit; color: var(--text);
+  }
+  .add-row input:focus { outline: 1.5px solid var(--green); }
+
+  .type-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;
+  }
+  .type-btn {
+    background: var(--card-2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 10px 8px; font-family: inherit; cursor: pointer; text-align: center;
+    font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4;
+  }
+  .type-btn span { display: block; font-size: 11px; font-weight: 400; color: var(--muted); }
+  .type-btn.active { background: #dcecdc; border-color: #8fbf8f; color: var(--green-dark); }
+  .type-btn.active span { color: var(--green-dark); opacity: 0.75; }
+
+  .field-block { margin-top: 10px; }
+  .field-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 600; }
+  .weekday-row { display: flex; gap: 6px; }
+  .wd-btn {
+    width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--border);
+    background: var(--card-2); color: var(--text); font-size: 12px; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  .wd-btn.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+  .task-recur-icon { font-size: 11px; margin-right: 2px; opacity: 0.6; }
+
+  .recur-manage { margin-top: 4px; }
+  .recur-manage summary {
+    font-size: 12.5px; color: var(--muted); cursor: pointer; font-weight: 600; padding: 6px 0;
+    list-style: none;
+  }
+  .recur-manage summary::-webkit-details-marker { display: none; }
+  .recur-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 4px; border-bottom: 1px solid var(--border); font-size: 13.5px;
+  }
+  .recur-item:last-child { border-bottom: none; }
+  .recur-item-meta { font-size: 11.5px; color: var(--muted); }
+  .recur-del { background: none; border: none; color: var(--muted); font-size: 15px; cursor: pointer; }
+  .recur-del:hover { color: var(--red); }
+
+  .flex-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--card-2); border: 1.5px solid var(--border); border-radius: 20px;
+    padding: 8px 8px 8px 14px; margin: 0 6px 8px 0; font-size: 13.5px; font-weight: 500;
+  }
+  .flex-chip button {
+    width: 22px; height: 22px; border-radius: 50%; border: none; background: var(--green);
+    color: #fff; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .flex-chip button.added { background: var(--muted); }
+  .flex-chip .flex-del { width:18px; height:18px; background: none; color: var(--muted); font-size: 12px; }
+
+  .flex-card {
+    background: var(--card-2); border: 1.5px solid var(--border); border-radius: 14px;
+    padding: 14px; margin-bottom: 10px;
+  }
+  .flex-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .flex-card-title { font-weight: 700; font-size: 14.5px; }
+  .flex-card-actions { display: flex; gap: 6px; align-items: center; }
+  .flex-add-btn {
+    width: 26px; height: 26px; border-radius: 50%; border: none; background: var(--green);
+    color: #fff; font-size: 14px; cursor: pointer;
+  }
+  .flex-add-btn.added { background: var(--muted); }
+  .flex-del-btn { background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; }
+  .flex-week-label {
+    font-size: 12px; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between;
+  }
+  .flex-week-label b { color: var(--green-dark); }
+  .flex-streak { color: var(--orange); font-weight: 700; }
+  .flex-week-grid { display: flex; gap: 6px; justify-content: space-between; }
+  .day-cell {
+    flex: 1; aspect-ratio: 1; border-radius: 10px; border: 1.5px solid var(--border);
+    background: var(--card); display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 10.5px; color: var(--muted); cursor: pointer; font-family: inherit; padding: 2px;
+  }
+  .day-cell .dnum { font-weight: 700; font-size: 13px; color: var(--text); }
+  .day-cell.yes { background: #dcecdc; border-color: #8fbf8f; }
+  .day-cell.yes .dnum { color: var(--green-dark); }
+  .day-cell.no { background: #f5dcd3; border-color: #e0a68f; }
+  .day-cell.no .dnum { color: var(--red); }
+  .day-cell.future { opacity: 0.35; cursor: default; }
+  .day-cell.selected { border-color: var(--green); border-width: 2.5px; }
+
+  .check-row {
+    display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 14px;
+  }
+  .toggle-box {
+    width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border);
+    cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--green);
+  }
+  .toggle-box.on { background: var(--green); border-color: var(--green); color: #fff; }
+
+  .btn-primary {
+    width: 100%; background: var(--green); color: #fff; border: none;
+    border-radius: 14px; padding: 15px; font-weight: 700; font-size: 15px;
+    margin-top: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-primary:active { opacity: 0.85; }
+
+  .prayer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0;
+  }
+  .prayer-name { font-weight: 600; font-size: 14.5px; width: 70px; }
+  .prayer-opts { display: flex; gap: 8px; flex: 1; justify-content: flex-end; }
+  .prayer-btn {
+    border: 1.5px solid var(--border); background: var(--card-2);
+    border-radius: 10px; padding: 8px 12px; font-size: 13px; cursor: pointer;
+    color: var(--text); font-family: inherit;
+  }
+  .prayer-btn.active-mosque { background: #dcecdc; border-color: #8fbf8f; color: var(--green-dark); }
+  .prayer-btn.active-home { background: #dde6f7; border-color: #9db6e8; color: #345; }
+
+  .yn-row { display: flex; gap: 10px; margin-top: 12px; }
+  .yn-btn {
+    flex: 1; padding: 13px; border-radius: 12px; border: 1.5px solid var(--border);
+    background: var(--card-2); font-weight: 600; font-size: 14px; cursor: pointer; color: var(--text);
+  }
+  .yn-btn.active { background: #dcecdc; border-color: #8fbf8f; color: var(--green-dark); }
+  .yn-label { font-size: 14.5px; font-weight: 500; margin-top: 4px; }
+  textarea.note {
+    width: 100%; margin-top: 10px; background: var(--card-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 12px; font-family: inherit; font-size: 13.5px; resize: none;
+    min-height: 40px; color: var(--text);
+  }
+
+  .tabbar {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    background: var(--card); border: 1px solid var(--border); border-radius: 30px;
+    display: flex; padding: 5px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 50;
+    width: calc(100% - 36px); max-width: 400px;
+  }
+  .tab-btn {
+    flex: 1; text-align: center; padding: 10px 4px; border-radius: 24px;
+    font-size: 13.5px; font-weight: 600; cursor: pointer; color: var(--muted); border: none; background: none;
+    font-family: inherit;
+  }
+  .tab-btn.active { background: var(--green); color: #fff; }
+
+  .green-panel {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #fff; border-radius: 20px; padding: 22px; margin-bottom: 16px;
+  }
+  .green-panel .card-title { color: rgba(255,255,255,0.75); }
+  .big-num { font-family: 'Playfair Display', serif; font-size: 46px; font-weight: 700; display: flex; align-items: baseline; gap: 8px; }
+  .big-num span { font-size: 17px; font-family: 'Inter'; font-weight: 500; opacity: 0.85; }
+  .progress-track { height: 8px; background: rgba(255,255,255,0.2); border-radius: 5px; margin: 16px 0 12px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #fff; border-radius: 5px; transition: width .3s; }
+  .panel-foot { display: flex; justify-content: space-between; font-size: 13px; opacity: 0.85; }
+
+  .seg { display: flex; background: var(--card-2); border-radius: 12px; padding: 4px; margin-bottom: 16px; }
+  .seg button {
+    flex: 1; border: none; background: none; padding: 9px; border-radius: 9px;
+    font-weight: 600; font-size: 13.5px; cursor: pointer; color: var(--muted); font-family: inherit;
+  }
+  .seg button.active { background: var(--card); color: var(--green-dark); }
+
+  .bar-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 130px; margin-top: 10px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+  .bar { width: 22px; border-radius: 5px 5px 3px 3px; background: var(--green); min-height: 6px; }
+  .bar.today { background: var(--orange); }
+  .bar.st-green { background: #6bbf6b; }
+  .bar.st-amber { background: var(--warn, #d9a441); }
+  .bar.st-red { background: var(--red); }
+  .bar-label { font-size: 11px; color: var(--muted); }
+  .chart-note { font-size: 12.5px; color: var(--muted); margin-top: 12px; }
+
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-box { background: var(--card-2); border-radius: 14px; padding: 16px; }
+  .stat-box .num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--green-dark); }
+  .stat-box .num.red { color: var(--red); }
+  .stat-box .lbl { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .pill { font-size: 11px; background: #f6d9cd; color: var(--red); padding: 3px 9px; border-radius: 20px; font-weight: 600; }
+
+  .bar-line { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.g { background: var(--green); }
+  .dot.b { background: var(--blue); }
+  .hbar-track { flex: 1; height: 8px; background: var(--card-2); border-radius: 5px; overflow: hidden; }
+  .hbar-fill { height: 100%; border-radius: 5px; }
+  .hbar-fill.g { background: var(--green); }
+  .hbar-fill.b { background: var(--blue); }
+  .hbar-row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+
+  .strong-row {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #e5efe3; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; font-size: 13.5px;
+  }
+  .strong-row.weak { background: #f5e6de; }
+  .strong-row b { display: block; font-size: 14px; }
+  .strong-row .note { color: var(--muted); font-size: 12.5px; }
+
+  .back-btn {
+    background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+    padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--green-dark);
+    display: inline-flex; align-items: center; gap: 6px; cursor: pointer; margin-bottom: 16px; font-family: inherit;
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo"></div>
+      <div class="brand-name">daymark</div>
+    </div>
+    <div class="header-icons">
+      <button class="icon-btn">🔔</button>
+      <button class="icon-btn">☾</button>
+    </div>
+  </header>
+
+  <!-- TODAY TAB -->
+  <div id="tab-today">
+    <div class="eyebrow" id="dateLine">—</div>
+    <h1 class="hero" id="greeting">Good day. <em>execute the plan.</em></h1>
+    <div class="sub">Set priorities. Finish what matters.</div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🏆 Points</div>
+        <div class="card-meta">Total: <b id="totalPoints">0</b></div>
+      </div>
+      <div class="big-num" style="color:var(--green-dark);"><span id="todayPointsNum">0</span><span style="font-size:15px; font-weight:500; opacity:0.7;"> / <span id="targetPointsLabel">50</span> today</span></div>
+      <div class="progress-track" style="background:var(--card-2); margin:14px 0 6px;"><div class="progress-fill" id="pointsProgress" style="background:var(--green); width:0%;"></div></div>
+      <div class="chart-note" id="pointsHint">Tasks · prayers · Protocole Y · English · screen time · rules — everything counts.</div>
+      <details class="recur-manage">
+        <summary>⚙️ Set my minimum daily target</summary>
+        <div class="field-block">
+          <input type="number" id="targetPointsInput" min="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📜 ang</div>
+        <div class="card-meta"><b id="rulesDoneCount">0</b> of <span id="rulesTotalCount">0</span></div>
+      </div>
+      <div id="rulesList"></div>
+      <div class="add-row">
+        <input type="text" id="ruleInput" placeholder="Add a rule to follow" style="flex:1; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; font-family:inherit; color:var(--text);" />
+      </div>
+      <button class="btn-primary" id="addRuleBtn">＋ Add rule</button>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">Today's tasks</div>
+        <div class="card-meta"><b id="doneCount">0</b> of <span id="totalCount">0</span> complete</div>
+      </div>
+      <div id="taskList"></div>
+
+      <div class="type-grid">
+        <button class="type-btn active" data-type="daily-time">Daily<span>with time</span></button>
+        <button class="type-btn" data-type="daily-notime">Daily<span>no time</span></button>
+        <button class="type-btn" data-type="weekly-time">Certain days<span>with time</span></button>
+        <button class="type-btn" data-type="weekly-notime">Certain days<span>no time</span></button>
+      </div>
+
+      <input type="text" id="taskInput" placeholder="Task name" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; font-family:inherit; color:var(--text);" />
+
+      <div class="field-block" id="timeField">
+        <div class="field-label">Time</div>
+        <input type="time" id="timeInput" value="09:00" style="background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:13px; font-family:inherit; color:var(--text);" />
+      </div>
+
+      <div class="field-block hidden" id="weekdayField">
+        <div class="field-label">Which days</div>
+        <div class="weekday-row" id="weekdayPicker">
+          <button class="wd-btn" data-d="MO">M</button>
+          <button class="wd-btn" data-d="TU">T</button>
+          <button class="wd-btn" data-d="WE">W</button>
+          <button class="wd-btn" data-d="TH">T</button>
+          <button class="wd-btn" data-d="FR">F</button>
+          <button class="wd-btn" data-d="SA">S</button>
+          <button class="wd-btn" data-d="SU">S</button>
+        </div>
+      </div>
+
+      <div class="check-row">
+        <div class="toggle-box" id="minDayToggle">✓</div>
+        <span>🛡️ Minimum Day</span>
+      </div>
+      <button class="btn-primary" id="addTaskBtn">＋ Add</button>
+
+      <details class="recur-manage" id="recurManage">
+        <summary>🔁 Manage recurring tasks</summary>
+        <div id="recurList"></div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🕌 Prayer tracker</div>
+        <div class="card-meta"><b id="prayerLogged">0</b> of 5 logged</div>
+      </div>
+      <div class="flex-week-grid" id="prayerDaySelect" style="margin-bottom:14px;"></div>
+      <div class="field-label" id="prayerDayLabel" style="margin-bottom:8px;">Today</div>
+      <div id="prayerList"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🛡️ Protocole Y</div>
+        <span class="flex-streak" id="protocolStreakLabel">🔥 0 days</span>
+      </div>
+      <div class="flex-week-label"><span>Week <b id="protocolWeekNum">1</b></span></div>
+      <div class="flex-week-grid" id="protocolGrid"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📱 TikTok & Instagram</div>
+        <span class="card-meta" id="stStatus">—</span>
+      </div>
+      <div class="flex-week-grid" id="stDaySelect" style="margin-bottom:14px;"></div>
+      <div class="field-label" id="stDayLabel" style="margin-bottom:8px;">Today</div>
+
+      <div class="yn-row" style="margin-bottom:12px;">
+        <button class="yn-btn" id="dayTypeNoClass">🏖️ No classes</button>
+        <button class="yn-btn" id="dayTypeClass">📚 Class day</button>
+      </div>
+
+      <div class="add-row" style="margin-top:0;">
+        <div style="flex:1;">
+          <div class="field-label">TikTok (min)</div>
+          <input type="number" id="tiktokInput" min="0" placeholder="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+        </div>
+        <div style="flex:1;">
+          <div class="field-label">Instagram (min)</div>
+          <input type="number" id="instaInput" min="0" placeholder="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+        </div>
+      </div>
+      <div class="chart-note" id="stTotal" style="margin-top:10px;">Total: 0 min</div>
+
+      <details class="recur-manage">
+        <summary>⚙️ Set my limits</summary>
+        <div class="field-block">
+          <div class="field-label">🏖️ No classes · TikTok max / Instagram max (min)</div>
+          <div class="add-row" style="margin-top:0;">
+            <input type="number" id="noclassTiktokMax" min="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+            <input type="number" id="noclassInstaMax" min="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+          </div>
+          <div class="chart-note" id="noclassMaxNote" style="margin-top:6px;">Combined budget: 0 min. Under this total is fine either way it's split.</div>
+        </div>
+        <div class="field-block">
+          <div class="field-label">📚 Class day · TikTok max / Instagram max (min)</div>
+          <div class="add-row" style="margin-top:0;">
+            <input type="number" id="classTiktokMax" min="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+            <input type="number" id="classInstaMax" min="0" style="width:100%; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:14px; font-family:inherit; color:var(--text);" />
+          </div>
+          <div class="chart-note" id="classMaxNote" style="margin-top:6px;">Combined budget: 0 min. Under this total is fine either way it's split.</div>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🗣️ English Practice</div>
+        <span class="flex-streak" id="englishStreakLabel">🔥 0 days</span>
+      </div>
+      <div class="card-meta" id="englishDayFocus" style="margin-bottom:10px;">—</div>
+      <div id="englishTaskList"></div>
+
+      <div class="field-block" style="margin-top:14px;">
+        <div class="field-label">📝 New words today</div>
+        <div class="add-row" style="margin-top:0;">
+          <input type="text" id="englishVocabInput" placeholder="Type a new word or phrase" style="flex:1; min-width:0; background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; font-size:14px; font-family:inherit; color:var(--text);" />
+          <button class="flex-add-btn" id="englishVocabAdd" style="width:40px;height:40px;font-size:18px;">＋</button>
+        </div>
+        <div id="englishVocabList" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="flex-week-label" style="margin-top:14px;"><span>Week <b id="englishWeekNum">1</b></span></div>
+      <div class="flex-week-grid" id="englishGrid"></div>
+      <div class="chart-note" style="margin-top:10px;">Today's tile fills in automatically as you check off the tasks above. Tap past tiles to mark them by hand.</div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS TAB -->
+  <div id="tab-insights" class="hidden">
+    <div class="eyebrow">Performance data</div>
+    <h1 class="hero">Your <em>metrics.</em></h1>
+    <div class="sub">Review the evidence. Strengthen the system.</div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📈 Completion</div>
+        <div class="card-meta">Last 7 days</div>
+      </div>
+      <div class="bar-chart" id="barChart"></div>
+      <div class="chart-note">Each bar is one day. The warm mark is today.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">📱 TikTok & Instagram trend</div>
+        <div class="card-meta" id="stTrendLabel">—</div>
+      </div>
+      <div class="bar-chart" id="stChart"></div>
+      <div class="chart-note">Colors follow your own limits — 🏖️ no-class days vs 📚 class days. Green = under your min, amber = within range, red = over your max.</div>
+      <div class="chart-note" style="margin-top:4px;" id="stLimitsSummary"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">The snapshot · today</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="s_finished">0</div><div class="lbl">finished</div></div>
+        <div class="stat-box"><div class="num red" id="s_missed">0</div><div class="lbl">missed</div></div>
+        <div class="stat-box"><div class="num" id="s_rate">0%</div><div class="lbl">completion rate</div></div>
+        <div class="stat-box"><div class="num" id="s_days">0</div><div class="lbl">days with a mark</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:6px;">A little reflection</div>
+      <div class="empty-state">
+        <div class="empty-title" id="reflectTitle">Start collecting data</div>
+        <div class="empty-desc" id="reflectDesc">Complete tasks and log the daily check-ins to build a useful baseline.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🕌 Prayer analytics</div>
+        <span class="pill" id="prayerMissedPill">0 missed</span>
+      </div>
+      <div class="chart-note" id="prayerTrackedSince" style="margin-bottom:10px;">All time</div>
+      <div class="hbar-row"><span><span class="dot g"></span> At the mosque</span><span id="mosqueCount">0</span></div>
+      <div class="hbar-track"><div class="hbar-fill g" id="mosqueBar" style="width:0%"></div></div>
+      <div class="hbar-row" style="margin-top:14px;"><span><span class="dot b"></span> At home</span><span id="homeCount">0</span></div>
+      <div class="hbar-track"><div class="hbar-fill b" id="homeBar" style="width:0%"></div></div>
+      <div class="chart-note">All prayers logged since you started, across every day.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🗣️ English progression</div>
+        <div class="card-meta" id="engProgWeek">Week 1</div>
+      </div>
+      <div class="chart-note" id="engProgPhase" style="margin-bottom:12px;">Phase: Foundation · Weeks 1-2</div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="eng_streak">0</div><div class="lbl">day streak</div></div>
+        <div class="stat-box"><div class="num" id="eng_week">0/7</div><div class="lbl">this week</div></div>
+        <div class="stat-box"><div class="num" id="eng_words">0</div><div class="lbl">words logged</div></div>
+        <div class="stat-box"><div class="num" id="eng_days">0</div><div class="lbl">total days practiced</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW TAB -->
+  <div id="tab-review" class="hidden">
+    <div class="eyebrow">Weekly review</div>
+    <h1 class="hero">Audit the <em>week.</em></h1>
+    <div class="sub">Use the evidence to set a better plan for the next seven days.</div>
+
+    <div class="green-panel">
+      <div class="card-head">
+        <div class="card-title">Weekly summary</div>
+        <div class="card-meta" style="color:rgba(255,255,255,0.75);"><span id="activeDays">0</span> active days</div>
+      </div>
+      <div class="big-num" id="weekPct">0%<span>task completion</span></div>
+      <div class="progress-track"><div class="progress-fill" id="weekProgress" style="width:0%"></div></div>
+      <div class="panel-foot"><span id="weekFinished">0 finished</span><span id="weekMissed">0 missed</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:6px;">🛡️ Minimum day</div>
+      <div class="chart-note">Mark essential tasks on Today to track your baseline.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🕌 Prayer consistency</div>
+      </div>
+      <div class="big-num" style="color:var(--green-dark);" id="weekPrayerPct">0%</div>
+      <div class="chart-note" id="weekPrayerSub">0 of 0 prayers logged.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="margin-bottom:12px;">Strong and weak points · this week</div>
+      <div class="strong-row"><div><b>✓ Strong point</b><div class="note" id="strongNote">No completed tasks yet</div></div></div>
+      <div class="strong-row weak"><div><b>↘ Weak point</b><div class="note" id="weakNote">No repeated misses yet</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tabbar">
+  <button class="tab-btn active" data-tab="today">Today</button>
+  <button class="tab-btn" data-tab="insights">Insights</button>
+  <button class="tab-btn" data-tab="review">Review</button>
+</div>
+
+<script>
+const PRAYERS = ['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+let DB = {}; // { 'YYYY-MM-DD': { tasks:[], minimumDay:bool, prayers:{}, phoneReduced:null, phoneNote:'', skipped:[] } }
+let TEMPLATES = []; // [{ id, title, time:null|'HH:MM', type:'daily'|'weekly'|'once', days:['MO',...]|null }]
+let RULES = []; // [{ id, text }]
+const WD_CODES = ['SU','MO','TU','WE','TH','FR','SA'];
+let selectedType = 'daily-time';
+let selectedDays = [];
+
+function todayKey(offset=0) {
+  const d = new Date();
+  d.setDate(d.getDate() - offset);
+  return d.toISOString().slice(0,10);
+}
+function weekdayCodeOf(key) {
+  const d = new Date(key + 'T00:00:00');
+  return WD_CODES[d.getDay()];
+}
+function dayLabel(offset) {
+  const d = new Date();
+  d.setDate(d.getDate() - offset);
+  return d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0,2).toLowerCase();
+}
+
+function emptyDay() {
+  return { tasks: [], minimumDay: false, prayers: {}, phoneReduced: null, phoneNote: '', skipped: [], tiktokMin: null, instaMin: null, dayType: null };
+}
+
+function ensureDay(key) {
+  if (!DB[key]) DB[key] = emptyDay();
+  if (!DB[key].prayers) DB[key].prayers = {};
+  if (!DB[key].skipped) DB[key].skipped = [];
+  materializeTemplates(key);
+  return DB[key];
+}
+
+function materializeTemplates(key) {
+  const day = DB[key];
+  const wd = weekdayCodeOf(key);
+  TEMPLATES.forEach(tpl => {
+    const applies = tpl.type === 'daily' || (tpl.type === 'weekly' && tpl.days && tpl.days.includes(wd));
+    if (!applies) return;
+    if (day.skipped.includes(tpl.id)) return;
+    const exists = day.tasks.some(t => t.id === tpl.id);
+    if (!exists) {
+      day.tasks.push({ id: tpl.id, title: tpl.title, time: tpl.time, done: false, recurring: true, auto: true });
+    }
+  });
+}
+
+async function loadDB() {
+  try {
+    const raw = localStorage.getItem('daymark-data');
+    DB = raw ? JSON.parse(raw) : {};
+  } catch(e) { DB = {}; }
+  try {
+    const raw2 = localStorage.getItem('daymark-templates');
+    TEMPLATES = raw2 ? JSON.parse(raw2) : [];
+  } catch(e) { TEMPLATES = []; }
+  try {
+    const raw3 = localStorage.getItem('daymark-rules');
+    RULES = raw3 ? JSON.parse(raw3) : [];
+  } catch(e) { RULES = []; }
+  await loadProtocol();
+  await loadEnglishStreak();
+  await loadScreenSettings();
+  await loadPointsSettings();
+  renderAll();
+}
+function saveRules() {
+  try { localStorage.setItem('daymark-rules', JSON.stringify(RULES)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+let POINTS_SETTINGS = { target: 50 };
+async function loadPointsSettings() {
+  try {
+    const raw = localStorage.getItem('daymark-pointssettings');
+    POINTS_SETTINGS = raw ? JSON.parse(raw) : POINTS_SETTINGS;
+  } catch(e) {}
+}
+function savePointsSettings() {
+  try { localStorage.setItem('daymark-pointssettings', JSON.stringify(POINTS_SETTINGS)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+function computeDayPoints(dkey) {
+  const d = DB[dkey];
+  if (!d) return 0;
+  let pts = 0;
+  (d.tasks||[]).forEach(t => { if (t.done) pts += 5; });
+  PRAYERS.forEach(p => {
+    const v = d.prayers && d.prayers[p];
+    if (v === 'mosque') pts += 3;
+    else if (v === 'home') pts += 2;
+  });
+  const hasScreen = d.tiktokMin != null || d.instaMin != null;
+  if (hasScreen) {
+    const total = (Number(d.tiktokMin)||0) + (Number(d.instaMin)||0);
+    const zone = screenTimeStatus(total, d.dayType).zone;
+    pts += zone === 'green' ? 5 : zone === 'amber' ? 2 : 0;
+  }
+  if (d.ruleChecks) Object.values(d.ruleChecks).forEach(v => { if (v) pts += 3; });
+  if (PROTOCOL.trackLog && PROTOCOL.trackLog[dkey] === 'yes') pts += 15;
+  if (ENGLISH_STREAK.trackLog && ENGLISH_STREAK.trackLog[dkey] === 'yes') pts += 15;
+  return pts;
+}
+
+function renderPointsSection() {
+  const today = todayKey();
+  const todayPts = computeDayPoints(today);
+  let total = 0;
+  Object.keys(DB).forEach(k => { total += computeDayPoints(k); });
+
+  document.getElementById('todayPointsNum').textContent = todayPts;
+  document.getElementById('totalPoints').textContent = total;
+  document.getElementById('targetPointsLabel').textContent = POINTS_SETTINGS.target;
+  document.getElementById('targetPointsInput').value = POINTS_SETTINGS.target;
+  const pct = POINTS_SETTINGS.target > 0 ? Math.min(100, Math.round((todayPts/POINTS_SETTINGS.target)*100)) : 0;
+  document.getElementById('pointsProgress').style.width = pct + '%';
+  document.getElementById('pointsHint').textContent = todayPts >= POINTS_SETTINGS.target
+    ? '🔥 Target reached today. Anything extra is a bonus.'
+    : `${POINTS_SETTINGS.target - todayPts} points left to hit your minimum today.`;
+}
+async function saveDB() {
+  try { localStorage.setItem('daymark-data', JSON.stringify(DB)); }
+  catch(e) { console.error('save failed', e); }
+}
+async function saveTemplates() {
+  try { localStorage.setItem('daymark-templates', JSON.stringify(TEMPLATES)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+// ---------- TODAY ----------
+function renderRulesSection(day) {
+  if (!day.ruleChecks) day.ruleChecks = {};
+  const list = document.getElementById('rulesList');
+  list.innerHTML = '';
+  let done = 0;
+  if (RULES.length === 0) {
+    list.innerHTML = `<div class="chart-note" style="padding:6px 0;">No rules added yet.</div>`;
+  } else {
+    RULES.forEach(r => {
+      const checked = !!day.ruleChecks[r.id];
+      if (checked) done++;
+      const row = document.createElement('div');
+      row.className = 'task-item';
+      row.innerHTML = `
+        <div class="task-check ${checked?'done':''}">${checked?'✓':''}</div>
+        <div class="task-title ${checked?'done':''}">${escapeHtml(r.text)}</div>
+        <button class="task-del">✕</button>
+      `;
+      row.querySelector('.task-check').addEventListener('click', () => {
+        day.ruleChecks[r.id] = !day.ruleChecks[r.id];
+        saveDB(); renderRulesSection(day);
+      });
+      row.querySelector('.task-del').addEventListener('click', () => {
+        RULES = RULES.filter(x=>x.id!==r.id);
+        saveRules(); renderRulesSection(day);
+      });
+      list.appendChild(row);
+    });
+  }
+  document.getElementById('rulesDoneCount').textContent = done;
+  document.getElementById('rulesTotalCount').textContent = RULES.length;
+  renderPointsSection();
+}
+
+function renderToday() {
+  const key = todayKey();
+  const day = ensureDay(key);
+
+  const now = new Date();
+  const hour = now.getHours();
+  const greetWord = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('greeting').innerHTML = `${greetWord}. <em>execute the plan.</em>`;
+  document.getElementById('dateLine').textContent = now.toLocaleDateString('en-US', { weekday:'long', day:'numeric', month:'long' }).toUpperCase();
+
+  renderRulesSection(day);
+
+  // tasks
+  const list = document.getElementById('taskList');
+  list.innerHTML = '';
+  const done = day.tasks.filter(t=>t.done).length;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('totalCount').textContent = day.tasks.length;
+
+  if (day.tasks.length === 0) {
+    list.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">✨</div>
+      <div class="empty-title">Build today's plan</div>
+      <div class="empty-desc">No tasks yet. Add the work you need to complete today.</div>
+    </div>`;
+  } else {
+    day.tasks.sort((a,b)=> (a.time||'').localeCompare(b.time||''));
+    day.tasks.forEach(t => {
+      const row = document.createElement('div');
+      row.className = 'task-item';
+      row.innerHTML = `
+        <div class="task-check ${t.done?'done':''}">${t.done?'✓':''}</div>
+        <div class="task-title ${t.done?'done':''}">${t.recurring?'<span class="task-recur-icon">🔁</span>':''}${escapeHtml(t.title)}</div>
+        <div class="task-time">${t.time||''}</div>
+        <button class="task-del">✕</button>
+      `;
+      row.querySelector('.task-check').addEventListener('click', () => {
+        t.done = !t.done; saveDB(); renderToday();
+      });
+      row.querySelector('.task-del').addEventListener('click', () => {
+        if (t.auto) {
+          day.skipped.push(t.id);
+        }
+        day.tasks = day.tasks.filter(x=>x.id!==t.id);
+        saveDB(); renderToday();
+      });
+      list.appendChild(row);
+    });
+  }
+
+  renderRecurList();
+  renderProtocol();
+  renderEnglish();
+
+  document.getElementById('minDayToggle').classList.toggle('on', !!day.minimumDay);
+
+  renderPrayerSection();
+
+  renderScreenTimeSection();
+}
+
+// ---------- WEEK DAY SELECTOR (shared by prayers + screen time) ----------
+function mondayOf(key) {
+  const d = new Date(key + 'T00:00:00');
+  const dow = d.getDay(); // 0=Sun..6=Sat
+  const diff = dow === 0 ? -6 : 1 - dow;
+  d.setDate(d.getDate() + diff);
+  return d.toISOString().slice(0,10);
+}
+function currentWeekDays() {
+  const mon = mondayOf(todayKey());
+  const days = [];
+  for (let i = 0; i < 7; i++) days.push(addDays(mon, i));
+  return days;
+}
+function fmtDayLabel(dkey) {
+  const today = todayKey();
+  if (dkey === today) return 'Today';
+  const d = new Date(dkey + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { weekday:'long', day:'numeric', month:'long' });
+}
+
+let selectedPrayerDate = todayKey();
+let selectedScreenDate = todayKey();
+
+function renderPrayerSection() {
+  const today = todayKey();
+  const box = document.getElementById('prayerDaySelect');
+  box.innerHTML = '';
+  currentWeekDays().forEach(dkey => {
+    const isFuture = dkey > today;
+    const dObj = DB[dkey];
+    const loggedCount = dObj ? PRAYERS.filter(p => dObj.prayers && dObj.prayers[p]).length : 0;
+    const cls = isFuture ? 'future' : (loggedCount === 5 ? 'yes' : loggedCount > 0 ? 'no' : '');
+    const d = new Date(dkey + 'T00:00:00');
+    const btn = document.createElement('button');
+    btn.className = 'day-cell ' + cls + (dkey === selectedPrayerDate ? ' selected' : '');
+    btn.disabled = isFuture;
+    btn.innerHTML = `<span class="dnum">${d.getDate()}</span><span>${d.toLocaleDateString('en-US',{weekday:'short'}).slice(0,1)}</span>`;
+    if (!isFuture) {
+      btn.addEventListener('click', () => { selectedPrayerDate = dkey; renderPrayerSection(); });
+    }
+    box.appendChild(btn);
+  });
+
+  document.getElementById('prayerDayLabel').textContent = fmtDayLabel(selectedPrayerDate);
+
+  const day = ensureDay(selectedPrayerDate);
+  const pList = document.getElementById('prayerList');
+  pList.innerHTML = '';
+  let logged = 0;
+  PRAYERS.forEach(p => {
+    const val = day.prayers[p];
+    if (val) logged++;
+    const row = document.createElement('div');
+    row.className = 'prayer-row';
+    row.innerHTML = `
+      <div class="prayer-name">${p}</div>
+      <div class="prayer-opts">
+        <button class="prayer-btn ${val==='mosque'?'active-mosque':''}" data-p="${p}" data-v="mosque">🕌 Mosque</button>
+        <button class="prayer-btn ${val==='home'?'active-home':''}" data-p="${p}" data-v="home">🏠 Home</button>
+      </div>
+    `;
+    row.querySelectorAll('.prayer-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p2 = btn.dataset.p, v2 = btn.dataset.v;
+        day.prayers[p2] = day.prayers[p2] === v2 ? null : v2;
+        saveDB(); renderPrayerSection();
+      });
+    });
+    pList.appendChild(row);
+  });
+  document.getElementById('prayerLogged').textContent = logged;
+  renderPointsSection();
+}
+
+let SCREEN_SETTINGS = { noclass: { tiktokMax: 60, instaMax: 60 }, class: { tiktokMax: 30, instaMax: 30 } };
+
+async function loadScreenSettings() {
+  try {
+    const raw = localStorage.getItem('daymark-screensettings');
+    SCREEN_SETTINGS = raw ? JSON.parse(raw) : SCREEN_SETTINGS;
+  } catch(e) {}
+}
+function saveScreenSettings() {
+  try { localStorage.setItem('daymark-screensettings', JSON.stringify(SCREEN_SETTINGS)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+function limitsFor(dayType) {
+  const s = SCREEN_SETTINGS[dayType] || SCREEN_SETTINGS.noclass;
+  const max = (Number(s.tiktokMax)||0) + (Number(s.instaMax)||0);
+  return { tiktokMax: s.tiktokMax, instaMax: s.instaMax, max, min: Math.round(max * 0.7) };
+}
+function screenTimeStatus(total, dayType) {
+  const lim = limitsFor(dayType || 'noclass');
+  if (total <= lim.min) return { zone: 'green', label: 'On track' };
+  if (total <= lim.max) return { zone: 'amber', label: 'Near limit' };
+  return { zone: 'red', label: 'Over limit' };
+}
+function renderScreenTimeSection() {
+  const today = todayKey();
+  const box = document.getElementById('stDaySelect');
+  box.innerHTML = '';
+  currentWeekDays().forEach(dkey => {
+    const isFuture = dkey > today;
+    const dObj = DB[dkey];
+    const hasData = dObj && (dObj.tiktokMin != null || dObj.instaMin != null);
+    const total = dObj ? (Number(dObj.tiktokMin)||0) + (Number(dObj.instaMin)||0) : 0;
+    const cls = isFuture ? 'future' : (!hasData ? '' : screenTimeStatus(total, dObj.dayType).zone === 'red' ? 'no' : 'yes');
+    const d = new Date(dkey + 'T00:00:00');
+    const btn = document.createElement('button');
+    btn.className = 'day-cell ' + cls + (dkey === selectedScreenDate ? ' selected' : '');
+    btn.disabled = isFuture;
+    btn.innerHTML = `<span class="dnum">${d.getDate()}</span><span>${d.toLocaleDateString('en-US',{weekday:'short'}).slice(0,1)}</span>`;
+    if (!isFuture) {
+      btn.addEventListener('click', () => { selectedScreenDate = dkey; renderScreenTimeSection(); });
+    }
+    box.appendChild(btn);
+  });
+
+  document.getElementById('stDayLabel').textContent = fmtDayLabel(selectedScreenDate);
+
+  const day = ensureDay(selectedScreenDate);
+  document.getElementById('tiktokInput').value = day.tiktokMin ?? '';
+  document.getElementById('instaInput').value = day.instaMin ?? '';
+  document.getElementById('dayTypeNoClass').classList.toggle('active', day.dayType === 'noclass');
+  document.getElementById('dayTypeClass').classList.toggle('active', day.dayType === 'class');
+  document.getElementById('noclassTiktokMax').value = SCREEN_SETTINGS.noclass.tiktokMax;
+  document.getElementById('noclassInstaMax').value = SCREEN_SETTINGS.noclass.instaMax;
+  document.getElementById('classTiktokMax').value = SCREEN_SETTINGS.class.tiktokMax;
+  document.getElementById('classInstaMax').value = SCREEN_SETTINGS.class.instaMax;
+  document.getElementById('noclassMaxNote').textContent = `Combined budget: ${(Number(SCREEN_SETTINGS.noclass.tiktokMax)||0)+(Number(SCREEN_SETTINGS.noclass.instaMax)||0)} min. Under this total is fine either way it's split.`;
+  document.getElementById('classMaxNote').textContent = `Combined budget: ${(Number(SCREEN_SETTINGS.class.tiktokMax)||0)+(Number(SCREEN_SETTINGS.class.instaMax)||0)} min. Under this total is fine either way it's split.`;
+  updateScreenTimeStatus(day);
+}
+
+function updateScreenTimeStatus(day) {
+  const total = (Number(day.tiktokMin)||0) + (Number(day.instaMin)||0);
+  const hasData = day.tiktokMin !== null || day.instaMin !== null;
+  const lim = limitsFor(day.dayType || 'noclass');
+  const st = screenTimeStatus(total, day.dayType);
+  document.getElementById('stTotal').innerHTML = `Total: <b>${total} min</b> · Budget: ${lim.max} min`;
+  document.getElementById('stStatus').textContent = hasData ? st.label : '—';
+  renderPointsSection();
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function updateTypeFields() {
+  const timeField = document.getElementById('timeField');
+  const wdField = document.getElementById('weekdayField');
+  const needsTime = selectedType === 'daily-time' || selectedType === 'weekly-time';
+  const needsDays = selectedType === 'weekly-time' || selectedType === 'weekly-notime';
+  timeField.classList.toggle('hidden', !needsTime);
+  wdField.classList.toggle('hidden', !needsDays);
+}
+document.querySelectorAll('.type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedType = btn.dataset.type;
+    updateTypeFields();
+  });
+});
+document.querySelectorAll('.wd-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const d = btn.dataset.d;
+    if (selectedDays.includes(d)) {
+      selectedDays = selectedDays.filter(x=>x!==d);
+      btn.classList.remove('active');
+    } else {
+      selectedDays.push(d);
+      btn.classList.add('active');
+    }
+  });
+});
+updateTypeFields();
+
+function renderRecurList() {
+  const box = document.getElementById('recurList');
+  if (!box) return;
+  box.innerHTML = '';
+  const scheduled = TEMPLATES.filter(t => t.type === 'daily' || t.type === 'weekly');
+  if (scheduled.length === 0) {
+    box.innerHTML = '<div class="chart-note" style="padding:8px 0;">No recurring tasks yet.</div>';
+    return;
+  }
+  scheduled.forEach(tpl => {
+    const meta = tpl.type === 'daily'
+      ? (tpl.time ? `Daily · ${tpl.time}` : 'Daily')
+      : `${(tpl.days||[]).join(', ')}${tpl.time ? ' · '+tpl.time : ''}`;
+    const row = document.createElement('div');
+    row.className = 'recur-item';
+    row.innerHTML = `<div><div>${escapeHtml(tpl.title)}</div><div class="recur-item-meta">${meta}</div></div><button class="recur-del">🗑</button>`;
+    row.querySelector('.recur-del').addEventListener('click', () => {
+      TEMPLATES = TEMPLATES.filter(x=>x.id!==tpl.id);
+      Object.keys(DB).forEach(k => {
+        DB[k].tasks = DB[k].tasks.filter(t=>t.id!==tpl.id);
+      });
+      saveTemplates(); saveDB(); renderAll();
+    });
+    box.appendChild(row);
+  });
+}
+
+function addDays(key, n) {
+  const d = new Date(key + 'T00:00:00');
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0,10);
+}
+function diffDays(a, b) {
+  const da = new Date(a + 'T00:00:00');
+  const db = new Date(b + 'T00:00:00');
+  return Math.round((da - db) / 86400000);
+}
+function cycleStartOf(tpl) {
+  const log = tpl.trackLog || {};
+  const noDates = Object.keys(log).filter(k => log[k] === 'no').sort();
+  if (noDates.length === 0) return tpl.created || todayKey();
+  return addDays(noDates[noDates.length - 1], 1);
+}
+function weekInfoOf(tpl) {
+  const start = cycleStartOf(tpl);
+  const today = todayKey();
+  let daysElapsed = diffDays(today, start) + 1;
+  if (daysElapsed < 1) daysElapsed = 1;
+  const weekNum = Math.floor((daysElapsed - 1) / 7) + 1;
+  const weekStartDate = addDays(start, (weekNum - 1) * 7);
+  const days = [];
+  for (let i = 0; i < 7; i++) days.push(addDays(weekStartDate, i));
+  return { start, daysElapsed, weekNum, days };
+}
+
+function renderFlexList() { /* removed */ }
+
+let PROTOCOL = { trackLog: {}, created: null };
+
+async function loadProtocol() {
+  try {
+    const raw = localStorage.getItem('daymark-protocol');
+    PROTOCOL = raw ? JSON.parse(raw) : { trackLog: {}, created: null };
+  } catch(e) { PROTOCOL = { trackLog: {}, created: null }; }
+}
+async function saveProtocol() {
+  try { localStorage.setItem('daymark-protocol', JSON.stringify(PROTOCOL)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+function renderProtocol() {
+  if (!PROTOCOL.created) { PROTOCOL.created = todayKey(); saveProtocol(); }
+  const today = todayKey();
+  const info = weekInfoOf(PROTOCOL);
+
+  document.getElementById('protocolWeekNum').textContent = info.weekNum;
+  document.getElementById('protocolStreakLabel').textContent = `🔥 ${info.daysElapsed} day${info.daysElapsed===1?'':'s'}`;
+
+  const grid = document.getElementById('protocolGrid');
+  grid.innerHTML = '';
+  info.days.forEach(dkey => {
+    const isFuture = dkey > today;
+    const val = PROTOCOL.trackLog[dkey];
+    const d = new Date(dkey + 'T00:00:00');
+    const dnum = d.getDate();
+    const wd = d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0,1);
+    const cls = isFuture ? 'future' : (val === 'yes' ? 'yes' : val === 'no' ? 'no' : '');
+    const btn = document.createElement('button');
+    btn.className = 'day-cell ' + cls;
+    btn.disabled = isFuture;
+    btn.innerHTML = `<span class="dnum">${val==='yes'?'✓':val==='no'?'✕':dnum}</span><span>${wd}</span>`;
+    if (!isFuture) {
+      btn.addEventListener('click', () => {
+        const cur = PROTOCOL.trackLog[dkey];
+        if (!cur) PROTOCOL.trackLog[dkey] = 'yes';
+        else if (cur === 'yes') PROTOCOL.trackLog[dkey] = 'no';
+        else delete PROTOCOL.trackLog[dkey];
+        saveProtocol(); renderProtocol();
+      });
+    }
+    grid.appendChild(btn);
+  });
+  renderPointsSection();
+}
+
+// ---------- ENGLISH PRACTICE (streak fully independent from Protocole Y) ----------
+// The daily tasks progressively get harder/longer over ~8 weeks, split into 4 phases.
+// After week 8 the program stays on Phase 4 (Consolidation) as ongoing maintenance.
+const ENGLISH_PHASES = [
+  { name: 'Foundation', weeks: 'Weeks 1-2', schedule: {
+    1: { day: 'Monday', focus: 'Core Listening', tasks: [
+          '15 min — New video/podcast: no subtitles, then again with English subtitles',
+          '10 min — Shadowing a single short clip (30s) out loud',
+          '5 min — Write down 5 new words' ]},
+    2: { day: 'Tuesday', focus: 'Shadowing Practice', tasks: [
+          "10 min — Re-listen to yesterday's content",
+          '15 min — Shadow it again, focus on rhythm',
+          "5 min — Review yesterday's words" ]},
+    3: { day: 'Wednesday', focus: 'New Content', tasks: [
+          '15 min — New video/podcast',
+          '10 min — Shadowing',
+          '10 min — New vocabulary from context' ]},
+    4: { day: 'Thursday', focus: 'Speaking (easy)', tasks: [
+          '10 min — Speak out loud about your day (simple sentences)',
+          '10 min — Record yourself and listen back' ]},
+    5: { day: 'Friday', focus: 'New Content + Review', tasks: [
+          '15 min — New video/podcast',
+          '10 min — Shadowing',
+          "5 min — Review this week's words" ]},
+    6: { day: 'Saturday', focus: 'Light Immersion', tasks: [
+          '20-30 min — Watch a show/movie with English subtitles' ]},
+    0: { day: 'Sunday', focus: 'Review', tasks: [
+          '10 min — Re-watch the best clip of the week',
+          '10 min — Write 3-4 sentences about what you learned',
+          '5 min — Set a goal for next week' ]}
+  }},
+  { name: 'Build Up', weeks: 'Weeks 3-4', schedule: {
+    1: { day: 'Monday', focus: 'Core Listening', tasks: [
+          '20 min — New video/podcast: no subtitles, then with subtitles',
+          '15 min — Shadowing two short clips',
+          '8 min — Write down 8 new words' ]},
+    2: { day: 'Tuesday', focus: 'Shadowing Practice', tasks: [
+          "15 min — Re-listen to yesterday's content",
+          '20 min — Shadow it again, match pace and tone',
+          "8 min — Review yesterday's words" ]},
+    3: { day: 'Wednesday', focus: 'New Content', tasks: [
+          '20 min — New video/podcast',
+          '15 min — Shadowing',
+          '10 min — New vocabulary from context' ]},
+    4: { day: 'Thursday', focus: 'Speaking (opinions)', tasks: [
+          '15 min — Speak out loud, give an opinion on a topic',
+          '15 min — Record yourself and listen back for mistakes' ]},
+    5: { day: 'Friday', focus: 'New Content + Review', tasks: [
+          '20 min — New video/podcast',
+          '15 min — Shadowing',
+          "8 min — Review this week's words" ]},
+    6: { day: 'Saturday', focus: 'Immersion', tasks: [
+          '30-40 min — Watch a show/movie, try one part without subtitles' ]},
+    0: { day: 'Sunday', focus: 'Review', tasks: [
+          '15 min — Re-watch the best content of the week',
+          '10 min — Write 6-8 sentences about what you learned',
+          '5 min — Set a goal for next week' ]}
+  }},
+  { name: 'Speaking Push', weeks: 'Weeks 5-6', schedule: {
+    1: { day: 'Monday', focus: 'Harder Listening', tasks: [
+          '20 min — New podcast/interview (native speed): no subtitles, then with',
+          '15 min — Shadowing two clips',
+          '10 min — Write down 8-10 new words' ]},
+    2: { day: 'Tuesday', focus: 'Shadowing + Intonation', tasks: [
+          "15 min — Re-listen to yesterday's content",
+          '20 min — Shadow again, focus on intonation and stress',
+          '8 min — Review yesterday\'s words' ]},
+    3: { day: 'Wednesday', focus: 'New Content', tasks: [
+          '20 min — New content at native speed',
+          '15 min — Shadowing',
+          '10 min — New vocabulary from context' ]},
+    4: { day: 'Thursday', focus: 'Speaking (monologue)', tasks: [
+          '20 min — Record a 2-minute monologue on a topic',
+          '10 min — Listen back and self-correct 3 mistakes' ]},
+    5: { day: 'Friday', focus: 'New Content + Review', tasks: [
+          '20 min — New video/podcast',
+          '15 min — Shadowing',
+          '10 min — Review the week\'s words' ]},
+    6: { day: 'Saturday', focus: 'Deep Immersion', tasks: [
+          '40 min — Watch a show/movie, minimal subtitles' ]},
+    0: { day: 'Sunday', focus: 'Review', tasks: [
+          '15 min — Re-watch the best content of the week',
+          '15 min — Write a short paragraph (8-10 sentences)',
+          '5 min — Set a goal for next week' ]}
+  }},
+  { name: 'Consolidation', weeks: 'Week 7+', schedule: {
+    1: { day: 'Monday', focus: 'Native-Speed Listening', tasks: [
+          '20-25 min — New content at native speed, minimal subtitle use',
+          '15 min — Shadowing two clips',
+          '10 min — Write down 10 new words' ]},
+    2: { day: 'Tuesday', focus: 'Shadowing + Accent', tasks: [
+          "15 min — Re-listen to yesterday's content",
+          '20 min — Shadow again, mimic the accent closely',
+          '8 min — Review yesterday\'s words' ]},
+    3: { day: 'Wednesday', focus: 'New Content', tasks: [
+          '20-25 min — New content',
+          '15 min — Shadowing',
+          '10-12 min — New vocabulary from context' ]},
+    4: { day: 'Thursday', focus: 'Real Conversation', tasks: [
+          '20-25 min — Real conversation (exchange app/friend) or a recorded monologue',
+          '10 min — Review and note recurring mistakes' ]},
+    5: { day: 'Friday', focus: 'New Content + Review', tasks: [
+          '20-25 min — New video/podcast',
+          '15 min — Shadowing',
+          '10 min — Review the week\'s words' ]},
+    6: { day: 'Saturday', focus: 'Full Immersion', tasks: [
+          '45+ min — Watch a show/movie, no subtitles for at least half' ]},
+    0: { day: 'Sunday', focus: 'Review + Monthly Goal', tasks: [
+          '15 min — Re-watch the best content of the week',
+          '15 min — Write a reflection paragraph',
+          '10 min — Set a goal for next month' ]}
+  }}
+];
+
+function englishProgressInfo() {
+  const start = ENGLISH_STREAK.created || todayKey();
+  const elapsedDays = Math.max(1, diffDays(todayKey(), start) + 1);
+  const weekNum = Math.ceil(elapsedDays / 7);
+  let phaseIdx;
+  if (weekNum <= 2) phaseIdx = 0;
+  else if (weekNum <= 4) phaseIdx = 1;
+  else if (weekNum <= 6) phaseIdx = 2;
+  else phaseIdx = 3;
+  return { weekNum, phaseIdx, phase: ENGLISH_PHASES[phaseIdx] };
+}
+
+let ENGLISH_STREAK = { trackLog: {}, created: null };
+
+async function loadEnglishStreak() {
+  try {
+    const raw = localStorage.getItem('daymark-english');
+    ENGLISH_STREAK = raw ? JSON.parse(raw) : { trackLog: {}, created: null };
+  } catch(e) { ENGLISH_STREAK = { trackLog: {}, created: null }; }
+}
+function saveEnglishStreak() {
+  try { localStorage.setItem('daymark-english', JSON.stringify(ENGLISH_STREAK)); }
+  catch(e) { console.error('save failed', e); }
+}
+
+function renderEnglishVocab(day) {
+  if (!day.englishVocab) day.englishVocab = [];
+  const box = document.getElementById('englishVocabList');
+  box.innerHTML = '';
+  if (day.englishVocab.length === 0) {
+    box.innerHTML = '<div class="chart-note" style="padding:2px 0;">No words logged today yet.</div>';
+  } else {
+    day.englishVocab.forEach((word, idx) => {
+      const chip = document.createElement('span');
+      chip.className = 'flex-chip';
+      chip.innerHTML = `${escapeHtml(word)} <button class="flex-del">✕</button>`;
+      chip.querySelector('.flex-del').addEventListener('click', () => {
+        day.englishVocab.splice(idx, 1);
+        saveDB();
+        renderEnglishVocab(day);
+      });
+      box.appendChild(chip);
+    });
+  }
+}
+
+function renderEnglish() {
+  if (!ENGLISH_STREAK.created) { ENGLISH_STREAK.created = todayKey(); saveEnglishStreak(); }
+  const today = todayKey();
+  const info = weekInfoOf(ENGLISH_STREAK);
+  const prog = englishProgressInfo();
+
+  document.getElementById('englishWeekNum').textContent = info.weekNum;
+  document.getElementById('englishStreakLabel').textContent = `🔥 ${info.daysElapsed} day${info.daysElapsed===1?'':'s'}`;
+
+  const mission = prog.phase.schedule[new Date().getDay()];
+  document.getElementById('englishDayFocus').innerHTML =
+    `<b>${mission.day} · ${mission.focus}</b><br><span style="font-weight:400; opacity:.75;">Phase ${prog.phaseIdx+1}: ${prog.phase.name} · ${prog.phase.weeks} · overall week ${prog.weekNum}</span>`;
+
+  const day = ensureDay(today);
+  if (!day.englishChecks) day.englishChecks = {};
+
+  const list = document.getElementById('englishTaskList');
+  list.innerHTML = '';
+  mission.tasks.forEach((task, idx) => {
+    const checked = !!day.englishChecks[idx];
+    const row = document.createElement('div');
+    row.className = 'task-item';
+    row.innerHTML = `
+      <div class="task-check ${checked?'done':''}">${checked?'✓':''}</div>
+      <div class="task-title ${checked?'done':''}">${escapeHtml(task)}</div>
+    `;
+    row.querySelector('.task-check').addEventListener('click', () => {
+      day.englishChecks[idx] = !day.englishChecks[idx];
+      saveDB();
+      const allDone = mission.tasks.every((_, i) => day.englishChecks[i]);
+      if (allDone) ENGLISH_STREAK.trackLog[today] = 'yes';
+      else delete ENGLISH_STREAK.trackLog[today];
+      saveEnglishStreak();
+      renderEnglish();
+    });
+    list.appendChild(row);
+  });
+
+  renderEnglishVocab(day);
+
+  const grid = document.getElementById('englishGrid');
+  grid.innerHTML = '';
+  info.days.forEach(dkey => {
+    const isFuture = dkey > today;
+    const isToday = dkey === today;
+    const val = ENGLISH_STREAK.trackLog[dkey];
+    const d = new Date(dkey + 'T00:00:00');
+    const dnum = d.getDate();
+    const wd = d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0,1);
+    const cls = isFuture ? 'future' : (val === 'yes' ? 'yes' : val === 'no' ? 'no' : '');
+    const btn = document.createElement('button');
+    btn.className = 'day-cell ' + cls + (isToday ? ' selected' : '');
+    btn.disabled = isFuture || isToday;
+    btn.innerHTML = `<span class="dnum">${val==='yes'?'✓':val==='no'?'✕':dnum}</span><span>${wd}</span>`;
+    if (!isFuture && !isToday) {
+      btn.addEventListener('click', () => {
+        const cur = ENGLISH_STREAK.trackLog[dkey];
+        if (!cur) ENGLISH_STREAK.trackLog[dkey] = 'yes';
+        else if (cur === 'yes') ENGLISH_STREAK.trackLog[dkey] = 'no';
+        else delete ENGLISH_STREAK.trackLog[dkey];
+        saveEnglishStreak(); renderEnglish();
+      });
+    }
+    grid.appendChild(btn);
+  });
+  renderPointsSection();
+}
+
+document.getElementById('englishVocabAdd').addEventListener('click', () => {
+  const input = document.getElementById('englishVocabInput');
+  const word = input.value.trim();
+  if (!word) return;
+  const day = ensureDay(todayKey());
+  if (!day.englishVocab) day.englishVocab = [];
+  day.englishVocab.push(word);
+  saveDB();
+  input.value = '';
+  renderEnglishVocab(day);
+});
+document.getElementById('englishVocabInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('englishVocabAdd').click();
+});
+
+document.getElementById('addRuleBtn').addEventListener('click', () => {
+  const input = document.getElementById('ruleInput');
+  const text = input.value.trim();
+  if (!text) return;
+  RULES.push({ id: uid(), text });
+  saveRules();
+  input.value = '';
+  const day = ensureDay(todayKey());
+  renderRulesSection(day);
+});
+document.getElementById('ruleInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('addRuleBtn').click();
+});
+document.getElementById('addTaskBtn').addEventListener('click', () => {
+  const input = document.getElementById('taskInput');
+  const time = document.getElementById('timeInput').value;
+  const title = input.value.trim();
+  if (!title) return;
+  const day = ensureDay(todayKey());
+
+  if (selectedType === 'daily-notime') {
+    TEMPLATES.push({ id: uid(), title, time: null, type: 'daily', days: null });
+    saveTemplates();
+  } else if (selectedType === 'daily-time') {
+    TEMPLATES.push({ id: uid(), title, time, type: 'daily', days: null });
+    saveTemplates();
+  } else if (selectedType === 'weekly-time') {
+    if (selectedDays.length === 0) { alert('Choose at least one day.'); return; }
+    TEMPLATES.push({ id: uid(), title, time, type: 'weekly', days: [...selectedDays] });
+    saveTemplates();
+  } else if (selectedType === 'weekly-notime') {
+    if (selectedDays.length === 0) { alert('Choose at least one day.'); return; }
+    TEMPLATES.push({ id: uid(), title, time: null, type: 'weekly', days: [...selectedDays] });
+    saveTemplates();
+  }
+
+  input.value = '';
+  selectedDays = [];
+  document.querySelectorAll('.wd-btn').forEach(b=>b.classList.remove('active'));
+  saveDB(); renderToday();
+});
+document.getElementById('taskInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('addTaskBtn').click();
+});
+document.getElementById('minDayToggle').addEventListener('click', () => {
+  const day = ensureDay(todayKey());
+  day.minimumDay = !day.minimumDay;
+  saveDB(); renderToday();
+});
+document.getElementById('tiktokInput').addEventListener('input', e => {
+  const day = ensureDay(selectedScreenDate);
+  day.tiktokMin = e.target.value === '' ? null : Number(e.target.value);
+  updateScreenTimeStatus(day);
+  saveDB();
+});
+document.getElementById('instaInput').addEventListener('input', e => {
+  const day = ensureDay(selectedScreenDate);
+  day.instaMin = e.target.value === '' ? null : Number(e.target.value);
+  updateScreenTimeStatus(day);
+  saveDB();
+});
+document.getElementById('dayTypeNoClass').addEventListener('click', () => {
+  const day = ensureDay(selectedScreenDate);
+  day.dayType = day.dayType === 'noclass' ? null : 'noclass';
+  saveDB(); renderScreenTimeSection();
+});
+document.getElementById('dayTypeClass').addEventListener('click', () => {
+  const day = ensureDay(selectedScreenDate);
+  day.dayType = day.dayType === 'class' ? null : 'class';
+  saveDB(); renderScreenTimeSection();
+});
+['noclassTiktokMax','noclassInstaMax','classTiktokMax','classInstaMax'].forEach(id => {
+  document.getElementById(id).addEventListener('input', e => {
+    const val = e.target.value === '' ? 0 : Number(e.target.value);
+    if (id === 'noclassTiktokMax') SCREEN_SETTINGS.noclass.tiktokMax = val;
+    if (id === 'noclassInstaMax') SCREEN_SETTINGS.noclass.instaMax = val;
+    if (id === 'classTiktokMax') SCREEN_SETTINGS.class.tiktokMax = val;
+    if (id === 'classInstaMax') SCREEN_SETTINGS.class.instaMax = val;
+    saveScreenSettings();
+    const day = ensureDay(selectedScreenDate);
+    updateScreenTimeStatus(day);
+    renderScreenTimeSection();
+  });
+});
+document.getElementById('targetPointsInput').addEventListener('input', e => {
+  POINTS_SETTINGS.target = e.target.value === '' ? 0 : Number(e.target.value);
+  savePointsSettings();
+  renderPointsSection();
+});
+
+// ---------- INSIGHTS ----------
+function renderScreenTimeChart() {
+  const chart = document.getElementById('stChart');
+  chart.innerHTML = '';
+  const vals = [];
+  for (let i = 6; i >= 0; i--) {
+    const key = todayKey(i);
+    const d = DB[key];
+    const tk = d && d.tiktokMin != null ? Number(d.tiktokMin) : null;
+    const ig = d && d.instaMin != null ? Number(d.instaMin) : null;
+    const hasData = tk !== null || ig !== null;
+    const total = (tk||0) + (ig||0);
+    const dayType = d ? d.dayType : null;
+    vals.push({ key, total, hasData, isToday: i===0, dayType });
+  }
+  const maxVal = Math.max(60, ...vals.map(v=>v.total));
+  vals.forEach((v, idx) => {
+    const h = v.hasData ? Math.max(6, (v.total/maxVal)*100) : 3;
+    const zone = v.hasData ? screenTimeStatus(v.total, v.dayType).zone : null;
+    const cls = v.hasData ? `st-${zone}` : '';
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.innerHTML = `<div class="bar ${cls}" style="height:${h}px; ${v.hasData?'':'opacity:0.25;'}"></div><div class="bar-label">${dayLabel(6-idx)}</div>`;
+    chart.appendChild(col);
+  });
+
+  const loggedDays = vals.filter(v=>v.hasData);
+  document.getElementById('stLimitsSummary').textContent =
+    `Your budgets — no classes: ${limitsFor('noclass').max} min combined · class day: ${limitsFor('class').max} min combined`;
+  const label = document.getElementById('stTrendLabel');
+  if (loggedDays.length < 2) {
+    label.textContent = loggedDays.length ? `${loggedDays[loggedDays.length-1].total} min today` : 'No data yet';
+    return;
+  }
+  const last = loggedDays[loggedDays.length-1].total;
+  const prev = loggedDays[loggedDays.length-2].total;
+  const diff = last - prev;
+  if (diff < 0) label.textContent = `↓ ${Math.abs(diff)} min vs yesterday`;
+  else if (diff > 0) label.textContent = `↑ ${diff} min vs yesterday`;
+  else label.textContent = 'Same as yesterday';
+}
+
+function renderEnglishProgress() {
+  const prog = englishProgressInfo();
+  document.getElementById('engProgWeek').textContent = `Week ${prog.weekNum}`;
+  document.getElementById('engProgPhase').textContent = `Phase ${prog.phaseIdx+1}: ${prog.phase.name} · ${prog.phase.weeks}`;
+
+  const streakInfo = weekInfoOf(ENGLISH_STREAK);
+  document.getElementById('eng_streak').textContent = streakInfo.daysElapsed;
+
+  const doneThisWeek = currentWeekDays().filter(k => ENGLISH_STREAK.trackLog[k] === 'yes').length;
+  document.getElementById('eng_week').textContent = `${doneThisWeek}/7`;
+
+  let totalWords = 0, totalDaysPracticed = 0;
+  Object.keys(DB).forEach(k => {
+    const d = DB[k];
+    if (Array.isArray(d.englishVocab)) totalWords += d.englishVocab.length;
+    if (ENGLISH_STREAK.trackLog[k] === 'yes') totalDaysPracticed++;
+  });
+  document.getElementById('eng_words').textContent = totalWords;
+  document.getElementById('eng_days').textContent = totalDaysPracticed;
+}
+
+function renderInsights() {
+  const bar = document.getElementById('barChart');
+  bar.innerHTML = '';
+  let maxTasks = 1;
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const key = todayKey(i);
+    const d = DB[key];
+    const total = d ? d.tasks.length : 0;
+    const done = d ? d.tasks.filter(t=>t.done).length : 0;
+    maxTasks = Math.max(maxTasks, total);
+    days.push({ key, done, total, isToday: i===0 });
+  }
+  days.forEach(d => {
+    const pct = d.total ? d.done/d.total : 0;
+    const h = Math.max(6, pct * 100);
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.innerHTML = `<div class="bar ${d.isToday?'today':''}" style="height:${h}px;"></div><div class="bar-label">${dayLabel(days.indexOf(d)>=0 ? (6-days.indexOf(d)) : 0)}</div>`;
+    bar.appendChild(col);
+  });
+
+  renderScreenTimeChart();
+  renderEnglishProgress();
+
+  const todayD = DB[todayKey()] || emptyDay();
+  const finished = todayD.tasks.filter(t=>t.done).length;
+  const total = todayD.tasks.length;
+  const missed = total - finished;
+  const rate = total ? Math.round((finished/total)*100) : 0;
+  const daysWithMark = Object.keys(DB).filter(k => DB[k].tasks.length>0 || Object.keys(DB[k].prayers||{}).length>0 || DB[k].tiktokMin!=null || DB[k].instaMin!=null).length;
+
+  document.getElementById('s_finished').textContent = finished;
+  document.getElementById('s_missed').textContent = missed;
+  document.getElementById('s_rate').textContent = rate + '%';
+  document.getElementById('s_days').textContent = daysWithMark;
+
+  if (daysWithMark === 0) {
+    document.getElementById('reflectTitle').textContent = 'Start collecting data';
+    document.getElementById('reflectDesc').textContent = 'Complete tasks and log the daily check-ins to build a useful baseline.';
+  } else {
+    document.getElementById('reflectTitle').textContent = rate >= 70 ? 'Strong momentum' : 'Building the habit';
+    document.getElementById('reflectDesc').textContent = rate >= 70
+      ? 'Your completion rate is solid. Keep the system running.'
+      : 'Consistency matters more than perfection. Small wins compound.';
+  }
+
+  let mosque = 0, home = 0, missedPrayers = 0, firstDayKey = null;
+  const allDayKeys = Object.keys(DB).sort();
+  const todayK = todayKey();
+  allDayKeys.forEach(k => {
+    if (k > todayK) return; // ignore any accidental future entries
+    const d = DB[k];
+    if (!d || !d.prayers) return;
+    const hasAnyPrayerData = PRAYERS.some(p => d.prayers[p]);
+    if (!hasAnyPrayerData) return;
+    if (!firstDayKey) firstDayKey = k;
+    PRAYERS.forEach(p => {
+      if (d.prayers[p] === 'mosque') mosque++;
+      else if (d.prayers[p] === 'home') home++;
+      else missedPrayers++;
+    });
+  });
+  const totalLogged = mosque + home;
+  const maxBar = Math.max(mosque, home, 1);
+  document.getElementById('prayerMissedPill').textContent = missedPrayers + ' missed';
+  document.getElementById('mosqueCount').textContent = mosque;
+  document.getElementById('homeCount').textContent = home;
+  document.getElementById('mosqueBar').style.width = (mosque/maxBar*100) + '%';
+  document.getElementById('homeBar').style.width = (home/maxBar*100) + '%';
+  document.getElementById('prayerTrackedSince').textContent = firstDayKey
+    ? `Since ${new Date(firstDayKey+'T00:00:00').toLocaleDateString('en-US',{day:'numeric',month:'long',year:'numeric'})}`
+    : 'No prayers logged yet';
+}
+
+// ---------- REVIEW ----------
+function renderReview() {
+  let finished = 0, total = 0, activeDays = 0;
+  let prayersLogged = 0, prayerMissed = 0;
+
+  for (let i = 0; i < 7; i++) {
+    const key = todayKey(i);
+    const d = DB[key];
+    if (!d) continue;
+    const f = d.tasks.filter(t=>t.done).length;
+    const t = d.tasks.length;
+    if (t > 0 || Object.keys(d.prayers||{}).length>0) activeDays++;
+    finished += f; total += t;
+    const logged = PRAYERS.filter(p => d.prayers[p]).length;
+    prayersLogged += logged;
+    prayerMissed += (5 - logged);
+  }
+  const missed = total - finished;
+  const pct = total ? Math.round((finished/total)*100) : 0;
+
+  document.getElementById('activeDays').textContent = activeDays;
+  document.getElementById('weekPct').innerHTML = pct + '%<span>task completion</span>';
+  document.getElementById('weekProgress').style.width = pct + '%';
+  document.getElementById('weekFinished').textContent = finished + ' finished';
+  document.getElementById('weekMissed').textContent = missed + ' missed';
+
+  const prayerPct = (prayersLogged+prayerMissed) ? Math.round((prayersLogged/(prayersLogged+prayerMissed))*100) : 0;
+  document.getElementById('weekPrayerPct').textContent = prayerPct + '%';
+  document.getElementById('weekPrayerSub').textContent = `${prayersLogged} of ${prayersLogged+prayerMissed} prayers logged across ${activeDays} day${activeDays===1?'':'s'}.`;
+
+  document.getElementById('strongNote').textContent = finished > 0
+    ? `${finished} task${finished===1?'':'s'} completed this week.`
+    : 'No completed tasks yet';
+  document.getElementById('weakNote').textContent = missed > 2
+    ? `${missed} tasks missed — consider a lighter Minimum Day plan.`
+    : 'No repeated misses yet';
+}
+
+function renderAll() {
+  renderToday();
+  renderInsights();
+  renderReview();
+}
+
+// ---------- TABS ----------
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-today').classList.add('hidden');
+    document.getElementById('tab-insights').classList.add('hidden');
+    document.getElementById('tab-review').classList.add('hidden');
+    document.getElementById('tab-'+btn.dataset.tab).classList.remove('hidden');
+    if (btn.dataset.tab === 'insights') renderInsights();
+    if (btn.dataset.tab === 'review') renderReview();
+  });
+});
+
+loadDB();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed', err));
+  });
+}
+</script>
+</body>
+</html>
