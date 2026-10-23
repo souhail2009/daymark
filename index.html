@@ -81,7 +81,6 @@
     padding: 22px 18px 36px;
   }
 
-  /* Smooth Page & Section Transitions */
   .view-pane, .sub-pane {
     animation: smoothFade 0.32s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -90,7 +89,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Header */
   header {
     display: flex;
     justify-content: space-between;
@@ -131,7 +129,6 @@
   .icon-btn:hover { transform: translateY(-2px); }
   .icon-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* Hero Typography */
   .eyebrow {
     font-size: 11px; font-weight: 700;
     letter-spacing: 1.6px; color: var(--muted); text-transform: uppercase;
@@ -145,7 +142,6 @@
   h1.hero em { font-style: italic; color: var(--accent); }
   .sub { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; line-height: 1.5; }
 
-  /* Isolated Sub-Navigation Pills (Gives every option its own isolated space) */
   .subnav {
     display: flex;
     gap: 8px;
@@ -181,7 +177,6 @@
     box-shadow: var(--shadow-sm);
   }
 
-  /* Aesthetic Glass Cards */
   .card {
     background: var(--surface);
     backdrop-filter: blur(18px);
@@ -205,7 +200,6 @@
   .card-meta { font-size: 13px; color: var(--muted); font-weight: 500; }
   .card-meta b { color: var(--text); font-weight: 700; }
 
-  /* Score Banner */
   .score-hero {
     background: linear-gradient(135deg, #214338 0%, #162e26 100%);
     color: #fff;
@@ -233,7 +227,6 @@
     border-radius: 99px; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Task Items */
   .task-item {
     display: flex; align-items: center; gap: 12px;
     padding: 13px 10px;
@@ -277,7 +270,9 @@
   }
   .subj-ANALYSE { background: rgba(223,109,65,0.15); color: var(--orange); }
   .subj-ALGEBRE { background: rgba(70,113,198,0.15); color: var(--blue); }
+  .subj-MPM { background: rgba(39,121,119,0.18); color: var(--teal); }
   .subj-ALGO { background: rgba(123,92,196,0.15); color: var(--purple); }
+  .subj-CHIMIE { background: rgba(212,91,75,0.15); color: var(--red); }
   .subj-ENSAM { background: var(--accent-soft); color: var(--accent); }
   .subj-COOK { background: rgba(209,151,50,0.18); color: var(--amber); }
   .subj-CLUB { background: rgba(39,121,119,0.16); color: var(--teal); }
@@ -293,7 +288,6 @@
   }
   .filter-chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-  /* Inputs & Buttons */
   .add-row { display: flex; gap: 8px; margin-top: 12px; }
   .add-row input[type=text], .add-row input[type=number], .add-row input[type=date], .add-row select, .add-row input[type=time] {
     flex: 1; min-width: 0; background: var(--surface-soft);
@@ -341,7 +335,6 @@
   }
   .btn-secondary:hover { background: var(--surface-solid); }
 
-  /* Week Grids & Cells */
   .flex-week-label {
     font-size: 12px; color: var(--muted); margin-bottom: 10px; display: flex; justify-content: space-between;
   }
@@ -371,7 +364,6 @@
   }
   .toggle-box.on { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  /* Prayers */
   .prayer-row {
     display: flex; justify-content: space-between; align-items: center;
     padding: 12px 10px; margin-bottom: 6px;
@@ -395,7 +387,6 @@
   }
   .yn-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
-  /* Floating Bottom Dock */
   .tabbar {
     position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
     background: var(--surface);
@@ -413,7 +404,6 @@
   }
   .tab-btn.active { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(35, 71, 60, 0.3); }
 
-  /* Charts & Stats */
   .bar-chart { display: flex; align-items: flex-end; justify-content: space-between; height: 130px; margin-top: 14px; }
   .bar-col { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
   .bar { width: 24px; border-radius: 8px 8px 4px 4px; background: var(--accent); min-height: 6px; transition: height 0.35s ease; }
@@ -451,7 +441,6 @@
   .strong-row b { display: block; font-size: 14px; margin-bottom: 3px; }
   .strong-row .note { color: var(--muted); font-size: 12.5px; }
 
-  /* Majorant Specific */
   .pomo-display {
     font-family: 'Instrument Serif', serif; font-size: 72px; line-height: 1;
     text-align: center; color: var(--text); margin: 16px 0;
@@ -491,7 +480,6 @@
   }
   .empty-title { font-family: 'Instrument Serif', serif; font-size: 24px; margin-bottom: 4px; }
   .empty-desc { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 280px; margin: 0 auto; }
-
 
   /* LIVE PHASE TRACKER & TIMELINE */
   .live-tracker-hero {
@@ -534,11 +522,11 @@
   }
   .live-phase-title {
     font-family: 'Instrument Serif', serif;
-    font-size: 34px; line-height: 1.1; margin: 4px 0 8px; color: #fff;
+    font-size: 32px; line-height: 1.12; margin: 4px 0 8px; color: #fff;
   }
   .live-phase-coach {
-    font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.86);
-    background: rgba(255,255,255,0.07);
+    font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,0.88);
+    background: rgba(255,255,255,0.08);
     border-left: 3px solid #7de2bd;
     padding: 10px 13px; border-radius: 10px; margin-bottom: 14px;
   }
@@ -591,6 +579,35 @@
   .tl-title { font-size: 14.5px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
   .tl-desc { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
 
+  .prog-step-banner {
+    background: var(--surface-soft);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 13px 14px;
+    margin-bottom: 10px;
+  }
+  .prog-step-head {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    margin-bottom: 6px;
+  }
+  .btn-xs {
+    border: 1px solid var(--border);
+    background: var(--surface-solid);
+    color: var(--text);
+    border-radius: 9px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .btn-xs.accent {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
   .hidden { display: none !important; }
 </style>
 </head>
@@ -614,7 +631,7 @@
   <div id="tab-today" class="view-pane">
     <div class="eyebrow" id="dateLine">—</div>
     <h1 class="hero" id="greeting">Good day. <em>majorate the promo.</em></h1>
-    <div class="sub" id="dailyStrategyBanner">Wake up early · 7-min commute · Conquer Analyse 1 & Algèbre 1.</div>
+    <div class="sub" id="dailyStrategyBanner">Wake up early · 7-min commute · Conquer Analyse 1, Algèbre 1 & MPM.</div>
 
     <!-- SCORE HERO -->
     <div class="score-hero">
@@ -632,10 +649,10 @@
       <div class="progress-track">
         <div class="progress-fill" id="pointsProgress" style="width:0%;"></div>
       </div>
-      <div style="font-size:12px; opacity:0.82;" id="pointsHint">Missions · Deep Study · 3-Pass TDs · Prières · Protocole Y · Règles</div>
+      <div style="font-size:12px; opacity:0.82;" id="pointsHint">Missions · Progression Syllabus (Analyse/Algèbre/MPM) · Prières · Protocole Y</div>
     </div>
 
-    <!-- ISOLATED SUB-NAVIGATION FOR TODAY (Every feature has its own clean space!) -->
+    <!-- ISOLATED SUB-NAVIGATION FOR TODAY -->
     <div class="subnav" id="todaySubNav">
       <button class="subnav-btn active" data-sub="today-live">⚡ Live Phase (24h)</button>
       <button class="subnav-btn" data-sub="today-plan">📋 Missions</button>
@@ -667,23 +684,48 @@
         </div>
       </div>
 
-      <!-- Day Selector to preview any day of the week -->
+      <!-- LIVE SYLLABUS PROGRESS QUICK-BAR (ANALYSE, ALGEBRE, MPM + AU CHOIX) -->
       <div class="card">
         <div class="card-head">
-          <div class="card-title">🗺️ Master Planning 24h (Du Réveil au Sommeil)</div>
-          <select id="liveDayPreviewSelect" style="background:var(--surface-soft); border:1px solid var(--border); border-radius:10px; padding:6px 10px; font-weight:800; font-size:12px; color:var(--text); font-family:inherit;">
-            <option value="AUTO">📍 Aujourd'hui (Auto-Live)</option>
-            <option value="MO">Lundi (MPM, Chimie, Cuisine, Algèbre, Analyse)</option>
-            <option value="TU">Mardi (Algèbre, Analyse, Skip MTU, Algo, Cuisine)</option>
-            <option value="WE">Mercredi (Algèbre Matin, Chimie, Cuisine, MPM, Algo, Club)</option>
-            <option value="TH">Jeudi (Petit-déj, TP, Sport, Thé, 2h Dessin, Analyse)</option>
-            <option value="FR">Vendredi (TP/Algèbre, Skip Langues=Analyse, Cuisine, Club)</option>
-            <option value="SA">Samedi (Atelier Mécatronique 8h + Marathon TD Passe 3)</option>
-            <option value="SU">Dimanche (Simulation DS 2h + Pré-lecture Lundi)</option>
-          </select>
+          <div class="card-title">🚀 Progression Active des Dossiers (Cours & TDs)</div>
+          <button class="btn-xs" onclick="switchTab('majorant'); switchMajorantSub('maj-syllabus');">📂 Voir tout le Syllabus</button>
+        </div>
+        <div class="chart-note" style="margin-top:0; margin-bottom:12px;">
+          Chaque créneau d'étude de votre planning (ex: <b>Lundi 19:00–20:45</b>) affiche automatiquement l'étape exacte où vous êtes arrivé. Dès que vous validez une étape, vos créneaux suivants passent au cours/TD suivant !
+        </div>
+        <div id="liveSyllabusQuickCards"></div>
+      </div>
+
+      <!-- Day Selector to preview any day of the week & any week -->
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">🗺️ Master Planning 24h (Dynamique selon Progression & Semaine)</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <select id="liveWeekQuickSelect" style="background:var(--surface-soft); border:1px solid var(--border); border-radius:10px; padding:6px 10px; font-weight:800; font-size:12px; color:var(--accent); font-family:inherit;">
+              <option value="6">Sem. 6</option>
+              <option value="7" selected>Sem. 7</option>
+              <option value="8">Sem. 8</option>
+              <option value="9">Sem. 9</option>
+              <option value="10">Sem. 10</option>
+              <option value="11">Sem. 11</option>
+              <option value="12">Sem. 12</option>
+              <option value="13">Sem. 13</option>
+              <option value="14">Sem. 14</option>
+            </select>
+            <select id="liveDayPreviewSelect" style="background:var(--surface-soft); border:1px solid var(--border); border-radius:10px; padding:6px 10px; font-weight:800; font-size:12px; color:var(--text); font-family:inherit;">
+              <option value="AUTO">📍 Aujourd'hui (Auto-Live)</option>
+              <option value="MO">Lundi (École + 19:00-20:45 Analyse/Algèbre)</option>
+              <option value="TU">Mardi (Algèbre, Analyse, MTU École, Algo, Révision)</option>
+              <option value="WE">Mercredi (Algèbre Matin, Chimie, MPM, Algo, Analyse, Club)</option>
+              <option value="TH">Jeudi (TP, Sport, 2h Dessin, Analyse + Wa9t Algo/Chimie)</option>
+              <option value="FR">Vendredi (TP, Langues École, Algèbre, Analyse/MPM, Club)</option>
+              <option value="SA">Samedi (Club 8h + Analyse, Algèbre, MPM & Wa9t Algo/Chimie)</option>
+              <option value="SU">Dimanche (Simulation DS + Avance Cours Semaine Suivante)</option>
+            </select>
+          </div>
         </div>
         <div class="chart-note" style="margin-top:0;">
-          Le suivi détecte automatiquement l'heure exacte et vous accompagne minute par minute du réveil (douche + trajet 7 min) jusqu'au coucher.
+          <b>Note :</b> <b>MTU</b> (Mardi 14h) et <b>Langues</b> (Vendredi 10h45) sont inclus dans le planning d'école (présentiel), mais <b>100% ignorés dans la révision à la maison</b>. Pour <b>Chimie</b> & <b>Algo/C</b> à la maison, l'application vous indique que c'est leur heure et vous laisse choisir librement quoi travailler.
         </div>
         <div class="Timeline-wrap" id="fullDayTimeline"></div>
       </div>
@@ -712,7 +754,7 @@
       <!-- Tasks Card -->
       <div class="card">
         <div class="card-head">
-          <div class="card-title">📋 Missions & Emploi du Temps</div>
+          <div class="card-title">📋 Missions & Créneaux Dynamiques du Jour</div>
           <div class="card-meta"><b id="doneCount">0</b> / <span id="totalCount">0</span></div>
         </div>
 
@@ -720,10 +762,12 @@
           <button class="filter-chip active" data-f="ALL">Tout</button>
           <button class="filter-chip" data-f="ANALYSE">📐 Analyse 1</button>
           <button class="filter-chip" data-f="ALGEBRE">🔢 Algèbre 1</button>
+          <button class="filter-chip" data-f="MPM">⚙️ MPM</button>
           <button class="filter-chip" data-f="ALGO">💻 Algo C</button>
+          <button class="filter-chip" data-f="CHIMIE">🧪 Chimie</button>
           <button class="filter-chip" data-f="COOK">🍳 Cuisine</button>
           <button class="filter-chip" data-f="CLUB">🤖 Club & Dessin</button>
-          <button class="filter-chip" data-f="ENSAM">🏛️ Cours</button>
+          <button class="filter-chip" data-f="ENSAM">🏛️ École</button>
         </div>
 
         <div class="check-row" style="margin: 4px 0 14px; padding: 10px 12px; background: var(--surface-soft); border-radius: 14px; border:1px solid var(--border);">
@@ -750,7 +794,9 @@
               <select id="taskSubjSelect" style="max-width:155px;">
                 <option value="ANALYSE">📐 Analyse 1</option>
                 <option value="ALGEBRE">🔢 Algèbre 1</option>
+                <option value="MPM">⚙️ MPM</option>
                 <option value="ALGO">💻 Algo & C</option>
+                <option value="CHIMIE">🧪 Chimie</option>
                 <option value="COOK">🍳 Cuisine/Vaisselle</option>
                 <option value="CLUB">🤖 Club / Dessin</option>
                 <option value="ENSAM">🏛️ Cours ENSAM</option>
@@ -804,7 +850,7 @@
         <details class="recur-manage" id="recurManage">
           <summary>🔁 Gérer le planning récurrent (<span id="tplCountLabel">0</span>) & Synchronisation ENSAM</summary>
           <div style="margin:8px 0 12px; display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="btn-secondary" id="reloadEnsamBtn" style="width:100%;">🔄 Recharger le planning ENSAM + Cuisine + Club + Dessin</button>
+            <button class="btn-secondary" id="reloadEnsamBtn" style="width:100%;">🔄 Recharger le planning ENSAM (MTU/Langues à l'école + Syllabus Progress)</button>
           </div>
           <div id="recurList"></div>
         </details>
@@ -919,19 +965,42 @@
   <div id="tab-majorant" class="view-pane hidden">
     <div class="eyebrow">ENSAM Casablanca · 2AP-1_C</div>
     <h1 class="hero">The <em>Majorant</em> Lab.</h1>
-    <div class="sub">Chaque outil d'excellence pour dominer Analyse 1 (Mandyly) et Algèbre 1 (Imzeguouan) dans son propre espace dédié.</div>
+    <div class="sub">Pilotage complet de vos dossiers <b>Analyse 1</b>, <b>Algèbre 1</b> et <b>MPM</b> avec progression automatique dans votre emploi du temps.</div>
 
     <!-- ISOLATED SUB-NAVIGATION FOR MAJORANT LAB -->
     <div class="subnav" id="majorantSubNav">
-      <button class="subnav-btn active" data-msub="maj-timer">⏱️ Chrono Focus</button>
+      <button class="subnav-btn active" data-msub="maj-syllabus">📂 Syllabus & Progress</button>
+      <button class="subnav-btn" data-msub="maj-timer">⏱️ Chrono Focus</button>
       <button class="subnav-btn" data-msub="maj-tds">📐 TD 3-Passes</button>
       <button class="subnav-btn" data-msub="maj-memory">🧠 Mémoire J+X</button>
-      <button class="subnav-btn" data-msub="maj-astuces">📓 Astuces & Pièges</button>
+      <button class="subnav-btn" data-msub="maj-astuces">📓 Astuces</button>
       <button class="subnav-btn" data-msub="maj-exams">🎯 Semaine & DS</button>
     </div>
 
+    <!-- SUB-SPACE 2-SYLLABUS: FULL PROGRESS QUEUE FOR ANALYSE, ALGEBRE, MPM + AU CHOIX -->
+    <div id="sub-maj-syllabus" class="sub-pane">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">📂 Progression par Matière (Analyse 1 · Algèbre 1 · MPM)</div>
+          <span class="pill green" id="globalSyllabusPctBadge">0% Complété</span>
+        </div>
+        <div class="chart-note" style="margin-top:0; margin-bottom:14px;">
+          Voici toutes les étapes issues des dossiers envoyés (Cours, Séries TD, Contrôles). L'étape marquée <b>🔥 EN COURS</b> est celle qui s'affiche automatiquement dans vos créneaux horaires de la semaine (ex: Lundi 19h00–20h45). Cochez une étape pour faire avancer tout votre planning à la leçon ou au TD suivant !
+        </div>
+
+        <div class="filter-bar" id="syllabusFilterBar">
+          <button class="filter-chip active" data-sf="ANALYSE">📐 Analyse 1</button>
+          <button class="filter-chip" data-sf="ALGEBRE">🔢 Algèbre 1</button>
+          <button class="filter-chip" data-sf="MPM">⚙️ MPM (Ch.1–6 & TDs)</button>
+          <button class="filter-chip" data-sf="AUCHOIX">⏰ Chimie & Algo/C (Au choix)</button>
+        </div>
+
+        <div id="syllabusDetailContainer"></div>
+      </div>
+    </div>
+
     <!-- SUB-SPACE 2A: DEEP WORK TIMER -->
-    <div id="sub-maj-timer" class="sub-pane">
+    <div id="sub-maj-timer" class="sub-pane hidden">
       <div class="card">
         <div class="card-head">
           <div class="card-title">⏱️ Deep-Work Study Timer</div>
@@ -941,8 +1010,9 @@
           <select id="pomoSubjectSelect">
             <option value="ANALYSE">📐 Analyse 1 (Suites, Limites, DL, Continuité)</option>
             <option value="ALGEBRE">🔢 Algèbre 1 (Logique, Ensembles, Polynômes, EV)</option>
-            <option value="ALGO">💻 Algorithmique & C (Sprint)</option>
-            <option value="ENSAM">🧪 MPM / Chimie Générale</option>
+            <option value="MPM">⚙️ MPM (Cinématique, Dynamique, Énergie, Forces Centrales)</option>
+            <option value="ALGO">💻 Algorithmique & C (Au choix)</option>
+            <option value="CHIMIE">🧪 Chimie Générale (Au choix)</option>
           </select>
         </div>
         <div class="yn-row">
@@ -963,22 +1033,24 @@
     <div id="sub-maj-tds" class="sub-pane hidden">
       <div class="card">
         <div class="card-head">
-          <div class="card-title">📐🔢 Matrice TD en 3 Passes</div>
+          <div class="card-title">📐🔢⚙️ Matrice TD en 3 Passes (Analyse · Algèbre · MPM)</div>
           <div class="card-meta">+10 pts / Passe</div>
         </div>
         <div class="chart-note" style="margin-top:0; margin-bottom:14px;">
-          <b>Passe 1 :</b> Chercher seul avec les définitions du cours.<br>
-          <b>Passe 2 :</b> Corriger en TD et isoler l'astuce clé.<br>
-          <b>Passe 3 :</b> Refaire 48h plus tard sur feuille blanche sous chrono.
+          <b>Passe 1 :</b> Chercher seul avec les définitions du cours (30% théorie).<br>
+          <b>Passe 2 :</b> Corriger le TD et isoler l'astuce clé.<br>
+          <b>Passe 3 :</b> Refaire 48h plus tard sur feuille blanche sous chrono (70% pratique).
         </div>
         <div id="tdTrackerList"></div>
         <div class="add-row">
           <select id="tdSubjInput" style="max-width:135px;">
             <option value="ANALYSE">📐 Analyse 1</option>
             <option value="ALGEBRE">🔢 Algèbre 1</option>
+            <option value="MPM">⚙️ MPM</option>
             <option value="ALGO">💻 Algo & C</option>
+            <option value="CHIMIE">🧪 Chimie</option>
           </select>
-          <input type="text" id="tdTitleInput" placeholder="Ex: Série TD 3 — Suites numériques" />
+          <input type="text" id="tdTitleInput" placeholder="Ex: Série TD 3 — Travail et Énergie" />
           <button class="btn-secondary" id="addTdBtn">＋</button>
         </div>
       </div>
@@ -998,6 +1070,7 @@
           <select id="srSubjInput" style="max-width:135px;">
             <option value="ANALYSE">📐 Analyse 1</option>
             <option value="ALGEBRE">🔢 Algèbre 1</option>
+            <option value="MPM">⚙️ MPM</option>
             <option value="ALGO">💻 Algo & C</option>
           </select>
           <input type="text" id="srTopicInput" placeholder="Ex: Théorème de Bolzano-Weierstrass + Preuve" />
@@ -1015,12 +1088,13 @@
           <div class="card-meta"><span id="tricksCount">0</span> enregistrés</div>
         </div>
         <div class="chart-note" style="margin-top:0; margin-bottom:12px;">
-          Dès qu'un exercice d'Analyse ou d'Algèbre vous bloque, notez le déclencheur et la méthode exacte pour les relire la veille du DS.
+          Dès qu'un exercice d'Analyse, d'Algèbre ou de MPM vous bloque, notez le déclencheur et la méthode exacte pour les relire la veille du DS.
         </div>
         <div class="add-row">
           <select id="trickSubjInput" style="max-width:135px;">
             <option value="ANALYSE">📐 Analyse 1</option>
             <option value="ALGEBRE">🔢 Algèbre 1</option>
+            <option value="MPM">⚙️ MPM</option>
             <option value="ALGO">💻 Algo C</option>
           </select>
           <input type="text" id="trickTextInput" placeholder="Ex: Suite implicite f_n(x_n)=0 → TVI + monotonie..." />
@@ -1034,7 +1108,7 @@
     <div id="sub-maj-exams" class="sub-pane hidden">
       <div class="card">
         <div class="card-head">
-          <div class="card-title">🗓️ Semaine Universitaire ENSAM</div>
+          <div class="card-title">🗓️ Semaine Universitaire ENSAM (Change le programme de la semaine)</div>
           <select id="ensamWeekSelect" style="background:var(--surface-soft); border:1px solid var(--border); border-radius:12px; padding:8px 12px; font-weight:800; color:var(--text); font-family:inherit;">
             <option value="6">Sem. 6</option>
             <option value="7" selected>Sem. 7 (Actuelle)</option>
@@ -1084,7 +1158,7 @@
           <div class="card-meta"><b id="totalStudyHoursInsight">0h</b> au total</div>
         </div>
         <div id="subjectDistBars"></div>
-        <div class="chart-note">Gardez +80% de votre énergie concentrée sur <b>Analyse 1</b> et <b>Algèbre 1</b>.</div>
+        <div class="chart-note">Gardez l'essentiel de votre énergie concentré sur <b>Analyse 1</b>, <b>Algèbre 1</b> et <b>MPM</b>. (MTU & Langues = 0h à la maison).</div>
       </div>
 
       <div class="card">
@@ -1166,7 +1240,7 @@
       <div class="strong-row weak"><div><b>↘ Point faible à corriger</b><div class="note" id="weakNote">Aucun oubli répété</div></div></div>
     </div>
 
-    <div class=" stat-grid" style="margin-bottom:16px;">
+    <div class="stat-grid" style="margin-bottom:16px;">
       <div class="card" style="margin-bottom:0;">
         <div class="card-title" style="margin-bottom:8px;">🛡️ Minimum Days</div>
         <div class="big-num" style="font-size:36px; color:var(--text);" id="minDaysUsedCount">0/7</div>
@@ -1184,7 +1258,7 @@
         <div class="card-title">💾 Sauvegarde & Restauration (JSON)</div>
       </div>
       <div class="chart-note" style="margin-top:0; margin-bottom:14px;">
-        Exportez vos données pour ne jamais perdre votre progression, vos passes de TD ou votre Carnet d'Astuces.
+        Exportez vos données pour ne jamais perdre votre progression dans les dossiers (Analyse, Algèbre, MPM), vos passes de TD ou votre Carnet d'Astuces.
       </div>
       <div style="display:flex; gap:10px;">
         <button class="btn-secondary" id="exportDataBtn" style="flex:1;">⬇️ Exporter JSON</button>
@@ -1211,28 +1285,94 @@ const WD_CODES = ['SU','MO','TU','WE','TH','FR','SA'];
 const SUBJ_LABELS = {
   ANALYSE: '📐 Analyse 1',
   ALGEBRE: '🔢 Algèbre 1',
+  MPM: '⚙️ MPM',
   ALGO: '💻 Algo C',
-  ENSAM: '🏛️ ENSAM',
+  CHIMIE: '🧪 Chimie',
+  ENSAM: '🏛️ École ENSAM',
   COOK: '🍳 Cuisine',
   CLUB: '🤖 Club/Dessin',
   LIFE: '⚡ Routine'
 };
+
+// ============================================================================
+// SYLLABUS PROGRESS ENGINE (BASED ON YOUR 3 FOLDERS: ANALYSE 1, ALGEBRE 1, MPM)
+// Each subject has an ordered sequence of exact lessons, TD exercises & exams.
+// Your schedule slots (e.g. Lundi 19:00-20:45) pull dynamically from here!
+// ============================================================================
+function getDefaultSyllabusTracks() {
+  return {
+    ANALYSE: [
+      { id: 'ana-s1', week: 6, type: 'COURS', title: 'Cours Ch.1 : Nombres Réels ℝ (Majorant, Minorant, Borne Sup/Inf, Archimède)', coach: '30% Théorie : Maîtriser la caractérisation de la borne sup avec ε > 0 sur feuille blanche.', done: true },
+      { id: 'ana-s2', week: 6, type: 'TD', title: 'TD Série 1 (Nombres Réels) : Ex 1, 2 & 3 (Passe 1 Solo + Passe 2 Corrigé)', coach: '70% Pratique : Résoudre les exercices de bornes sup/inf et valeur absolue/partie entière.', done: true },
+      { id: 'ana-s3', week: 7, type: 'TD', title: 'TD Série 1 (Nombres Réels) : Ex 4 & 5 + Passe 3 Feuille Blanche (Sous chrono)', coach: 'Verrouiller définitivement la Série 1 avant d\'attaquer les Suites à fond.', done: false },
+      { id: 'ana-s4', week: 7, type: 'COURS', title: 'Cours Ch.2 : Suites Numériques (Convergence, Gendarmes, Suites Adjacentes, Bolzano-Weierstrass)', coach: 'Apprendre par cœur les définitions en (ε, N) et la preuve des suites adjacentes.', done: false },
+      { id: 'ana-s5', week: 7, type: 'TD', title: 'TD Série 2 (Suites Numériques) : Ex 1, 2 & 3 — Calcul de limites & Encadrements (Passe 1 & 2)', coach: 'Chercher seul 20 min par exercice avant de vérifier la rédaction de Mandyly.', done: false },
+      { id: 'ana-s6', week: 8, type: 'TD', title: 'TD Série 2 (Suites Numériques) : Ex 4, 5 & 6 — Suites récurrentes u_{n+1}=f(u_n) & Cauchy (Passe 2 & 3)', coach: 'Classique absolu de DS : monotonie de f, points fixes f(x)=x et sous-suites.', done: false },
+      { id: 'ana-s7', week: 9, type: 'COURS', title: 'Cours Ch.3 : Limites & Continuité des Fonctions (TVI, Dichotomie, Image d\'un segment)', coach: '30% Théorie : Savoir énoncer le TVI et le théorème des bornes atteintes sans hésiter.', done: false },
+      { id: 'ana-s8', week: 9, type: 'TD', title: 'TD Série 3 (Continuité) : Ex 1, 2 & 3 — Prolongement par continuité & TVI (Passe 1 & 2)', coach: 'Rédiger rigoureusement les hypothèses de continuité sur l\'intervalle.', done: false },
+      { id: 'ana-s9', week: 10, type: 'TD', title: 'TD Série 3 (Continuité) : Ex 4, 5 & 6 — Fonctions continues sur un compact & bijection (Passe 2 & 3)', coach: 'Refaire les exercices étoilés sous chrono.', done: false },
+      { id: 'ana-s10', week: 11, type: 'COURS', title: 'Cours Ch.4 : Dérivabilité (Théorème de Rolle, Accroissements Finis TAF, Formule de Leibniz)', coach: '30% Théorie : La preuve de Rolle → TAF tombe très souvent en question de cours !', done: false },
+      { id: 'ana-s11', week: 11, type: 'TD', title: 'TD Série 4 (Dérivabilité) : Ex 1 à 4 — Applications de Rolle et inégalités via TAF (Passe 1 & 2)', coach: '70% Pratique : Bien poser la fonction auxiliaire g(x) pour appliquer Rolle.', done: false },
+      { id: 'ana-s12', week: 12, type: 'COURS', title: 'Cours Ch.5 : Développements Limités (Taylor-Young, DL usuels en 0, Équivalents)', coach: 'Mémoriser parfaitement les DL de exp, ln(1+x), sin, cos, (1+x)^α à l\'ordre n.', done: false },
+      { id: 'ana-s13', week: 13, type: 'TD', title: 'TD Série 4/5 (DL & Étude asymptotique) : Calculs de limites, tangentes et branches infinies (Passe 1, 2 & 3)', coach: 'Attention à la troncature à l\'ordre exact lors de la composition de DL.', done: false },
+      { id: 'ana-s14', week: 14, type: 'EXAM', title: 'Annales DS & Examens Finaux Analyse 1 (Mandyly) — Simulation complète sous chrono', coach: 'Enchaîner 2 sujets complets sur feuille blanche.', done: false }
+    ],
+    ALGEBRE: [
+      { id: 'alg-s1', week: 6, type: 'COURS', title: 'Cours Ch.1 : Logique, Ensembles & Applications (Injection, Surjection, Bijection, Image directe/réciproque)', coach: '30% Théorie : Maîtriser f(A∩B) ⊂ f(A)∩f(B) et f^{-1}(B_1∩B_2) = f^{-1}(B_1)∩f^{-1}(B_2).', done: true },
+      { id: 'alg-s2', week: 6, type: 'TD', title: 'TD Série 1 (Logique, Ensembles, Applications) : Ex 1 à 4 (Passe 1 & Passe 2)', coach: 'Soigner la rédaction par double inclusion et contraposée comme exigé par Imzeguouan.', done: true },
+      { id: 'alg-s3', week: 7, type: 'TD', title: 'TD Série 1 (Applications & Relations Binaires) : Ex 5, 6 & 7 + Passe 3 Feuille Blanche', coach: 'Relation d\'équivalence (classes d\'équivalence) et relation d\'ordre.', done: false },
+      { id: 'alg-s4', week: 7, type: 'COURS', title: 'Cours Ch.2 : Structures Algébriques (Groupes, Sous-groupes, Morphismes, Anneaux & Corps)', coach: '30% Théorie : Caractérisation d\'un sous-groupe (H non vide et x*y^{-1} ∈ H) + Noyau/Image.', done: false },
+      { id: 'alg-s5', week: 8, type: 'TD', title: 'TD Série 2 (Structures Algébriques & Arithmétique) : Ex 1, 2 & 3 — Sous-groupes & Anneaux (Passe 1 & 2)', coach: 'Vérifier systématiquement que l\'élément neutre appartient au sous-ensemble.', done: false },
+      { id: 'alg-s6', week: 8, type: 'TD', title: 'TD Série 2 (Structures & Arithmétique dans ℤ) : Ex 4, 5 & 6 — Bézout, Gauss, Congruences (Passe 2 & 3)', coach: 'Refaire les exercices classiques de groupes symétriques et d\'arithmétique sans corrigé.', done: false },
+      { id: 'alg-s7', week: 9, type: 'COURS', title: 'Cours Ch.3 : Polynômes à une indéterminée K[X] (Division euclidienne, Racines multiples, Taylor, Irréductibilité)', coach: 'Critère de multiplicité d\'une racine avec les dérivées successives P^{(k)}(a)=0.', done: false },
+      { id: 'alg-s8', week: 9, type: 'TD', title: 'TD Série 3 (Polynômes) : Ex 1, 2 & 3 — Division euclidienne, PGCD & Racines (Passe 1 & 2)', coach: 'Astuce classique : poser le reste R(X) de degré < deg(B) et évaluer aux racines de B.', done: false },
+      { id: 'alg-s9', week: 10, type: 'TD', title: 'TD Série 3 (Polynômes) : Ex 4, 5 & 6 — Factorisation dans ℝ[X] et ℂ[X] (Passe 2 & 3)', coach: 'Regrouper les racines complexes conjuguées (X - z)(X - z̄) pour factoriser dans ℝ[X].', done: false },
+      { id: 'alg-s10', week: 11, type: 'COURS', title: 'Cours Ch.4 : Fractions Rationnelles & Décomposition en Éléments Simples (DES sur ℂ et ℝ)', coach: 'Maîtriser la méthode du cache (pôles simples), la parité et la limite en l\'infini.', done: false },
+      { id: 'alg-s11', week: 11, type: 'TD', title: 'TD Série 3/4 (Fractions Rationnelles) : Exercices complets de DES & Sommes télescopiques (Passe 1, 2 & 3)', coach: 'Toujours extraire la partie entière E(X) par division euclidienne si deg(P) ≥ deg(Q) !', done: false },
+      { id: 'alg-s12', week: 12, type: 'COURS', title: 'Cours Ch.5 : Espaces Vectoriels (Sous-espaces vectoriels SEV, Familles libres/génératrices, Bases, Dimension)', coach: 'Théorème de la base incomplète et Formule de Grassmann dim(F+G) = dim(F)+dim(G)-dim(F∩G).', done: false },
+      { id: 'alg-s13', week: 13, type: 'TD', title: 'TD Série 4 (Espaces Vectoriels & Applications Linéaires) : SEV, Somme directe F⊕G, Ker(f), Im(f), Th. du Rang', coach: '70% Pratique : Maîtriser parfaitement le Théorème du Rang.', done: false },
+      { id: 'alg-s14', week: 14, type: 'EXAM', title: 'Annales DS & Examens Finaux Algèbre 1 (Imzeguouan) — Simulation sous chrono', coach: 'Travailler la rapidité et la rigueur de rédaction.', done: false }
+    ],
+    MPM: [
+      { id: 'mpm-s1', week: 6, type: 'COURS', title: 'Cours Ch.1 : Cinématique du Point (Systèmes de coordonnées Cartésiennes, Cylindriques, Sphériques & Base de Frenet)', coach: '30% Théorie : Savoir retrouver v⃗ et γ⃗ en cylindriques et sphériques par dérivation des vecteurs unitaires sans par cœur aveugle.', done: true },
+      { id: 'mpm-s2', week: 7, type: 'TD', title: 'TD Cinématique / Série 1 : Ex 1, 2 & 3 — Vitesse, Accélération et Rayon de courbure (Passe 1 & 2)', coach: '70% Pratique :projeter proprement sur la base polaire/cylindrique et Frenet (τ⃗, n⃗).', done: false },
+      { id: 'mpm-s3', week: 7, type: 'TD', title: 'TD Cinématique / Série 1 : Ex 4 & 5 + Changement de référentiel (Vitesse/Accélération d\'entraînement et Coriolis)', coach: 'Maîtriser la loi de composition des vitesses v⃗_a = v⃗_r + v⃗_e et γ⃗_c = 2 ω⃗ ∧ v⃗_r.', done: false },
+      { id: 'mpm-s4', week: 8, type: 'COURS', title: 'Cours Ch.2 : Dynamique du Point Matériel (PFD en référentiel galiléen et non-galiléen, Forces d\'inertie f⃗_ie, f⃗_ic, Frottements)', coach: 'Toujours définir : 1) Système, 2) Référentiel, 3) Bilan des forces, 4) Base de projection.', done: false },
+      { id: 'mpm-s5', week: 8, type: 'TD', title: 'TD Série 2 (Dynamique) : Ex 1, 2 & 3 — PFD, Anneau sur tige en rotation & Équations différentielles (Passe 1 & 2)', coach: 'Déterminer la réaction R⃗ du support et la condition de décollement (R_N = 0).', done: false },
+      { id: 'mpm-s6', week: 9, type: 'TD', title: 'TD Série 2 (Dynamique suite) : Ex 4 & 5 + Sujet Contrôle CC1 (Cinématique + Dynamique)', coach: 'Refaire le Contrôle 1 du dossier Contrôles MPM en conditions réelles.', done: false },
+      { id: 'mpm-s7', week: 10, type: 'COURS', title: 'Cours Ch.3 : Travail, Puissance & Énergie (Travail élémentaire δW, Forces conservatives, Énergie potentielle E_p, TEC, TEM)', coach: 'Condition d\'équilibre : dE_p/dx = 0 ; Stabilité : d²E_p/dx² > 0 (puits de potentiel).', done: false },
+      { id: 'mpm-s8', week: 10, type: 'TD', title: 'TD 3 (Travail et Énergie) : Calcul de travail, recherche de E_p, positions d\'équilibre et petits mouvements (Passe 1, 2 & 3)', coach: 'Dériver l\'énergie mécanique E_m = Cte par rapport au temps pour obtenir directement l\'équation du mouvement !', done: false },
+      { id: 'mpm-s9', week: 11, type: 'COURS', title: 'Cours Ch.4 : Théorèmes Généraux (Moment d\'une force M⃗_O, Moment cinétique σ⃗_O, Théorème du Moment Cinétique TMC)', coach: 'Le TMC en O élimine immédiatement les forces dont la droite d\'action passe par O.', done: false },
+      { id: 'mpm-s10', week: 11, type: 'TD', title: 'TD 4 (Théorèmes Généraux) : Applications du TMC & Pendules (Passe 1, 2 & 3)', coach: 'Comparer la rapidité entre PFD, TMC et TEM sur chaque exercice.', done: false },
+      { id: 'mpm-s11', week: 12, type: 'COURS', title: 'Cours Ch.5 : Mouvements à Force Centrale (Conservation de σ⃗_O, Constante des aires C = r²θ̇, Formules de Binet, Kepler)', coach: 'Connaître l\'énergie potentielle effective E_{p,eff}(r) et la nature des coniques selon l\'excentricité e et le signe de E_m.', done: false },
+      { id: 'mpm-s12', week: 12, type: 'TD', title: 'TD 5 (Forces Centrales) : Satellites, coniques, vitesses cosmiques et transfert d\'orbite (Passe 1, 2 & 3)', coach: 'Très fréquent en examen final MPM : bien maîtriser r_min = p/(1+e) et r_max = p/(1-e).', done: false },
+      { id: 'mpm-s13', week: 13, type: 'COURS', title: 'Cours Ch.6 : Système de Deux Points Matériels (Référentiel barycentrique R*, Mobile fictif, Masse réduite μ, Chocs)', coach: 'Théorème de Koenig et conservation de la quantité de mouvement P⃗ lors des chocs.', done: false },
+      { id: 'mpm-s14', week: 14, type: 'EXAM', title: 'Dossier Examens & Contrôles MPM : Résolution complète des Examens Finaux sous chrono', coach: 'Boucler tous les PDF du dossier Contrôles/Examens MPM.', done: false }
+    ]
+  };
+}
 
 let DB = {};
 let TEMPLATES = [];
 let RULES = [];
 let MAJORANT = {
   ensamWeek: 7,
+  syllabus: getDefaultSyllabusTracks(),
+  customFocus: {
+    ALGO: 'Choisir le chapitre / TP de C à travailler pendant ce créneau',
+    CHIMIE: 'Choisir le chapitre / TD de Chimie à travailler pendant ce créneau'
+  },
   tds: [],
   spaced: [],
   tricks: [],
   exams: [],
-  studyMinutes: { ANALYSE: 0, ALGEBRE: 0, ALGO: 0, ENSAM: 0 }
+  studyMinutes: { ANALYSE: 0, ALGEBRE: 0, MPM: 0, ALGO: 0, CHIMIE: 0, ENSAM: 0 }
 };
 
 let selectedType = 'once-time';
 let selectedDays = [];
 let activeSubjectFilter = 'ALL';
+let activeSyllabusFilter = 'ANALYSE';
 
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 
@@ -1268,6 +1408,69 @@ function diffDays(a, b) {
 }
 
 // ============================================================================
+// HELPER: GET DYNAMIC STUDY CONTENT FOR ANY SLOT BASED ON PROGRESS & WEEK
+// ============================================================================
+function ensureSyllabusInitialized() {
+  if (!MAJORANT.syllabus || !MAJORANT.syllabus.ANALYSE || !MAJORANT.syllabus.MPM) {
+    MAJORANT.syllabus = getDefaultSyllabusTracks();
+  }
+  if (!MAJORANT.customFocus) {
+    MAJORANT.customFocus = {
+      ALGO: 'Choisir le chapitre / TP de C à travailler pendant ce créneau',
+      CHIMIE: 'Choisir le chapitre / TD de Chimie à travailler pendant ce créneau'
+    };
+  }
+}
+
+// Returns the active (or offset) step for a subject based on user's real progress
+// AND if user switches the preview week, shows how future weeks evolve!
+function getDynamicStepForSubject(subj, slotOffset = 0, targetWeek = null) {
+  ensureSyllabusInitialized();
+  const track = MAJORANT.syllabus[subj] || [];
+  if (track.length === 0) return { title: subj, coach: '' };
+
+  const currentWeek = Number(MAJORANT.ensamWeek || 7);
+  const effectiveWeek = targetWeek ? Number(targetWeek) : currentWeek;
+  const weekDelta = Math.max(0, effectiveWeek - currentWeek);
+
+  // Find first uncompleted step in the user's progress queue
+  let firstUnfinishedIdx = track.findIndex(s => !s.done);
+  if (firstUnfinishedIdx === -1) firstUnfinishedIdx = track.length - 1;
+
+  // Each week has ~2 progression steps per core subject, plus slotOffset within the same week
+  const computedIdx = Math.min(track.length - 1, firstUnfinishedIdx + (weekDelta * 2) + slotOffset);
+  return track[computedIdx];
+}
+
+function getSubjectProgressStats(subj) {
+  ensureSyllabusInitialized();
+  const track = MAJORANT.syllabus[subj] || [];
+  const done = track.filter(s => s.done).length;
+  const total = track.length || 1;
+  const pct = Math.round((done / total) * 100);
+  const currentStep = track.find(s => !s.done) || track[track.length - 1];
+  return { done, total, pct, currentStep };
+}
+
+function advanceSubjectStep(subj) {
+  ensureSyllabusInitialized();
+  const track = MAJORANT.syllabus[subj] || [];
+  const step = track.find(s => !s.done);
+  if (step) {
+    step.done = true;
+    // Also add study minutes & sync today's dynamic mission titles
+    const d = ensureDay(todayKey());
+    d.studyMins = (d.studyMins || 0) + 50;
+    if (!MAJORANT.studyMinutes) MAJORANT.studyMinutes = {};
+    MAJORANT.studyMinutes[subj] = (MAJORANT.studyMinutes[subj] || 0) + 50;
+    saveMajorant();
+    syncDynamicTaskTitlesForDay(todayKey());
+    saveDB();
+    renderAll();
+  }
+}
+
+// ============================================================================
 // ISOLATED SUB-NAVIGATION CONTROLLERS
 // ============================================================================
 document.querySelectorAll('#todaySubNav .subnav-btn').forEach(btn => {
@@ -1285,7 +1488,7 @@ function switchMajorantSub(target) {
   document.querySelectorAll('#majorantSubNav .subnav-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.msub === target);
   });
-  ['maj-timer','maj-tds','maj-memory','maj-astuces','maj-exams'].forEach(id => {
+  ['maj-syllabus','maj-timer','maj-tds','maj-memory','maj-astuces','maj-exams'].forEach(id => {
     document.getElementById('sub-' + id).classList.toggle('hidden', id !== target);
   });
 }
@@ -1305,98 +1508,140 @@ document.querySelectorAll('#insightsSubNav .subnav-btn').forEach(btn => {
 });
 
 // ============================================================================
-// DEFAULT ENSAM 2AP-1_C (WEEK 7+) + COOKING + MECHATRONICS + DRAWING TEMPLATES
+// DEFAULT ENSAM 2AP-1_C TEMPLATES
+// - School classes INCLUDE MTU (Tuesday 14:00-16:00) & Langues (Friday 10:45-12:45)
+//   so you go attend them at school!
+// - Home study slots use dynamic `dynSlot` markers so they automatically display
+//   the exact Cours or TD from your progress queue (Analyse, Algèbre, MPM)
+//   or tell you "⏰ WA9T ALGO / CHIMIE (Au choix)"!
 // ============================================================================
 function getDefaultEnsamTemplates() {
   return [
     { id: 'ensam-wake', title: '🚿 Réveil tôt + Douche matinale + Préparer le sac', time: '07:15', range: {from:'07:15', to:'07:50'}, type: 'daily', days: null, subject: 'LIFE', essential: true },
     { id: 'ensam-commute', title: '🚶‍♂️ Trajet 7 min vers ENSAM (Arriver frais avant 08:30)', time: '08:15', type: 'weekly', days: ['MO','TU','WE','TH','FR'], subject: 'LIFE', essential: true },
 
-    // LUNDI
-    { id: 'lun-mpm', title: '🏛️ Cours MPM (Sakim · Amphi 2)', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['MO'], subject: 'ENSAM', essential: true },
-    { id: 'lun-chim', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['MO'], subject: 'ENSAM', essential: true },
+    // ==================== LUNDI ====================
+    { id: 'lun-mpm', title: '🏛️ [École] Cours MPM (Sakim · Amphi 2)', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['MO'], subject: 'ENSAM', essential: true },
+    { id: 'lun-chim', title: '🏛️ [École] Chimie Générale (Khallouk · Amphi 2)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['MO'], subject: 'ENSAM', essential: true },
     { id: 'lun-cook', title: '🍳 Cuisine Déjeuner (7m trajet → Cuisiner & Manger → 7m retour)', time: '12:52', range: {from:'12:52', to:'13:50'}, type: 'weekly', days: ['MO'], subject: 'COOK', essential: true },
-    { id: 'lun-alg', title: '🔢 Cours/TD Algèbre 1 (Imzeguouan · Amphi 2) — 1er rang !', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['MO'], subject: 'ALGEBRE', essential: true },
-    { id: 'lun-ana', title: '📐 Cours/TD Analyse 1 (Mandyly · Amphi 2) — Noter chaque preuve !', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true },
-    { id: 'lun-study1', title: '📐🔢 Verrouillage du soir : Récitation feuille blanche Algèbre & Analyse', time: '19:00', range: {from:'19:00', to:'20:45'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true },
+    { id: 'lun-alg', title: '🏛️ [École] Cours/TD Algèbre 1 (Imzeguouan · Amphi 2) — 1er rang !', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['MO'], subject: 'ALGEBRE', essential: true },
+    { id: 'lun-ana', title: '🏛️ [École] Cours/TD Analyse 1 (Mandyly · Amphi 2) — Noter chaque preuve !', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true },
+    // LUNDI 19:00-20:45 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
+    { id: 'lun-study1', title: '📐 [Révision 19h00–20h45] Analyse 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:45'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 0 },
     { id: 'lun-wash', title: '🍽️ Laver la vaisselle du dîner (Sprint 5 minutes)', time: '21:15', type: 'weekly', days: ['MO'], subject: 'COOK', essential: true },
+    // LUNDI 21:25-22:15 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
+    { id: 'lun-study2', title: '🔢 [Révision 21h25–22h15] Algèbre 1 (Progression Auto)', time: '21:25', range: {from:'21:25', to:'22:15'}, type: 'weekly', days: ['MO'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 0 },
 
-    // MARDI
+    // ==================== MARDI ====================
     { id: 'mar-bfast', title: '🍳 Préparer le petit-déjeuner', time: '07:50', type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
-    { id: 'mar-alg', title: '🔢 Cours/TD Algèbre 1 (Imzeguouan · Amphi 3)', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['TU'], subject: 'ALGEBRE', essential: true },
-    { id: 'mar-ana', title: '📐 Cours/TD Analyse 1 (Mandyly · Amphi 4)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['TU'], subject: 'ANALYSE', essential: true },
+    { id: 'mar-alg', title: '🏛️ [École] Cours/TD Algèbre 1 (Imzeguouan · Amphi 3)', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['TU'], subject: 'ALGEBRE', essential: true },
+    { id: 'mar-ana', title: '🏛️ [École] Cours/TD Analyse 1 (Mandyly · Amphi 4)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['TU'], subject: 'ANALYSE', essential: true },
     { id: 'mar-wash1', title: '🍽️ Laver la vaisselle du déjeuner', time: '13:30', type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
-    { id: 'mar-deep-ana', title: '📐 [Créneau MTU libre] Analyse 1 Deep TD (Passe 1 & 2)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TU'], subject: 'ANALYSE', essential: true },
-    { id: 'mar-algo', title: '💻 Algorithmique / Programmation C (Amphi 2)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['TU'], subject: 'ALGO', essential: true },
+    // MARDI 14:00-16:00 -> MTU IN SCHOOL SCHEDULE (Not revised at home!)
+    { id: 'mar-mtu-school', title: '🏛️ [École Présentiel] Cours MTU (Amphi · 0 révision à la maison)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TU'], subject: 'ENSAM', essential: true },
+    { id: 'mar-algo', title: '🏛️ [École] Algorithmique / Programmation C (Amphi 2)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['TU'], subject: 'ALGO', essential: true },
     { id: 'mar-tea', title: '🍵 Préparer le thé après les cours', time: '18:25', type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
-    { id: 'mar-deep-alg', title: '🔢 Algèbre 1 Exercices TD + Preuves de cours', time: '19:00', range: {from:'19:00', to:'20:30'}, type: 'weekly', days: ['TU'], subject: 'ALGEBRE', essential: false },
+    // MARDI 19:00-20:30 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
+    { id: 'mar-deep-alg', title: '🔢 [Révision 19h00–20h30] Algèbre 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:30'}, type: 'weekly', days: ['TU'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 0 },
     { id: 'mar-dinner', title: '🍳 Préparer le dîner du Mardi', time: '20:35', range: {from:'20:35', to:'21:15'}, type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
+    // MARDI 21:20-22:15 -> DYNAMIC MPM PROGRESS SLOT
+    { id: 'mar-deep-mpm', title: '⚙️ [Révision 21h20–22h15] MPM (Progression Auto)', time: '21:20', range: {from:'21:20', to:'22:15'}, type: 'weekly', days: ['TU'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 0 },
 
-    // MERCREDI
+    // ==================== MERCREDI ====================
     { id: 'mer-wash-bf', title: '🍽️ Laver la vaisselle du petit-déjeuner', time: '08:00', type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
-    { id: 'mer-gold-alg', title: '🔢 [Matinée Libre Sem 7-11] Algèbre 1 Deep TD (Avant Chimie)', time: '08:30', range: {from:'08:30', to:'10:25'}, type: 'weekly', days: ['WE'], subject: 'ALGEBRE', essential: true },
-    { id: 'mer-chim', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
+    // MERCREDI 08:30-10:25 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
+    { id: 'mer-gold-alg', title: '🔢 [Matinée Libre 08h30–10h25] Algèbre 1 (Progression Auto)', time: '08:30', range: {from:'08:30', to:'10:25'}, type: 'weekly', days: ['WE'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
+    { id: 'mer-chim', title: '🏛️ [École] Chimie Générale (Khallouk · Amphi 2)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
     { id: 'mer-lunch', title: '🍳 Cuisine Déjeuner Mercredi', time: '12:52', range: {from:'12:52', to:'13:50'}, type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
-    { id: 'mer-mpm', title: '🏛️ Cours MPM (Sakim · Amphi 3)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
-    { id: 'mer-algo', title: '💻 Algorithmique / Programmation C (Amphi 3)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['WE'], subject: 'ALGO', essential: true },
+    { id: 'mer-mpm', title: '🏛️ [École] Cours MPM (Sakim · Amphi 3)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
+    { id: 'mer-algo', title: '🏛️ [École] Algorithmique / Programmation C (Amphi 3)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['WE'], subject: 'ALGO', essential: true },
     { id: 'mer-tea', title: '🍵 Thé après l\'école + Vaisselle', time: '18:25', type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
-    { id: 'mer-ana', title: '📐 Analyse 1 TD (Passe 3 — Feuille blanche sous chrono)', time: '19:15', range: {from:'19:15', to:'20:50'}, type: 'weekly', days: ['WE'], subject: 'ANALYSE', essential: true },
+    // MERCREDI 19:15-20:50 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
+    { id: 'mer-ana', title: '📐 [Révision 19h15–20h50] Analyse 1 (Progression Auto)', time: '19:15', range: {from:'19:15', to:'20:50'}, type: 'weekly', days: ['WE'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
     { id: 'mer-club', title: '🤖 Club Mécatronique — Session Online', time: '21:00', range: {from:'21:00', to:'22:00'}, type: 'weekly', days: ['WE'], subject: 'CLUB', essential: true },
 
-    // JEUDI
+    // ==================== JEUDI ====================
     { id: 'jeu-bfast', title: '🍳 Préparer le petit-déjeuner + Vaisselle', time: '07:45', type: 'weekly', days: ['TH'], subject: 'COOK', essential: true },
-    { id: 'jeu-tp', title: '🔬 TP MPM / TP Chimie (ou Deep Algèbre 1 selon groupe)', time: '08:30', range: {from:'08:30', to:'12:45'}, type: 'weekly', days: ['TH'], subject: 'ENSAM', essential: true },
-    { id: 'jeu-sport', title: '⚽ Sport (Terrain de sport · Sossi)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TH'], subject: 'LIFE', essential: false },
+    { id: 'jeu-tp', title: '🔬 [École] TP MPM / TP Chimie (et révision MPM si sous-groupe libre)', time: '08:30', range: {from:'08:30', to:'12:45'}, type: 'weekly', days: ['TH'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 0 },
+    { id: 'jeu-sport', title: '⚽ [École] Sport (Terrain de sport · Sossi)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TH'], subject: 'LIFE', essential: false },
     { id: 'jeu-tea', title: '🍵 Thé après les cours + Laver leur vaisselle', time: '16:05', type: 'weekly', days: ['TH'], subject: 'COOK', essential: true },
     { id: 'jeu-draw', title: '🎨 Session Dessin Créatif (2 Heures de Flow)', time: '16:30', range: {from:'16:30', to:'18:30'}, type: 'weekly', days: ['TH'], subject: 'CLUB', essential: true },
-    { id: 'jeu-ana', title: '📐 Analyse 1 Résolution d\'exercices difficiles', time: '19:00', range: {from:'19:00', to:'20:45'}, type: 'weekly', days: ['TH'], subject: 'ANALYSE', essential: true },
-    { id: 'jeu-algo', title: '💻 Sprint Algo & Programmation C (35 min)', time: '20:50', range: {from:'20:50', to:'21:25'}, type: 'weekly', days: ['TH'], subject: 'ALGO', essential: false },
+    // JEUDI 19:00-20:30 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
+    { id: 'jeu-ana', title: '📐 [Révision 19h00–20h30] Analyse 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:30'}, type: 'weekly', days: ['TH'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
+    // JEUDI 20:35-21:35 -> AU CHOIX ALGO & C
+    { id: 'jeu-algo-choice', title: '⏰ [WA9T ALGO & C — 20h35–21h35] C\'est l\'heure d\'Algo/C : Choisis ton Cours/TP !', time: '20:35', range: {from:'20:35', to:'21:35'}, type: 'weekly', days: ['TH'], subject: 'ALGO', essential: true, isChoiceSlot: 'ALGO' },
+    // JEUDI 21:35-22:15 -> AU CHOIX CHIMIE
+    { id: 'jeu-chim-choice', title: '⏰ [WA9T CHIMIE — 21h35–22h15] C\'est l\'heure de Chimie : Choisis ton Cours/TD !', time: '21:35', range: {from:'21:35', to:'22:15'}, type: 'weekly', days: ['TH'], subject: 'CHIMIE', essential: false, isChoiceSlot: 'CHIMIE' },
 
-    // VENDREDI
-    { id: 'ven-tp1', title: '🔬 TP MPM Gr.3 (08:30-10:30) ou Bloc Algèbre 1', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['FR'], subject: 'ALGEBRE', essential: true },
-    { id: 'ven-skip-lang', title: '📐 [Créneau Langues libre] Analyse 1 TD Intensif & Preuves', time: '10:45', range: {from:'10:45', to:'12:35'}, type: 'weekly', days: ['FR'], subject: 'ANALYSE', essential: true },
-    { id: 'ven-lunch', title: '🍳 Cuisine Déjeuner Vendredi', time: '12:45', range: {from:'12:45', to:'13:50'}, type: 'weekly', days: ['FR'], subject: 'COOK', essential: true },
-    { id: 'ven-aft', title: '🔢 Algèbre 1 Bloc Majorant (ou TP MPM/Chimie Gr.4/5)', time: '14:15', range: {from:'14:15', to:'17:30'}, type: 'weekly', days: ['FR'], subject: 'ALGEBRE', essential: true },
-    { id: 'ven-rev', title: '📐🔢 Révision du Carnet d\'Astuces (Analyse + Algèbre)', time: '18:30', range: {from:'18:30', to:'20:15'}, type: 'weekly', days: ['FR'], subject: 'ANALYSE', essential: false },
+    // ==================== VENDREDI ====================
+    { id: 'ven-tp1', title: '🔬 [École] TP MPM Gr.3 (08:30-10:30) ou Progression MPM', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['FR'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
+    // VENDREDI 10:45-12:45 -> LANGUES IN SCHOOL SCHEDULE (Not revised at home!)
+    { id: 'ven-lang-school', title: '🏛️ [École Présentiel] Cours Langues & Communication (0 révision à la maison)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['FR'], subject: 'ENSAM', essential: true },
+    { id: 'ven-lunch', title: '🍳 Cuisine Déjeuner Vendredi + Prière Jumua', time: '12:50', range: {from:'12:50', to:'13:55'}, type: 'weekly', days: ['FR'], subject: 'COOK', essential: true },
+    // VENDREDI 14:15-17:30 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
+    { id: 'ven-aft', title: '🔢 [Révision 14h15–17h30] Algèbre 1 (Progression Auto / ou TP Gr.4/5)', time: '14:15', range: {from:'14:15', to:'17:30'}, type: 'weekly', days: ['FR'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
+    // VENDREDI 18:30-20:30 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
+    { id: 'ven-rev', title: '📐 [Révision 18h30–20h30] Analyse 1 (Progression Auto)', time: '18:30', range: {from:'18:30', to:'20:30'}, type: 'weekly', days: ['FR'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
     { id: 'ven-club', title: '🤖 Club Mécatronique — Session Online', time: '21:00', range: {from:'21:00', to:'22:00'}, type: 'weekly', days: ['FR'], subject: 'CLUB', essential: true },
 
-    // SAMEDI
+    // ==================== SAMEDI ====================
     { id: 'sam-club', title: '🤖 Club Mécatronique — Atelier Présentiel', time: '08:00', range: {from:'08:00', to:'10:00'}, type: 'weekly', days: ['SA'], subject: 'CLUB', essential: true },
-    { id: 'sam-ana', title: '📐 Analyse 1 — Série TD complète Passe 3 + Annales DS', time: '10:30', range: {from:'10:30', to:'13:00'}, type: 'weekly', days: ['SA'], subject: 'ANALYSE', essential: true },
-    { id: 'sam-alg', title: '🔢 Algèbre 1 — Série TD complète Passe 3 + Structures/Polynômes', time: '15:00', range: {from:'15:00', to:'17:30'}, type: 'weekly', days: ['SA'], subject: 'ALGEBRE', essential: true },
-    { id: 'sam-algo', title: '💻 Algo & C — Coder 2 programmes C de zéro (45m)', time: '18:00', range: {from:'18:00', to:'18:45'}, type: 'weekly', days: ['SA'], subject: 'ALGO', essential: false },
+    // SAMEDI 10:30-13:00 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
+    { id: 'sam-ana', title: '📐 [Marathon 10h30–13h00] Analyse 1 (Progression Auto)', time: '10:30', range: {from:'10:30', to:'13:00'}, type: 'weekly', days: ['SA'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
+    // SAMEDI 14:45-17:15 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
+    { id: 'sam-alg', title: '🔢 [Marathon 14h45–17h15] Algèbre 1 (Progression Auto)', time: '14:45', range: {from:'14:45', to:'17:15'}, type: 'weekly', days: ['SA'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
+    // SAMEDI 17:30-19:00 -> DYNAMIC MPM PROGRESS SLOT
+    { id: 'sam-mpm', title: '⚙️ [Révision 17h30–19h00] MPM (Progression Auto)', time: '17:30', range: {from:'17:30', to:'19:00'}, type: 'weekly', days: ['SA'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
+    // SAMEDI 19:15-20:30 -> AU CHOIX ALGO & CHIMIE
+    { id: 'sam-algo', title: '⏰ [WA9T ALGO/C & CHIMIE — 19h15–20h30] À toi de choisir quoi réviser !', time: '19:15', range: {from:'19:15', to:'20:30'}, type: 'weekly', days: ['SA'], subject: 'ALGO', essential: false, isChoiceSlot: 'ALGO' },
 
-    // DIMANCHE
-    { id: 'dim-sim', title: '📐🔢 Simulation DS 2h sur feuille blanche (Analyse 1 / Algèbre 1)', time: '09:30', range: {from:'09:30', to:'11:30'}, type: 'weekly', days: ['SU'], subject: 'ANALYSE', essential: true },
-    { id: 'dim-prep', title: '🔢📐 Préparer les chapitres de Lundi en Algèbre 1 & Analyse 1', time: '15:30', range: {from:'15:30', to:'17:30'}, type: 'weekly', days: ['SU'], subject: 'ALGEBRE', essential: true },
-    { id: 'dim-mpm', title: '🧪 Revue rapide 45m MPM & Chimie Générale pour Lundi matin', time: '18:00', range: {from:'18:00', to:'18:45'}, type: 'weekly', days: ['SU'], subject: 'ENSAM', essential: false }
+    // ==================== DIMANCHE ====================
+    { id: 'dim-sim', title: '📐🔢 [09h30–11h30] Simulation DS 2h sur feuille blanche (Analyse / Algèbre / MPM)', time: '09:30', range: {from:'09:30', to:'11:30'}, type: 'weekly', days: ['SU'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
+    { id: 'dim-prep', title: '🔢 [15h00–17h00] Avance Algèbre 1 pour Lundi', time: '15:00', range: {from:'15:00', to:'17:00'}, type: 'weekly', days: ['SU'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
+    { id: 'dim-mpm', title: '⚙️ [17h15–18h30] Avance MPM pour Lundi matin', time: '17:15', range: {from:'17:15', to:'18:30'}, type: 'weekly', days: ['SU'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
+    { id: 'dim-chim-choice', title: '⏰ [WA9T CHIMIE — 18h30–19h15] À toi de choisir quoi préparer pour Lundi !', time: '18:30', range: {from:'18:30', to:'19:15'}, type: 'weekly', days: ['SU'], subject: 'CHIMIE', essential: false, isChoiceSlot: 'CHIMIE' }
   ];
 }
 
 function getDefaultMajorantState() {
   return {
     ensamWeek: 7,
+    syllabus: getDefaultSyllabusTracks(),
+    customFocus: {
+      ALGO: 'Choisir le chapitre / TP de C à travailler pendant ce créneau',
+      CHIMIE: 'Choisir le chapitre / TD de Chimie à travailler pendant ce créneau'
+    },
     tds: [
       { id: 'td-ana-1', subj: 'ANALYSE', title: 'Série TD 1 — Nombres réels, bornes sup/inf', p1: true, p2: true, p3: false },
       { id: 'td-ana-2', subj: 'ANALYSE', title: 'Série TD 2 — Suites numériques & convergence', p1: true, p2: false, p3: false },
       { id: 'td-ana-3', subj: 'ANALYSE', title: 'Série TD 3 — Limites, continuité & TVI', p1: false, p2: false, p3: false },
+      { id: 'td-ana-4', subj: 'ANALYSE', title: 'Série TD 4 — Dérivabilité, Rolle, TAF & DL', p1: false, p2: false, p3: false },
       { id: 'td-alg-1', subj: 'ALGEBRE', title: 'Série TD 1 — Logique, ensembles & applications', p1: true, p2: true, p3: false },
       { id: 'td-alg-2', subj: 'ALGEBRE', title: 'Série TD 2 — Relations binaires, arithmétique & structures', p1: true, p2: false, p3: false },
-      { id: 'td-alg-3', subj: 'ALGEBRE', title: 'Série TD 3 — Polynômes & fractions rationnelles', p1: false, p2: false, p3: false }
+      { id: 'td-alg-3', subj: 'ALGEBRE', title: 'Série TD 3 — Polynômes & fractions rationnelles (DES)', p1: false, p2: false, p3: false },
+      { id: 'td-alg-4', subj: 'ALGEBRE', title: 'Série TD 4 — Espaces Vectoriels & Applications Linéaires', p1: false, p2: false, p3: false },
+      { id: 'td-mpm-1', subj: 'MPM', title: 'TD Cinématique / Série 1 — Coordonnées, Vitesse, Accélération, Frenet', p1: true, p2: false, p3: false },
+      { id: 'td-mpm-2', subj: 'MPM', title: 'TD Série 2 — Dynamique du Point Matériel & Référentiels non-galiléens', p1: false, p2: false, p3: false },
+      { id: 'td-mpm-3', subj: 'MPM', title: 'TD 3 — Travail, Puissance, Énergie Potentielle & Stabilité', p1: false, p2: false, p3: false },
+      { id: 'td-mpm-4', subj: 'MPM', title: 'TD 4 — Théorèmes Généraux & Moment Cinétique (TMC)', p1: false, p2: false, p3: false },
+      { id: 'td-mpm-5', subj: 'MPM', title: 'TD 5 — Mouvements à Force Centrale, Binet & Satellites', p1: false, p2: false, p3: false }
     ],
     spaced: [
       { id: 'sr-1', subj: 'ANALYSE', topic: 'Critère de Cauchy, suites adjacentes & Bolzano-Weierstrass', created: todayKey(1), doneDates: [] },
-      { id: 'sr-2', subj: 'ALGEBRE', topic: 'Injectivité / Surjectivité / Image directe et réciproque', created: todayKey(3), doneDates: [] }
+      { id: 'sr-2', subj: 'ALGEBRE', topic: 'Injectivité / Surjectivité / Image directe et réciproque', created: todayKey(3), doneDates: [] },
+      { id: 'sr-3', subj: 'MPM', topic: 'Accélération en cylindriques + Loi de composition des vitesses et Coriolis', created: todayKey(1), doneDates: [] }
     ],
     tricks: [
       { id: 'tr-1', subj: 'ANALYSE', text: 'Pour u_{n+1}=f(u_n): étudier g(x)=f(x)-x pour les points fixes et la monotonie de f pour le sens de variation.' },
-      { id: 'tr-2', subj: 'ALGEBRE', text: 'Pour montrer A = B, ou bien double inclusion, ou bien passer aux fonctions caractéristiques.' }
+      { id: 'tr-2', subj: 'ALGEBRE', text: 'Pour montrer A = B, ou bien double inclusion, ou bien passer aux fonctions caractéristiques.' },
+      { id: 'tr-3', subj: 'MPM', text: 'Si une force est centrale ou passe par O, son moment en O est nul → utiliser le TMC en O pour trouver une intégrale première (r²θ̇ = C).' }
     ],
     exams: [
       { id: 'ex-1', title: 'Contrôle / DS 1 — Analyse 1 (Mandyly)', date: addDays(todayKey(), 16) },
-      { id: 'ex-2', title: 'Contrôle / DS 1 — Algèbre 1 (Imzeguouan)', date: addDays(todayKey(), 18) }
+      { id: 'ex-2', title: 'Contrôle / DS 1 — Algèbre 1 (Imzeguouan)', date: addDays(todayKey(), 18) },
+      { id: 'ex-3', title: 'Contrôle CC1 — MPM (Sakim)', date: addDays(todayKey(), 20) }
     ],
-    studyMinutes: { ANALYSE: 0, ALGEBRE: 0, ALGO: 0, ENSAM: 0 }
+    studyMinutes: { ANALYSE: 0, ALGEBRE: 0, MPM: 0, ALGO: 0, CHIMIE: 0, ENSAM: 0 }
   };
 }
 
@@ -1415,6 +1660,34 @@ function emptyDay(key) {
   };
 }
 
+// Compute the exact title for a template task based on current Syllabus Progress
+function computeDynamicTaskTitle(tpl) {
+  if (tpl.dynSubj) {
+    const step = getDynamicStepForSubject(tpl.dynSubj, tpl.dynOffset || 0);
+    const timeTag = tpl.range ? `[${tpl.range.from}–${tpl.range.to}]` : '';
+    return `${timeTag} 🎯 ${step.title}`;
+  }
+  if (tpl.isChoiceSlot) {
+    const customNote = (MAJORANT.customFocus && MAJORANT.customFocus[tpl.isChoiceSlot]) || 'À toi de choisir le Cours/TD à travailler !';
+    const timeTag = tpl.range ? `[${tpl.range.from}–${tpl.range.to}]` : '';
+    return `⏰ ${timeTag} WA9T ${tpl.isChoiceSlot} (Au choix) : ${customNote}`;
+  }
+  return tpl.title;
+}
+
+function syncDynamicTaskTitlesForDay(key) {
+  const day = DB[key];
+  if (!day || !day.tasks) return;
+  day.tasks.forEach(t => {
+    const tpl = TEMPLATES.find(x => x.id === t.id);
+    if (tpl && (tpl.dynSubj || tpl.isChoiceSlot) && !t.done) {
+      t.title = computeDynamicTaskTitle(tpl);
+      t.dynSubj = tpl.dynSubj || null;
+      t.isChoiceSlot = tpl.isChoiceSlot || null;
+    }
+  });
+}
+
 function ensureDay(key) {
   if (!DB[key]) DB[key] = emptyDay(key);
   if (!DB[key].prayers) DB[key].prayers = {};
@@ -1424,6 +1697,7 @@ function ensureDay(key) {
     DB[key].dayType = (wd === 'SA' || wd === 'SU') ? 'noclass' : 'class';
   }
   materializeTemplates(key);
+  syncDynamicTaskTitlesForDay(key);
   return DB[key];
 }
 
@@ -1438,14 +1712,16 @@ function materializeTemplates(key) {
     if (!exists) {
       day.tasks.push({
         id: tpl.id,
-        title: tpl.title,
+        title: computeDynamicTaskTitle(tpl),
         time: tpl.time,
         done: false,
         recurring: true,
         auto: true,
         range: tpl.range || null,
         subject: tpl.subject || 'LIFE',
-        essential: tpl.essential !== false
+        essential: tpl.essential !== false,
+        dynSubj: tpl.dynSubj || null,
+        isChoiceSlot: tpl.isChoiceSlot || null
       });
     }
   });
@@ -1458,28 +1734,34 @@ async function loadDB() {
   } catch(e) { DB = {}; }
 
   try {
+    const rawMaj = localStorage.getItem('daymark-majorant');
+    MAJORANT = rawMaj ? JSON.parse(rawMaj) : getDefaultMajorantState();
+  } catch(e) { MAJORANT = getDefaultMajorantState(); }
+  ensureSyllabusInitialized();
+
+  try {
     const raw2 = localStorage.getItem('daymark-templates');
     TEMPLATES = raw2 ? JSON.parse(raw2) : [];
   } catch(e) { TEMPLATES = []; }
 
-  if (!localStorage.getItem('daymark-ensam-v2-loaded') || TEMPLATES.length === 0) {
+  if (!localStorage.getItem('daymark-ensam-v3-progress-loaded') || TEMPLATES.length === 0) {
     TEMPLATES = getDefaultEnsamTemplates();
-    localStorage.setItem('daymark-ensam-v2-loaded', 'true');
+    localStorage.setItem('daymark-ensam-v3-progress-loaded', 'true');
     saveTemplates();
+    const today = todayKey();
+    if (DB[today]) {
+      DB[today].skipped = [];
+      DB[today].tasks = DB[today].tasks.filter(t => !t.auto);
+    }
   }
 
   try {
     const raw3 = localStorage.getItem('daymark-rules');
     RULES = raw3 ? JSON.parse(raw3) : [
       { id: 'r-shower', text: '🚿 Douche matinale avant de toucher aux réseaux sociaux', hearts: null },
-      { id: 'r-front', text: '📐 S\'asseoir aux 2 premiers rangs en Analyse 1 & Algèbre 1', hearts: 3 }
+      { id: 'r-front', text: '📐 S\'asseoir aux 2 premiers rangs en Analyse 1, Algèbre 1 & MPM', hearts: 3 }
     ];
   } catch(e) { RULES = []; }
-
-  try {
-    const rawMaj = localStorage.getItem('daymark-majorant');
-    MAJORANT = rawMaj ? JSON.parse(rawMaj) : getDefaultMajorantState();
-  } catch(e) { MAJORANT = getDefaultMajorantState(); }
 
   if (localStorage.getItem('daymark-dark') === '1') {
     document.body.classList.add('dark-mode');
@@ -1511,7 +1793,7 @@ function savePointsSettings() {
 
 function isFocusShieldActive(d) {
   if (!d) return false;
-  const studyTasks = (d.tasks || []).filter(t => t.subject === 'ANALYSE' || t.subject === 'ALGEBRE' || t.subject === 'ALGO');
+  const studyTasks = (d.tasks || []).filter(t => ['ANALYSE','ALGEBRE','MPM','ALGO','CHIMIE'].includes(t.subject));
   const finishedStudy = studyTasks.filter(t => t.done).length;
   const screenTotal = (Number(d.tiktokMin)||0) + (Number(d.instaMin)||0);
   return finishedStudy >= 1 && screenTotal <= 15;
@@ -1524,8 +1806,8 @@ function computeDayPoints(dkey) {
     const shield = isFocusShieldActive(d) ? 1.2 : 1;
     (d.tasks||[]).forEach(t => {
       if (t.done) {
-        const isMath = (t.subject === 'ANALYSE' || t.subject === 'ALGEBRE');
-        pts += Math.round((isMath ? 7 : 5) * shield);
+        const isCore = (t.subject === 'ANALYSE' || t.subject === 'ALGEBRE' || t.subject === 'MPM');
+        pts += Math.round((isCore ? 8 : 5) * shield);
       }
     });
     PRAYERS.forEach(p => {
@@ -1569,6 +1851,11 @@ function renderPointsSection() {
     if (td.p2) total += 10;
     if (td.p3) total += 10;
   });
+  ['ANALYSE','ALGEBRE','MPM'].forEach(s => {
+    ((MAJORANT.syllabus && MAJORANT.syllabus[s]) || []).forEach(step => {
+      if (step.done) total += 12;
+    });
+  });
 
   const effectiveTarget = day.minimumDay ? Math.round(POINTS_SETTINGS.target * 0.7) : POINTS_SETTINGS.target;
 
@@ -1582,7 +1869,7 @@ function renderPointsSection() {
   if (isFocusShieldActive(day)) {
     shieldBadge.textContent = '🛡️ 1.2x Focus Shield Actif';
   } else {
-    shieldBadge.textContent = '1 bloc Maths + ≤15m écran = 1.2x';
+    shieldBadge.textContent = '1 bloc Étude + ≤15m écran = 1.2x';
   }
 
   const pct = effectiveTarget > 0 ? Math.min(100, Math.round((todayPts / effectiveTarget) * 100)) : 0;
@@ -1630,6 +1917,69 @@ function startChrono(t, day) {
   }
   tick();
   chronoIntervalId = setInterval(tick, 1000);
+}
+
+function renderLiveSyllabusQuickCards() {
+  const box = document.getElementById('liveSyllabusQuickCards');
+  if (!box) return;
+  box.innerHTML = '';
+
+  ['ANALYSE', 'ALGEBRE', 'MPM'].forEach(subj => {
+    const st = getSubjectProgressStats(subj);
+    const div = document.createElement('div');
+    div.className = 'prog-step-banner';
+    div.innerHTML = `
+      <div class="prog-step-head">
+        <div>
+          <span class="subj-pill subj-${subj}">${SUBJ_LABELS[subj]}</span>
+          <b style="font-size:12.5px;">Étape ${st.done + 1}/${st.total} (${st.pct}%)</b>
+        </div>
+        <button class="btn-xs accent" data-adv="${subj}">✅ Valider l'étape & Avancer</button>
+      </div>
+      <div style="font-size:13.5px; font-weight:700; color:var(--text); margin-bottom:4px;">
+        🎯 ${escapeHtml(st.currentStep.title)}
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">
+        💡 ${escapeHtml(st.currentStep.coach)}
+      </div>
+      <div class="hbar-track"><div class="hbar-fill g" style="width:${st.pct}%"></div></div>
+    `;
+    div.querySelector(`[data-adv="${subj}"]`).addEventListener('click', () => {
+      advanceSubjectStep(subj);
+    });
+    box.appendChild(div);
+  });
+
+  // Quick editor for Chimie & Algo/C "Au choix"
+  const choiceDiv = document.createElement('div');
+  choiceDiv.className = 'prog-step-banner';
+  choiceDiv.innerHTML = `
+    <div class="prog-step-head">
+      <div>
+        <span class="subj-pill subj-ALGO">💻 Algo & C</span>
+        <span class="subj-pill subj-CHIMIE">🧪 Chimie</span>
+        <b style="font-size:12px;">Créneaux "Au choix" (Tu décides quoi faire quand leur heure arrive)</b>
+      </div>
+    </div>
+    <div class="add-row" style="margin-top:6px;">
+      <input type="text" id="quickAlgoChoiceInput" value="${escapeHtml(MAJORANT.customFocus.ALGO || '')}" placeholder="Ton objectif Algo & C..." />
+      <input type="text" id="quickChimieChoiceInput" value="${escapeHtml(MAJORANT.customFocus.CHIMIE || '')}" placeholder="Ton objectif Chimie..." />
+    </div>
+  `;
+  box.appendChild(choiceDiv);
+
+  choiceDiv.querySelector('#quickAlgoChoiceInput').addEventListener('input', e => {
+    MAJORANT.customFocus.ALGO = e.target.value;
+    saveMajorant();
+    syncDynamicTaskTitlesForDay(todayKey());
+    saveDB();
+  });
+  choiceDiv.querySelector('#quickChimieChoiceInput').addEventListener('input', e => {
+    MAJORANT.customFocus.CHIMIE = e.target.value;
+    saveMajorant();
+    syncDynamicTaskTitlesForDay(todayKey());
+    saveDB();
+  });
 }
 
 function renderTodayExamRadar() {
@@ -1709,19 +2059,17 @@ function renderToday() {
   document.getElementById('greeting').innerHTML = `${greetWord}, Raid. <em>majorate the promo.</em>`;
   document.getElementById('dateLine').textContent = now.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' }).toUpperCase();
   document.getElementById('semHeaderBadge').textContent = `ENSAM · 2AP-1_C · Sem. ${MAJORANT.ensamWeek || 7}`;
+  const wkQuick = document.getElementById('liveWeekQuickSelect');
+  if (wkQuick) wkQuick.value = String(MAJORANT.ensamWeek || 7);
 
-  const wd = weekdayCodeOf(key);
-  const strategies = {
-    MO: 'Lundi : Journée complète ENSAM + Cuisine midi (12:52) + Vaisselle 5m + Verrouillage Algèbre/Analyse le soir.',
-    TU: 'Mardi : Algèbre & Analyse matin · Créneau MTU (14:00-16:00) converti en Deep TD Analyse · Thé, Dîner & Vaisselle.',
-    WE: 'Mercredi : Matinée libre (08:30-10:30) pour Algèbre 1 TD ! · Cuisine midi · Thé · Club Mécatronique (21:00).',
-    TH: 'Jeudi : Petit-déj · TP & Sport · Thé & Vaisselle · 🎨 2h Dessin Créatif (16:30-18:30) · Analyse & Algo C le soir.',
-    FR: 'Vendredi : Créneau Langues (10:45-12:45) converti en Analyse 1 Intensif · Cuisine midi · Algèbre · Club (21:00).',
-    SA: 'Samedi : 🤖 Atelier Club Mécatronique (08:00-10:00) · Marathon TD Passe 3 en Analyse 1 & Algèbre 1.',
-    SU: 'Dimanche : Simulation DS 2h sur feuille blanche + Pré-lecture des chapitres de Lundi.'
-  };
-  document.getElementById('dailyStrategyBanner').textContent = strategies[wd] || '';
+  const anaStep = getDynamicStepForSubject('ANALYSE', 0);
+  const algStep = getDynamicStepForSubject('ALGEBRE', 0);
+  const mpmStep = getDynamicStepForSubject('MPM', 0);
 
+  document.getElementById('dailyStrategyBanner').innerHTML =
+    `<b>En cours dans tes dossiers :</b> 📐 ${escapeHtml(anaStep.title)} · 🔢 ${escapeHtml(algStep.title)} · ⚙️ ${escapeHtml(mpmStep.title)}`;
+
+  renderLiveSyllabusQuickCards();
   renderTodayExamRadar();
   renderSpacedRepetitionDue();
   renderRulesSection(day);
@@ -1762,6 +2110,7 @@ function renderToday() {
           ${subjBadge}${escapeHtml(t.title)}
         </div>
         ${timeLabel ? `<div class="task-time">${timeLabel}</div>` : ''}
+        ${t.dynSubj && !t.done ? `<button class="btn-xs accent" title="Valider l'étape du dossier et passer au suivant">⏭️ +Étape</button>` : ''}
         ${t.range && !t.done ? `<button class="task-del" style="color:var(--accent); font-size:14px;" title="Chrono direct">${activeChronoTaskId===t.id?'⏹':'▶️'}</button>` : ''}
         <button class="task-del" title="Supprimer">✕</button>
         ${activeChronoTaskId===t.id ? `<div style="width:100%; text-align:center; padding:14px 0; background:var(--surface-solid); border-radius:14px; margin-top:8px;">
@@ -1771,9 +2120,22 @@ function renderToday() {
       `;
       row.querySelector('.task-check').addEventListener('click', () => {
         t.done = !t.done;
+        // If user checks off a dynamic study task, offer or automatically log study time
+        if (t.done && t.dynSubj) {
+          day.studyMins = (day.studyMins || 0) + 45;
+          MAJORANT.studyMinutes[t.dynSubj] = (MAJORANT.studyMinutes[t.dynSubj] || 0) + 45;
+          saveMajorant();
+        }
         saveDB();
         renderToday();
       });
+      const stepBtn = row.querySelector('.btn-xs.accent');
+      if (stepBtn && t.dynSubj) {
+        stepBtn.addEventListener('click', () => {
+          t.done = true;
+          advanceSubjectStep(t.dynSubj);
+        });
+      }
       const btns = row.querySelectorAll('.task-del');
       const delBtn = btns[btns.length - 1];
       delBtn.addEventListener('click', () => {
@@ -1818,7 +2180,7 @@ document.querySelectorAll('#taskFilterBar .filter-chip').forEach(btn => {
 });
 
 document.getElementById('reloadEnsamBtn').addEventListener('click', () => {
-  if (!confirm('Recharger tout votre planning ENSAM 2AP-1_C + Cuisine + Club Mécatronique + Dessin ?')) return;
+  if (!confirm('Recharger tout votre planning ENSAM 2AP-1_C (MTU & Langues en présentiel à l\'école + Créneaux dynamiques Analyse/Algèbre/MPM + Cuisine + Club + Dessin) ?')) return;
   TEMPLATES = getDefaultEnsamTemplates();
   saveTemplates();
   const today = todayKey();
@@ -2096,7 +2458,7 @@ function renderRecurList() {
       : `${(tpl.days||[]).join(', ')}${tpl.time ? ' · '+tpl.time : ''}`;
     const row = document.createElement('div');
     row.className = 'recur-item';
-    row.innerHTML = `<div><div>${escapeHtml(tpl.title)}</div><div class="recur-item-meta">${meta}</div></div><button class="recur-del">🗑</button>`;
+    row.innerHTML = `<div><div>${escapeHtml(computeDynamicTaskTitle(tpl))}</div><div class="recur-item-meta">${meta}</div></div><button class="recur-del">🗑</button>`;
     row.querySelector('.recur-del').addEventListener('click', () => {
       TEMPLATES = TEMPLATES.filter(x=>x.id!==tpl.id);
       Object.keys(DB).forEach(k => {
@@ -2170,7 +2532,7 @@ function renderProtocol() {
 }
 
 // ============================================================================
-// MAJORANT HUB RENDERERS & ACTIONS
+// MAJORANT HUB RENDERERS & SYLLABUS PROGRESSION MANAGER
 // ============================================================================
 let pomoSecondsLeft = 25 * 60;
 let pomoSelectedMins = 25;
@@ -2247,7 +2609,113 @@ document.getElementById('pomoResetBtn').addEventListener('click', () => {
   renderPomoDisplay();
 });
 
+document.querySelectorAll('#syllabusFilterBar .filter-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#syllabusFilterBar .filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSyllabusFilter = btn.dataset.sf;
+    renderSyllabusManager();
+  });
+});
+
+function renderSyllabusManager() {
+  ensureSyllabusInitialized();
+  const box = document.getElementById('syllabusDetailContainer');
+  if (!box) return;
+  box.innerHTML = '';
+
+  const allSteps = [
+    ...(MAJORANT.syllabus.ANALYSE || []),
+    ...(MAJORANT.syllabus.ALGEBRE || []),
+    ...(MAJORANT.syllabus.MPM || [])
+  ];
+  const allDone = allSteps.filter(s => s.done).length;
+  const globalPct = Math.round((allDone / Math.max(1, allSteps.length)) * 100);
+  document.getElementById('globalSyllabusPctBadge').textContent = `${globalPct}% Complété (${allDone}/${allSteps.length})`;
+
+  if (activeSyllabusFilter === 'AUCHOIX') {
+    box.innerHTML = `
+      <div class="td-row">
+        <div style="font-weight:800; font-size:14.5px; margin-bottom:6px;">
+          <span class="subj-pill subj-ALGO">💻 Algorithmique & C</span> Gestion libre dans le planning
+        </div>
+        <div class="chart-note" style="margin-top:0; margin-bottom:8px;">
+          Dans votre planning (Jeudi 20h35–21h35 & Samedi 19h15–20h30), l'application vous notifie que c'est l'heure d'Algo & C et vous laisse choisir ce que vous voulez travailler :
+        </div>
+        <input type="text" id="majAlgoChoiceInput" value="${escapeHtml(MAJORANT.customFocus.ALGO || '')}" style="width:100%; background:var(--surface-solid); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:13.5px; color:var(--text);" />
+      </div>
+      <div class="td-row">
+        <div style="font-weight:800; font-size:14.5px; margin-bottom:6px;">
+          <span class="subj-pill subj-CHIMIE">🧪 Chimie Générale</span> Gestion libre dans le planning
+        </div>
+        <div class="chart-note" style="margin-top:0; margin-bottom:8px;">
+          Dans votre planning (Jeudi 21h35–22h15 & Dimanche 18h30–19h15), l'application vous notifie que c'est l'heure de Chimie et vous laisse choisir le chapitre ou TD :
+        </div>
+        <input type="text" id="majChimieChoiceInput" value="${escapeHtml(MAJORANT.customFocus.CHIMIE || '')}" style="width:100%; background:var(--surface-solid); border:1px solid var(--border); border-radius:12px; padding:10px 12px; font-size:13.5px; color:var(--text);" />
+      </div>
+    `;
+    box.querySelector('#majAlgoChoiceInput').addEventListener('input', e => {
+      MAJORANT.customFocus.ALGO = e.target.value;
+      saveMajorant();
+      syncDynamicTaskTitlesForDay(todayKey());
+      saveDB();
+    });
+    box.querySelector('#majChimieChoiceInput').addEventListener('input', e => {
+      MAJORANT.customFocus.CHIMIE = e.target.value;
+      saveMajorant();
+      syncDynamicTaskTitlesForDay(todayKey());
+      saveDB();
+    });
+    return;
+  }
+
+  const subj = activeSyllabusFilter;
+  const track = MAJORANT.syllabus[subj] || [];
+  const st = getSubjectProgressStats(subj);
+  const firstUnfinishedIdx = track.findIndex(s => !s.done);
+
+  const summaryHeader = document.createElement('div');
+  summaryHeader.style.marginBottom = '14px';
+  summaryHeader.innerHTML = `
+    <div class="hbar-row">
+      <span>Progression ${SUBJ_LABELS[subj]}</span>
+      <span>${st.done} / ${st.total} étapes (${st.pct}%)</span>
+    </div>
+    <div class="hbar-track"><div class="hbar-fill g" style="width:${st.pct}%"></div></div>
+  `;
+  box.appendChild(summaryHeader);
+
+  track.forEach((step, idx) => {
+    const isCurrent = (idx === firstUnfinishedIdx);
+    const row = document.createElement('div');
+    row.className = 'task-item';
+    row.style.border = isCurrent ? '2px solid var(--accent)' : '';
+    row.style.background = isCurrent ? 'var(--surface-solid)' : '';
+    row.innerHTML = `
+      <div class="task-check ${step.done?'done':''}">${step.done?'✓':''}</div>
+      <div class="task-title ${step.done?'done':''}">
+        <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:2px;">
+          <span class="subj-pill subj-${subj}">${step.type} · Sem.${step.week}</span>
+          ${isCurrent ? '<span class="pill green">🔥 EN COURS DANS LE PLANNING</span>' : ''}
+        </div>
+        <div style="font-weight:700;">${escapeHtml(step.title)}</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:2px;">💡 ${escapeHtml(step.coach)}</div>
+      </div>
+    `;
+    row.querySelector('.task-check').addEventListener('click', () => {
+      step.done = !step.done;
+      saveMajorant();
+      syncDynamicTaskTitlesForDay(todayKey());
+      saveDB();
+      renderAll();
+    });
+    box.appendChild(row);
+  });
+}
+
 function renderMajorant() {
+  renderSyllabusManager();
+
   const wk = Number(MAJORANT.ensamWeek || 7);
   document.getElementById('ensamWeekSelect').value = wk;
   const adviceEl = document.getElementById('ensamWeekAdvice');
@@ -2260,9 +2728,7 @@ function renderMajorant() {
   if (wk >= 6 && wk <= 8) {
     advice += `TP MPM actif cette semaine (Jeudi/Vendredi selon votre groupe). `;
   }
-  if (wk > 11) {
-    advice += `Sport (Jeudi 14:00) & MTU sont terminés pour le semestre — heures d'étude bonus débloquées !`;
-  }
+  advice += `<br><b>MTU & Langues :</b> Présents dans votre planning d'école pour y assister en présentiel, et 0% dans la révision maison.`;
   adviceEl.innerHTML = advice;
 
   const todayD = ensureDay(todayKey());
@@ -2364,8 +2830,21 @@ function renderMajorant() {
 document.getElementById('ensamWeekSelect').addEventListener('change', e => {
   MAJORANT.ensamWeek = Number(e.target.value);
   saveMajorant();
-  renderMajorant();
-  renderToday();
+  syncDynamicTaskTitlesForDay(todayKey());
+  saveDB();
+  const tlBox = document.getElementById('fullDayTimeline');
+  if (tlBox) tlBox.dataset.renderedKey = '';
+  renderAll();
+});
+
+document.getElementById('liveWeekQuickSelect').addEventListener('change', e => {
+  MAJORANT.ensamWeek = Number(e.target.value);
+  saveMajorant();
+  syncDynamicTaskTitlesForDay(todayKey());
+  saveDB();
+  const tlBox = document.getElementById('fullDayTimeline');
+  if (tlBox) tlBox.dataset.renderedKey = '';
+  renderAll();
 });
 
 document.getElementById('addTdBtn').addEventListener('click', () => {
@@ -2520,7 +2999,7 @@ document.getElementById('targetPointsInput').addEventListener('input', e => {
 function renderSubjectDist() {
   const box = document.getElementById('subjectDistBars');
   box.innerHTML = '';
-  const mins = { ANALYSE: 0, ALGEBRE: 0, ALGO: 0, ENSAM: 0 };
+  const mins = { ANALYSE: 0, ALGEBRE: 0, MPM: 0, ALGO: 0, CHIMIE: 0 };
   if (MAJORANT.studyMinutes) {
     Object.keys(mins).forEach(k => { mins[k] += Number(MAJORANT.studyMinutes[k] || 0); });
   }
@@ -2534,10 +3013,11 @@ function renderSubjectDist() {
   const maxM = Math.max(60, ...Object.values(mins));
 
   [
-    { k: 'ANALYSE', lbl: '📐 Analyse 1', cls: 'g' },
-    { k: 'ALGEBRE', lbl: '🔢 Algèbre 1', cls: 'b' },
-    { k: 'ALGO', lbl: '💻 Algorithmique & C', cls: 'g' },
-    { k: 'ENSAM', lbl: '🧪 MPM & Chimie', cls: 'b' }
+    { k: 'ANALYSE', lbl: '📐 Analyse 1 (Dossier Cours & TD)', cls: 'g' },
+    { k: 'ALGEBRE', lbl: '🔢 Algèbre 1 (Dossier Cours & TD)', cls: 'b' },
+    { k: 'MPM', lbl: '⚙️ MPM (Ch.1–6, TDs & Contrôles)', cls: 'g' },
+    { k: 'ALGO', lbl: '💻 Algorithmique & C (Au choix)', cls: 'b' },
+    { k: 'CHIMIE', lbl: '🧪 Chimie Générale (Au choix)', cls: 'g' }
   ].forEach(item => {
     const m = mins[item.k];
     const pct = Math.round((m / maxM) * 100);
@@ -2808,100 +3288,122 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => switchTab(btn.dataset.tab));
 });
 
+// ============================================================================
+// 24-HOUR DYNAMIC MASTER SCHEDULE BUILDER (WAKE TO SLEEP)
+// Builds the exact schedule for any day (MO..SU) and week (Sem 6..14)
+// based on your real progress in Analyse 1, Algèbre 1 & MPM!
+// ============================================================================
+function buildDynamicDailySchedule(wd, weekNum) {
+  const wk = Number(weekNum || MAJORANT.ensamWeek || 7);
 
-// ============================================================================
-// 24-HOUR MASTER SCHEDULE & LIVE PHASE AUTO-TRACKER (WAKE TO SLEEP)
-// ============================================================================
-const MASTER_DAILY_PHASES = {
-  MO: [
-    { from: '06:45', to: '07:15', tag: 'RÉVEIL & SPIRITUALITÉ', subj: 'LIFE', title: '🌅 Réveil + Prière Fajr + Hydratation', coach: 'Zéro téléphone au lit. Levez-vous immédiatement, priez Fajr et buvez un grand verre d\'eau.' },
-    { from: '07:15', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🚿 Douche Matinale & Préparation du Sac', coach: 'Douche tonique pour réveiller le système nerveux avant les 8h de cours du Lundi.' },
-    { from: '07:50', to: '08:18', tag: 'ÉNERGIE', subj: 'COOK', title: '☕ Petit-déjeuner calme & Lecture rapide', coach: 'Prenez des protéines/glucides lents. Relisez 5 minutes vos formules de MPM.' },
-    { from: '08:18', to: '08:28', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet de 7 minutes vers ENSAM', coach: 'Marche rapide vers Amphi 2. Arrivez 2 minutes en avance pour choisir votre place.' },
-    { from: '08:30', to: '10:30', tag: 'COURS ENSAM', subj: 'ENSAM', title: '🏛️ Cours MPM (Sakim · Amphi 2)', coach: 'Suivez activement et notez les exercices-types.' },
-    { from: '10:45', to: '12:45', tag: 'COURS ENSAM', subj: 'ENSAM', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', coach: 'Restez concentré jusqu\'à 12h45.' },
-    { from: '12:45', to: '13:52', tag: 'CUISINE & PAUSE MIDI', subj: 'COOK', title: '🍳 Trajet 7m → Cuisiner Déjeuner + Dhuhr → Retour 7m', coach: 'C\'est votre tour de cuisine midi du Lundi ! Cuisinez efficacement, mangez léger et repartez à 13h50.' },
-    { from: '14:00', to: '16:00', tag: 'PRIORITÉ ABSOLUE #1', subj: 'ALGEBRE', title: '🔢 Algèbre 1 (Imzeguouan · Amphi 2)', coach: 'Asseyez-vous aux 2 premiers rangs ! Notez chaque étape des démonstrations et les remarques orales du prof.' },
-    { from: '16:15', to: '18:15', tag: 'PRIORITÉ ABSOLUE #2', subj: 'ANALYSE', title: '📐 Analyse 1 (Mandyly · Amphi 2)', coach: 'Concentration maximale. Identifiez immédiatement les théorèmes clés qui tomberont au DS.' },
-    { from: '18:15', to: '19:00', tag: 'RÉCUPÉRATION', subj: 'LIFE', title: '🚶‍♂️ Retour 7m + Prières Asr/Maghrib + Pause mentale', coach: 'Décompressez 30 minutes loin des écrans pour recharger votre cerveau.' },
-    { from: '19:00', to: '20:45', tag: 'DEEP WORK MAJORANT', subj: 'ANALYSE', title: '📐🔢 Verrouillage du Jour : Algèbre 1 & Analyse 1', coach: '50 min Algèbre + 50 min Analyse : réécrivez sur feuille blanche tous les théorèmes et preuves vus cet après-midi.' },
-    { from: '20:45', to: '21:15', tag: 'DÎNER', subj: 'COOK', title: '🍽️ Dîner + Prière Isha', coach: 'Repas léger et détente.' },
-    { from: '21:15', to: '21:25', tag: 'RESPONSABILITÉ CUISINE', subj: 'COOK', title: '🧽 Lavage vaisselle du dîner (Sprint 5 min)', coach: 'Tâche du Lundi : réglez la vaisselle du dîner en 5 minutes chrono avec un minuteur.' },
-    { from: '21:25', to: '22:15', tag: 'RÉVISION LÉGÈRE', subj: 'ALGEBRE', title: '📓 Mise à jour Carnet d\'Astuces & Préparation Mardi', coach: 'Notez 2 astuces apprises aujourd\'hui et préparez vos feuilles de TD pour Mardi matin (Algèbre 8h30).' },
-    { from: '22:15', to: '23:59', tag: 'SOMMEIL RÉPARATEUR', subj: 'LIFE', title: '🌙 Extinction des écrans & Sommeil profond', coach: 'Le cerveau consolide les preuves d\'Analyse et d\'Algèbre pendant le sommeil profond.' }
-  ],
-  TU: [
-    { from: '06:45', to: '07:15', tag: 'RÉVEIL', subj: 'LIFE', title: '🌅 Réveil tôt + Prière Fajr', coach: 'Debout dès la première sonnerie. Journée décisive pour Analyse & Algèbre !' },
-    { from: '07:15', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🚿 Douche Matinale & Préparation', coach: 'Douche matinale pour attaquer Algèbre 1 à 8h30 avec 100% de lucidité.' },
-    { from: '07:50', to: '08:18', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍳 Préparer le Petit-Déjeuner (Tour du Mardi)', coach: 'C\'est votre tour de préparer le petit-déjeuner aujourd\'hui.' },
-    { from: '08:18', to: '08:28', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet 7 min vers ENSAM (Amphi 3)', coach: 'Marche dynamique vers l\'école.' },
-    { from: '08:30', to: '10:30', tag: 'PRIORITÉ ABSOLUE #1', subj: 'ALGEBRE', title: '🔢 Algèbre 1 (Imzeguouan · Amphi 3)', coach: 'Posez des questions dès qu\'une étape de preuve vous échappe.' },
-    { from: '10:45', to: '12:45', tag: 'PRIORITÉ ABSOLUE #2', subj: 'ANALYSE', title: '📐 Analyse 1 (Mandyly · Amphi 4)', coach: 'Notez scrupuleusement toutes les rédactions-types de Mandyly.' },
-    { from: '12:45', to: '13:55', tag: 'PAUSE & VAISSELLE', subj: 'COOK', title: '🍽️ Déjeuner + Dhuhr + Laver la vaisselle du midi', coach: 'Tour du Mardi : lavez la vaisselle du déjeuner juste après le repas pour garder l\'esprit libre.' },
-    { from: '14:00', to: '16:00', tag: 'HACK MAJORANT (SKIP MTU)', subj: 'ANALYSE', title: '📐 [Créneau MTU Ignoré] Deep TD Analyse 1 (2h)', coach: 'Pendant que les autres sont en MTU, vous gagnez 2h d\'avance pure sur la Série de TD d\'Analyse 1 (Passe 1 & 2) !' },
-    { from: '16:15', to: '18:15', tag: 'COURS ENSAM', subj: 'ALGO', title: '💻 Algorithmique / Programmation C (Amphi 2)', coach: 'Comprenez toute la logique pendant le cours pour ne pas avoir besoin d\'y passer des heures chez vous.' },
-    { from: '18:15', to: '18:55', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍵 Retour 7m + Préparer le Thé après l\'école + Maghrib', coach: 'Tour du Mardi : préparez le thé et profitez d\'une vraie pause de 30 minutes.' },
-    { from: '18:55', to: '20:30', tag: 'DEEP WORK MAJORANT', subj: 'ALGEBRE', title: '🔢 Algèbre 1 — TD Intensif (Passe 2 & 3)', coach: '1h35 de résolution pure d\'exercices d\'Algèbre 1 sans regarder le corrigé.' },
-    { from: '20:30', to: '21:20', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍳 Préparer le Dîner du Mardi + Dîner + Isha', coach: 'C\'est votre tour de préparer le dîner ce soir.' },
-    { from: '21:20', to: '22:15', tag: 'SYNTHÈSE', subj: 'ANALYSE', title: '🧠 Rappel J+X & Relecture rapide des preuves', coach: 'Validez vos rappels de théorèmes du jour avant de dormir.' },
-    { from: '22:15', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Repos & Sommeil Profond', coach: 'Demain matin (Mercredi 8h30) est votre créneau d\'or libre pour Algèbre 1.' }
-  ],
-  WE: [
-    { from: '06:45', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil tôt + Fajr + Douche Matinale', coach: 'Réveil matinal même sans cours à 8h30 (hors Sem. 12) : c\'est le secret des majorants.' },
-    { from: '07:50', to: '08:25', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍽️ Petit-déjeuner + Laver la vaisselle du petit-déj', coach: 'Tour du Mercredi : lavez la vaisselle du petit-déjeuner dès 8h10.' },
-    { from: '08:25', to: '10:30', tag: 'CRÉNEAU D\'OR (SEM 7-11)', subj: 'ALGEBRE', title: '🔢 Bloc Majorant Algèbre 1 (ou TP Chimie en Sem. 12)', coach: '2 heures de calme absolu le matin quand votre cerveau est à 100% pour plier la série de TD d\'Algèbre 1.' },
-    { from: '10:35', to: '10:44', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet 7 min vers ENSAM (Amphi 2)', coach: 'En route pour Chimie Générale.' },
-    { from: '10:45', to: '12:45', tag: 'COURS ENSAM', subj: 'ENSAM', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', coach: 'Écoute active en amphi.' },
-    { from: '12:45', to: '13:52', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍳 Retour 7m → Cuisiner le Déjeuner + Dhuhr → Retour 7m', coach: 'Tour du Mercredi : cuisine du déjeuner puis retour à l\'ENSAM pour 14h00.' },
-    { from: '14:00', to: '16:00', tag: 'COURS ENSAM', subj: 'ENSAM', title: '🏛️ Cours MPM (Sakim · Amphi 3)', coach: 'Prenez des notes propres.' },
-    { from: '16:15', to: '18:15', tag: 'COURS ENSAM', subj: 'ALGO', title: '💻 Algorithmique / Programmation C (Amphi 3)', coach: 'Assimilez les structures et pointeurs directement pendant la séance.' },
-    { from: '18:15', to: '19:00', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍵 Retour 7m + Thé après les cours & Vaisselle du thé', coach: 'Préparez le thé, lavez les verres et priez Maghrib.' },
-    { from: '19:00', to: '20:45', tag: 'DEEP WORK MAJORANT', subj: 'ANALYSE', title: '📐 Analyse 1 — TD Passe 3 (Feuille blanche sous chrono)', coach: 'Refaites les exercices étoilés d\'Analyse 1 sans aucune note.' },
-    { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Connectez-vous à l\'heure pour la formation / réunion en ligne du club.' },
-    { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Détente & Sommeil', coach: 'Fin de journée à 22h00 juste après le club.' }
-  ],
-  TH: [
-    { from: '06:45', to: '07:45', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche Matinale', coach: 'Fraîcheur matinale.' },
-    { from: '07:45', to: '08:18', tag: 'CUISINE JEUDI', subj: 'COOK', title: '🍳 Préparer le Petit-Déjeuner + Vaisselle', coach: 'Tour du Jeudi : préparez le petit-déjeuner avant de partir.' },
-    { from: '08:30', to: '12:45', tag: 'TP ENSAM / MATHS', subj: 'ENSAM', title: '🔬 TP MPM / TP Chimie (ou Deep Algèbre 1 selon votre groupe)', coach: 'Si votre sous-groupe n\'a pas TP sur l\'un des créneaux de 2h, transformez-le immédiatement en séance TD Algèbre !' },
-    { from: '12:45', to: '14:00', tag: 'PAUSE MIDI', subj: 'LIFE', title: '🍽️ Déjeuner + Prière Dhuhr', coach: 'Rechargez vos batteries.' },
-    { from: '14:00', to: '16:00', tag: 'SPORT ENSAM', subj: 'LIFE', title: '⚽ Sport (Terrain de sport · Sossi)', coach: 'Excellent pour oxygéner le cerveau et évacuer le stress de la semaine.' },
-    { from: '16:00', to: '16:30', tag: 'CUISINE JEUDI', subj: 'COOK', title: '🍵 Retour 7m + Thé après l\'école + Laver leur vaisselle', coach: 'Tour du Jeudi : préparez le thé et lavez la vaisselle.' },
-    { from: '16:30', to: '18:30', tag: 'PASSION & CRÉATIVITÉ (2H)', subj: 'CLUB', title: '🎨 Créneau Dessin Créatif (2 Heures Non-Stop)', coach: 'Votre moment sacré du Jeudi ! Mettez de la musique ou le silence et dessinez pendant 2h complètes.' },
-    { from: '18:30', to: '20:30', tag: 'DEEP WORK MAJORANT', subj: 'ANALYSE', title: '📐 Analyse 1 — Résolution de Problèmes Classiques DS', coach: 'Après le dessin, votre esprit est reposé : attaquez 2h d\'Analyse 1.' },
-    { from: '20:30', to: '21:10', tag: 'SPRINT ALGO C', subj: 'ALGO', title: '💻 Sprint Algorithmique & C (40 min ciblées)', coach: 'Codez 1 ou 2 algorithmes clés de la semaine sur machine, puis dînez.' },
-    { from: '21:10', to: '22:15', tag: 'DÎNER & BILAN', subj: 'LIFE', title: '🍽️ Dîner + Isha + Carnet d\'Astuces', coach: 'Relisez vos fiches de théorèmes avant de dormir.' },
-    { from: '22:15', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil réparateur', coach: 'Repos complet.' }
-  ],
-  FR: [
-    { from: '06:45', to: '08:15', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche Matinale + Petit-déjeuner', coach: 'Démarrez le Vendredi avec discipline.' },
-    { from: '08:30', to: '10:30', tag: 'TP OU ALGÈBRE', subj: 'ALGEBRE', title: '🔬 TP MPM Gr.3 (Sem 6-7-8) ou Deep Algèbre 1', coach: 'Si vous n\'êtes pas Gr.3, 2h complètes d\'Algèbre 1 dès 8h30.' },
-    { from: '10:45', to: '12:40', tag: 'HACK MAJORANT (SKIP LANGUES)', subj: 'ANALYSE', title: '📐 [Langues Ignorées] Bloc Intensif Analyse 1 (2h)', coach: 'Comme convenu, 0 perte de temps sur les langues : 2h de concentration totale sur Analyse 1 !' },
-    { from: '12:40', to: '14:00', tag: 'CUISINE VENDREDI & JUMUA', subj: 'COOK', title: '🍳 Cuisine du Déjeuner (Tour du Vendredi) + Prière Jumua', coach: 'C\'est votre tour de préparer le déjeuner du Vendredi.' },
-    { from: '14:00', to: '18:00', tag: 'BLOC MAÎTRISE ALGÈBRE', subj: 'ALGEBRE', title: '🔢 Algèbre 1 Deep Work (ou TP selon votre Groupe 4/5)', coach: 'Après-midi consacré à la maîtrise totale des polynômes, ensembles et structures.' },
-    { from: '18:00', to: '20:45', tag: 'SYNTHÈSE HEBDOMADAIRE', subj: 'ANALYSE', title: '📐🔢 Révision Croisée Analyse 1 + Algèbre 1 + Dîner', coach: 'Passez en revue toutes les erreurs de la semaine dans votre Carnet d\'Astuces.' },
-    { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Deuxième rendez-vous en ligne de la semaine avec le Club Mécatronique.' },
-    { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil (Attention : Atelier présentiel demain à 08h00 !)', coach: 'Dormez tôt pour être en pleine forme à l\'atelier Mécatronique de Samedi 8h00.' }
-  ],
-  SA: [
-    { from: '06:45', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche + Petit-déjeuner', coach: 'Préparez votre matériel pour l\'atelier présentiel.' },
-    { from: '08:00', to: '10:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Atelier Présentiel (08:00–10:00)', coach: '2 heures de pratique robotique/mécatronique en présentiel.' },
-    { from: '10:30', to: '13:00', tag: 'MARATHON MAJORANT #1', subj: 'ANALYSE', title: '📐 Analyse 1 — Série TD Passe 3 + Sujets de DS (2h30)', coach: 'Le bloc le plus rentable du week-end : résolvez des sujets de DS d\'Analyse 1 des années précédentes.' },
-    { from: '13:00', to: '14:45', tag: 'PAUSE MIDI', subj: 'LIFE', title: '🍽️ Déjeuner + Dhuhr + Courte sieste (20 min)', coach: 'Une sieste de 20 min recharge la mémoire de travail de 40%.' },
-    { from: '14:45', to: '17:30', tag: 'MARATHON MAJORANT #2', subj: 'ALGEBRE', title: '🔢 Algèbre 1 — Série TD Passe 3 + Sujets de DS (2h45)', coach: 'Travaillez la vitesse et la rigueur de rédaction exigées par Imzeguouan.' },
-    { from: '17:45', to: '18:45', tag: 'DOSE MINIMALE ALGO', subj: 'ALGO', title: '💻 Algorithmique & C — Pratique rapide (1h)', coach: '1 heure suffit le week-end pour rester au top en C sans empiéter sur les Maths.' },
-    { from: '18:45', to: '23:59', tag: 'SOIRÉE LIBRE', subj: 'LIFE', title: '✨ Soirée détente bien méritée', coach: 'Vous avez accompli une grosse journée de Majorant.' }
-  ],
-  SU: [
-    { from: '07:15', to: '09:00', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche + Petit-déjeuner', coach: 'Dimanche calme et structuré.' },
-    { from: '09:00', to: '11:30', tag: 'CONDITIONS D\'EXAMEN', subj: 'ANALYSE', title: '📐🔢 Simulation DS 2h sur Feuille Blanche (Sans Notes)', coach: 'Choisissez un sujet d\'Analyse 1 ou d\'Algèbre 1, lancez le chrono 90m/120m et rédigez comme le jour J.' },
-    { from: '11:30', to: '13:00', tag: 'AUTOCORRECTION', subj: 'ALGEBRE', title: '📓 Correction stricte + Ajout au Carnet d\'Astuces', coach: 'Identifiez chaque point perdu et notez la parade dans votre Carnet d\'Astuces.' },
-    { from: '13:00', to: '15:15', tag: 'PAUSE DIMANCHE', subj: 'LIFE', title: '🍽️ Déjeuner + Dhuhr + Détente', coach: 'Respirez.' },
-    { from: '15:15', to: '17:30', tag: 'COUP D\'AVANCE LUNDI', subj: 'ALGEBRE', title: '🔢📐 Pré-lecture des cours de Lundi (Algèbre 1 & Analyse 1)', coach: 'Lisez le chapitre de Lundi avant d\'entrer en Amphi 2 : vous comprendrez 3x plus vite que toute la promo.' },
-    { from: '17:45', to: '18:45', tag: 'RÉVISION RAPIDE', subj: 'ENSAM', title: '🧪 1h Revue rapide MPM & Chimie Générale (pour Lundi 8h30)', coach: 'Relisez les formules de Sakim et Khallouk pour Lundi matin.' },
-    { from: '19:00', to: '22:15', tag: 'BILAN & REPOS', subj: 'LIFE', title: '📊 Audit de la semaine (Onglet Bilan) & Préparation du sac', coach: 'Faites votre sauvegarde JSON et dormez tôt pour attaquer Lundi en conquérant.' }
-  ]
-};
+  // Pull exact steps from user's progress queue (+ week offset if previewing future weeks)
+  const ana0 = getDynamicStepForSubject('ANALYSE', 0, wk);
+  const ana1 = getDynamicStepForSubject('ANALYSE', 1, wk);
+  const alg0 = getDynamicStepForSubject('ALGEBRE', 0, wk);
+  const alg1 = getDynamicStepForSubject('ALGEBRE', 1, wk);
+  const mpm0 = getDynamicStepForSubject('MPM', 0, wk);
+  const mpm1 = getDynamicStepForSubject('MPM', 1, wk);
+
+  const algoNote = (MAJORANT.customFocus && MAJORANT.customFocus.ALGO) || 'Choisir le chapitre / TP de C à travailler';
+  const chimieNote = (MAJORANT.customFocus && MAJORANT.customFocus.CHIMIE) || 'Choisir le chapitre / TD de Chimie à travailler';
+
+  const schedules = {
+    MO: [
+      { from: '06:45', to: '07:15', tag: 'RÉVEIL & SPIRITUALITÉ', subj: 'LIFE', title: '🌅 Réveil + Prière Fajr + Hydratation', coach: 'Zéro téléphone au lit. Levez-vous immédiatement, priez Fajr et buvez un grand verre d\'eau.' },
+      { from: '07:15', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🚿 Douche Matinale & Préparation du Sac', coach: 'Douche tonique pour réveiller le système nerveux avant les 8h de cours du Lundi.' },
+      { from: '07:50', to: '08:18', tag: 'ÉNERGIE', subj: 'COOK', title: '☕ Petit-déjeuner calme & Lecture rapide', coach: `Relisez 5 min votre fiche MPM en cours : ${mpm0.title}` },
+      { from: '08:18', to: '08:28', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet de 7 minutes vers ENSAM', coach: 'Marche rapide vers Amphi 2. Arrivez 2 minutes en avance pour choisir votre place.' },
+      { from: '08:30', to: '10:30', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ENSAM', title: '🏛️ Cours MPM (Sakim · Amphi 2)', coach: 'Suivez activement et notez les exercices-types.' },
+      { from: '10:45', to: '12:45', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ENSAM', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', coach: 'Restez concentré jusqu\'à 12h45.' },
+      { from: '12:45', to: '13:52', tag: 'CUISINE & PAUSE MIDI', subj: 'COOK', title: '🍳 Trajet 7m → Cuisiner Déjeuner + Dhuhr → Retour 7m', coach: 'C\'est votre tour de cuisine midi du Lundi ! Cuisinez efficacement, mangez léger et repartez à 13h50.' },
+      { from: '14:00', to: '16:00', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ALGEBRE', title: '🏛️ Cours/TD Algèbre 1 (Imzeguouan · Amphi 2)', coach: 'Asseyez-vous aux 2 premiers rangs ! Notez chaque étape des démonstrations.' },
+      { from: '16:15', to: '18:15', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ANALYSE', title: '🏛️ Cours/TD Analyse 1 (Mandyly · Amphi 2)', coach: 'Concentration maximale. Identifiez immédiatement les théorèmes clés qui tomberont au DS.' },
+      { from: '18:15', to: '19:00', tag: 'RÉCUPÉRATION', subj: 'LIFE', title: '🚶‍♂️ Retour 7m + Prières Asr/Maghrib + Pause mentale', coach: 'Décompressez 30 minutes loin des écrans pour recharger votre cerveau.' },
+      { from: '19:00', to: '20:45', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [19:00–20:45] Analyse 1 : ${ana0.title}`, coach: `🎯 Stratégie 30/70 : ${ana0.coach}` },
+      { from: '20:45', to: '21:15', tag: 'DÎNER', subj: 'COOK', title: '🍽️ Dîner + Prière Isha', coach: 'Repas léger et détente.' },
+      { from: '21:15', to: '21:25', tag: 'RESPONSABILITÉ CUISINE', subj: 'COOK', title: '🧽 Lavage vaisselle du dîner (Sprint 5 min)', coach: 'Tâche du Lundi : réglez la vaisselle du dîner en 5 minutes chrono.' },
+      { from: '21:25', to: '22:15', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [21:25–22:15] Algèbre 1 : ${alg0.title}`, coach: `🎯 ${alg0.coach}` },
+      { from: '22:15', to: '23:59', tag: 'SOMMEIL RÉPARATEUR', subj: 'LIFE', title: '🌙 Extinction des écrans & Sommeil profond', coach: 'Le cerveau consolide les preuves d\'Analyse et d\'Algèbre pendant le sommeil profond.' }
+    ],
+    TU: [
+      { from: '06:45', to: '07:15', tag: 'RÉVEIL', subj: 'LIFE', title: '🌅 Réveil tôt + Prière Fajr', coach: 'Debout dès la première sonnerie. Journée décisive pour Algèbre & Analyse !' },
+      { from: '07:15', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🚿 Douche Matinale & Préparation', coach: 'Douche matinale pour attaquer Algèbre 1 à 8h30 avec 100% de lucidité.' },
+      { from: '07:50', to: '08:18', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍳 Préparer le Petit-Déjeuner (Tour du Mardi)', coach: 'C\'est votre tour de préparer le petit-déjeuner aujourd\'hui.' },
+      { from: '08:18', to: '08:28', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet 7 min vers ENSAM (Amphi 3)', coach: 'Marche dynamique vers l\'école.' },
+      { from: '08:30', to: '10:30', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ALGEBRE', title: '🏛️ Cours/TD Algèbre 1 (Imzeguouan · Amphi 3)', coach: 'Posez des questions dès qu\'une étape de preuve vous échappe.' },
+      { from: '10:45', to: '12:45', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ANALYSE', title: '🏛️ Cours/TD Analyse 1 (Mandyly · Amphi 4)', coach: 'Notez scrupuleusement toutes les rédactions-types de Mandyly.' },
+      { from: '12:45', to: '13:55', tag: 'PAUSE & VAISSELLE', subj: 'COOK', title: '🍽️ Déjeuner + Dhuhr + Laver la vaisselle du midi', coach: 'Tour du Mardi : lavez la vaisselle du déjeuner juste après le repas.' },
+      { from: '14:00', to: '16:00', tag: 'ÉCOLE ENSAM (PRÉSENTIEL MTU)', subj: 'ENSAM', title: '🏛️ Cours MTU en Présentiel à l\'École (Ignoré dans la révision maison)', coach: 'Vous assistez au cours de MTU à l\'école. Aucune heure de révision à la maison n\'est perdue dessus.' },
+      { from: '16:15', to: '18:15', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ALGO', title: '🏛️ Algorithmique / Programmation C (Amphi 2)', coach: 'Comprenez toute la logique pendant le cours à l\'amphi.' },
+      { from: '18:15', to: '18:55', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍵 Retour 7m + Préparer le Thé après l\'école + Maghrib', coach: 'Tour du Mardi : préparez le thé et profitez d\'une vraie pause de 30 minutes.' },
+      { from: '18:55', to: '20:30', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [18:55–20:30] Algèbre 1 : ${alg0.title}`, coach: `🎯 ${alg0.coach}` },
+      { from: '20:30', to: '21:20', tag: 'CUISINE MARDI', subj: 'COOK', title: '🍳 Préparer le Dîner du Mardi + Dîner + Isha', coach: 'C\'est votre tour de préparer le dîner ce soir.' },
+      { from: '21:20', to: '22:15', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'MPM', dynSubj: 'MPM', title: `⚙️ [21:20–22:15] MPM : ${mpm0.title}`, coach: `🎯 ${mpm0.coach}` },
+      { from: '22:15', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Repos & Sommeil Profond', coach: 'Demain matin (Mercredi 8h30) est votre créneau d\'or libre pour Algèbre 1.' }
+    ],
+    WE: [
+      { from: '06:45', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil tôt + Fajr + Douche Matinale', coach: 'Réveil matinal même sans cours à 8h30 (hors Sem. 12) : c\'est le secret des majorants.' },
+      { from: '07:50', to: '08:25', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍽️ Petit-déjeuner + Laver la vaisselle du petit-déj', coach: 'Tour du Mercredi : lavez la vaisselle du petit-déjeuner dès 8h10.' },
+      wk === 12
+        ? { from: '08:25', to: '10:30', tag: 'ÉCOLE ENSAM (SEM. 12)', subj: 'ENSAM', title: '🔬 [École] TP Chimie Gr.3 (Uniquement en Sem. 12)', coach: 'Présence obligatoire au laboratoire de Chimie.' }
+        : { from: '08:25', to: '10:30', tag: `CRÉNEAU D'OR MAISON · SEM.${wk}`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [08:25–10:30] Algèbre 1 : ${alg1.title}`, coach: `🎯 2h de calme absolu : ${alg1.coach}` },
+      { from: '10:35', to: '10:44', tag: 'TRAJET EXPRESS', subj: 'LIFE', title: '🚶‍♂️ Trajet 7 min vers ENSAM (Amphi 2)', coach: 'En route pour Chimie Générale.' },
+      { from: '10:45', to: '12:45', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ENSAM', title: '🏛️ Chimie Générale (Khallouk · Amphi 2)', coach: 'Écoute active en amphi.' },
+      { from: '12:45', to: '13:52', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍳 Retour 7m → Cuisiner le Déjeuner + Dhuhr → Retour 7m', coach: 'Tour du Mercredi : cuisine du déjeuner puis retour à l\'ENSAM pour 14h00.' },
+      { from: '14:00', to: '16:00', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ENSAM', title: '🏛️ Cours MPM (Sakim · Amphi 3)', coach: 'Prenez des notes propres.' },
+      { from: '16:15', to: '18:15', tag: 'ÉCOLE ENSAM (PRÉSENTIEL)', subj: 'ALGO', title: '🏛️ Algorithmique / Programmation C (Amphi 3)', coach: 'Assimilez les structures et boucles directement pendant la séance.' },
+      { from: '18:15', to: '19:00', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍵 Retour 7m + Thé après les cours & Vaisselle du thé', coach: 'Préparez le thé, lavez les verres et priez Maghrib.' },
+      { from: '19:00', to: '20:50', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [19:00–20:50] Analyse 1 : ${ana1.title}`, coach: `🎯 ${ana1.coach}` },
+      { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Connectez-vous à l\'heure pour la formation / réunion en ligne du club.' },
+      { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Détente & Sommeil', coach: 'Fin de journée à 22h00 juste après le club.' }
+    ],
+    TH: [
+      { from: '06:45', to: '07:45', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche Matinale', coach: 'Fraîcheur matinale.' },
+      { from: '07:45', to: '08:18', tag: 'CUISINE JEUDI', subj: 'COOK', title: '🍳 Préparer le Petit-Déjeuner + Vaisselle', coach: 'Tour du Jeudi : préparez le petit-déjeuner avant de partir.' },
+      { from: '08:30', to: '12:45', tag: `ÉCOLE TP / RÉVISION MPM · SEM.${wk}`, subj: 'MPM', dynSubj: 'MPM', title: `🔬⚙️ TP MPM/Chimie à l'école + Révision MPM : ${mpm0.title}`, coach: `Pendant le créneau où votre sous-groupe n'a pas TP, avancez sur : ${mpm0.coach}` },
+      { from: '12:45', to: '14:00', tag: 'PAUSE MIDI', subj: 'LIFE', title: '🍽️ Déjeuner + Prière Dhuhr', coach: 'Rechargez vos batteries.' },
+      { from: '14:00', to: '16:00', tag: 'ÉCOLE SPORT', subj: 'LIFE', title: '⚽ Sport à l\'école (Terrain de sport · Sossi)', coach: 'Excellent pour oxygéner le cerveau et évacuer le stress de la semaine.' },
+      { from: '16:00', to: '16:30', tag: 'CUISINE JEUDI', subj: 'COOK', title: '🍵 Retour 7m + Thé après l\'école + Laver leur vaisselle', coach: 'Tour du Jeudi : préparez le thé et lavez la vaisselle.' },
+      { from: '16:30', to: '18:30', tag: 'PASSION & CRÉATIVITÉ (2H)', subj: 'CLUB', title: '🎨 Créneau Dessin Créatif (2 Heures Non-Stop)', coach: 'Votre moment sacré du Jeudi ! Dessinez pendant 2h complètes.' },
+      { from: '18:30', to: '20:15', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [18:30–20:15] Analyse 1 : ${ana1.title}`, coach: `🎯 Après le dessin, attaquez : ${ana1.coach}` },
+      { from: '20:15', to: '21:15', tag: '⏰ WA9T ALGO & C (AU CHOIX)', subj: 'ALGO', title: `💻 [20:15–21:15] C'est l'heure d'Algo & C : À toi de choisir !`, coach: `📌 Ton focus choisi : ${algoNote}` },
+      { from: '21:15', to: '22:15', tag: '⏰ WA9T CHIMIE (AU CHOIX) & DÎNER', subj: 'CHIMIE', title: `🧪 [21:15–22:15] C'est l'heure de Chimie : À toi de choisir !`, coach: `📌 Ton focus choisi : ${chimieNote}` },
+      { from: '22:15', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil réparateur', coach: 'Repos complet.' }
+    ],
+    FR: [
+      { from: '06:45', to: '08:15', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche Matinale + Petit-déjeuner', coach: 'Démarrez le Vendredi avec discipline.' },
+      { from: '08:30', to: '10:30', tag: `ÉCOLE TP OU MPM · SEM.${wk}`, subj: 'MPM', dynSubj: 'MPM', title: `🔬⚙️ TP MPM Gr.3 (Sem 6-8) ou MPM : ${mpm1.title}`, coach: `🎯 ${mpm1.coach}` },
+      { from: '10:45', to: '12:45', tag: 'ÉCOLE ENSAM (PRÉSENTIEL LANGUES)', subj: 'ENSAM', title: '🏛️ Cours Langues & Communication à l\'École (Ignoré dans la révision maison)', coach: 'Vous assistez au cours de Langues à l\'école. Zéro révision maison nécessaire.' },
+      { from: '12:45', to: '14:05', tag: 'CUISINE VENDREDI & JUMUA', subj: 'COOK', title: '🍳 Cuisine du Déjeuner (Tour du Vendredi) + Prière Jumua', coach: 'C\'est votre tour de préparer le déjeuner du Vendredi.' },
+      { from: '14:15', to: '17:30', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [14:15–17:30] Algèbre 1 : ${alg1.title}`, coach: `🎯 Bloc maîtrise Algèbre 1 (ou TP selon groupe) : ${alg1.coach}` },
+      { from: '18:00', to: '20:30', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [18:00–20:30] Analyse 1 : ${ana1.title}`, coach: `🎯 ${ana1.coach}` },
+      { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Deuxième rendez-vous en ligne de la semaine avec le Club Mécatronique.' },
+      { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil (Atelier présentiel demain à 08h00 !)', coach: 'Dormez tôt pour être en pleine forme à l\'atelier Mécatronique de Samedi 8h00.' }
+    ],
+    SA: [
+      { from: '06:45', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche + Petit-déjeuner', coach: 'Préparez votre matériel pour l\'atelier présentiel.' },
+      { from: '08:00', to: '10:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Atelier Présentiel (08:00–10:00)', coach: '2 heures de pratique robotique/mécatronique en présentiel.' },
+      { from: '10:30', to: '13:00', tag: `MARATHON #1 · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [10:30–13:00] Analyse 1 : ${ana1.title}`, coach: `🎯 ${ana1.coach}` },
+      { from: '13:00', to: '14:45', tag: 'PAUSE MIDI', subj: 'LIFE', title: '🍽️ Déjeuner + Dhuhr + Courte sieste (20 min)', coach: 'Une sieste de 20 min recharge la mémoire de travail de 40%.' },
+      { from: '14:45', to: '17:15', tag: `MARATHON #2 · SEM.${wk} (PROGRESS)`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [14:45–17:15] Algèbre 1 : ${alg1.title}`, coach: `🎯 ${alg1.coach}` },
+      { from: '17:30', to: '19:00', tag: `MARATHON #3 · SEM.${wk} (PROGRESS)`, subj: 'MPM', dynSubj: 'MPM', title: `⚙️ [17:30–19:00] MPM : ${mpm1.title}`, coach: `🎯 ${mpm1.coach}` },
+      { from: '19:15', to: '20:30', tag: '⏰ WA9T ALGO/C & CHIMIE (AU CHOIX)', subj: 'ALGO', title: '💻🧪 [19:15–20:30] C\'est l\'heure d\'Algo & Chimie : À toi de choisir !', coach: `📌 Algo : ${algoNote} | Chimie : ${chimieNote}` },
+      { from: '20:30', to: '23:59', tag: 'SOIRÉE LIBRE', subj: 'LIFE', title: '✨ Soirée détente bien méritée', coach: 'Vous avez accompli une grosse journée de Majorant.' }
+    ],
+    SU: [
+      { from: '07:15', to: '09:00', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche + Petit-déjeuner', coach: 'Dimanche calme et structuré.' },
+      { from: '09:00', to: '11:30', tag: `CONDITIONS D'EXAMEN · SEM.${wk}`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐🔢 Simulation DS 2h sur Feuille Blanche (${ana1.title})`, coach: 'Lancez le chrono 90m/120m et rédigez sans aucune note comme le jour J.' },
+      { from: '11:30', to: '13:00', tag: 'AUTOCORRECTION', subj: 'ALGEBRE', title: '📓 Correction stricte + Ajout au Carnet d\'Astuces', coach: 'Identifiez chaque point perdu et notez la parade dans votre Carnet d\'Astuces.' },
+      { from: '13:00', to: '15:00', tag: 'PAUSE DIMANCHE', subj: 'LIFE', title: '🍽️ Déjeuner + Dhuhr + Détente', coach: 'Respirez.' },
+      { from: '15:00', to: '17:00', tag: `COUP D'AVANCE LUNDI · SEM.${wk}`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [15:00–17:00] Algèbre 1 : ${alg1.title}`, coach: `🎯 ${alg1.coach}` },
+      { from: '17:15', to: '18:30', tag: `RÉVISION MPM POUR LUNDI · SEM.${wk}`, subj: 'MPM', dynSubj: 'MPM', title: `⚙️ [17:15–18:30] MPM : ${mpm1.title}`, coach: `🎯 ${mpm1.coach}` },
+      { from: '18:30', to: '19:15', tag: '⏰ WA9T CHIMIE (AU CHOIX)', subj: 'CHIMIE', title: '🧪 [18:30–19:15] C\'est l\'heure de Chimie (pour Lundi 10h45) : À toi de choisir !', coach: `📌 Ton focus Chimie : ${chimieNote}` },
+      { from: '19:15', to: '22:15', tag: 'BILAN & REPOS', subj: 'LIFE', title: '📊 Audit de la semaine (Onglet Bilan) & Préparation du sac', coach: 'Faites votre sauvegarde JSON et dormez tôt pour attaquer Lundi en conquérant.' }
+    ]
+  };
+
+  return schedules[wd] || schedules.MO;
+}
 
 function hmToMinutes(hm) {
   const [h, m] = hm.split(':').map(Number);
@@ -2920,8 +3422,9 @@ function renderLivePhaseTracker() {
   const actualWd = weekdayCodeOf(todayKey());
   const selectedWd = (previewSelect && previewSelect.value !== 'AUTO') ? previewSelect.value : actualWd;
   const isLiveToday = (selectedWd === actualWd);
+  const currentWeek = Number(MAJORANT.ensamWeek || 7);
 
-  const schedule = MASTER_DAILY_PHASES[selectedWd] || MASTER_DAILY_PHASES.MO;
+  const schedule = buildDynamicDailySchedule(selectedWd, currentWeek);
   const nowMins = now.getHours() * 60 + now.getMinutes();
   const nowSecs = nowMins * 60 + now.getSeconds();
 
@@ -2933,7 +3436,7 @@ function renderLivePhaseTracker() {
   });
 
   // Update Hero Banner (always reflects live current phase of today)
-  const todaySchedule = MASTER_DAILY_PHASES[actualWd] || MASTER_DAILY_PHASES.MO;
+  const todaySchedule = buildDynamicDailySchedule(actualWd, currentWeek);
   let todayActiveIdx = -1;
   todaySchedule.forEach((slot, idx) => {
     const startM = hmToMinutes(slot.from);
@@ -2979,8 +3482,10 @@ function renderLivePhaseTracker() {
 
   // Render full 24h timeline if container needs update
   const tlBox = document.getElementById('fullDayTimeline');
-  if (tlBox && tlBox.dataset.renderedKey !== `${selectedWd}-${activeIdx}`) {
-    tlBox.dataset.renderedKey = `${selectedWd}-${activeIdx}`;
+  const progressSignature = ['ANALYSE','ALGEBRE','MPM'].map(s => getSubjectProgressStats(s).done).join('-') + `-${MAJORANT.customFocus.ALGO}-${MAJORANT.customFocus.CHIMIE}`;
+  const stateKey = `${selectedWd}-${currentWeek}-${activeIdx}-${progressSignature}`;
+  if (tlBox && tlBox.dataset.renderedKey !== stateKey) {
+    tlBox.dataset.renderedKey = stateKey;
     tlBox.innerHTML = '';
     schedule.forEach((slot, idx) => {
       const startM = hmToMinutes(slot.from);
@@ -2994,11 +3499,20 @@ function renderLivePhaseTracker() {
       div.innerHTML = `
         <div class="tl-head">
           <span class="tl-time">${slot.from} – ${slot.to}</span>
-          ${isCurrent ? '<span class="pill green">⚡ EN COURS MAINTENANT</span>' : `<span style="font-size:10.5px; font-weight:700; color:var(--muted);">${slot.tag}</span>`}
+          <div style="display:flex; gap:6px; align-items:center;">
+            ${slot.dynSubj ? `<button class="btn-xs accent" data-tladv="${slot.dynSubj}">✅ Étape finie → Suivant</button>` : ''}
+            ${isCurrent ? '<span class="pill green">⚡ EN COURS MAINTENANT</span>' : `<span style="font-size:10.5px; font-weight:700; color:var(--muted);">${slot.tag}</span>`}
+          </div>
         </div>
         <div class="tl-title">${subjBadge} ${escapeHtml(slot.title)}</div>
         <div class="tl-desc">${escapeHtml(slot.coach)}</div>
       `;
+      const advBtn = div.querySelector('[data-tladv]');
+      if (advBtn) {
+        advBtn.addEventListener('click', () => {
+          advanceSubjectStep(slot.dynSubj);
+        });
+      }
       tlBox.appendChild(div);
     });
   }
