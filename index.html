@@ -3541,6 +3541,160 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(err => console.log('SW failed', err));
   });
 }
+  // ==================== REALTIME CLOUD SYNC (PC <-> TELE INSTANT) ====================
+(function initRealtimeCloudSync() {
+  const headerIcons = document.querySelector('.header-icons');
+  if (!headerIcons) return;
+
+  const existingBtn = document.getElementById('cloudSyncBtn');
+  if (existingBtn) existingBtn.remove();
+
+  const syncBtn = document.createElement('button');
+  syncBtn.className = 'icon-btn';
+  syncBtn.id = 'cloudSyncBtn';
+  syncBtn.title = 'Synchronisation Temps Réel (PC & Téléphone)';
+  syncBtn.innerHTML = '☁️';
+  headerIcons.prepend(syncBtn);
+
+  let dbUrl = (localStorage.getItem('daymark-firebase-url') || '').trim().replace(/\/+$/, '');
+  let lastSyncedTime = Number(localStorage.getItem('daymark-updated-at') || 0);
+  let isApplyingRemote = false;
+  let pushTimer = null;
+
+  if (dbUrl) syncBtn.classList.add('active');
+
+  function buildPayload() {
+    const now = Date.now();
+    lastSyncedTime = now;
+    localStorage.setItem('daymark-updated-at', String(now));
+    return {
+      updatedAt: now,
+      DB, TEMPLATES, RULES, MAJORANT, PROTOCOL,
+      SCREEN_SETTINGS, POINTS_SETTINGS, PRAYER_REASONS
+    };
+  }
+
+  function applyRemotePayload(data) {
+    if (!data || !data.updatedAt) return;
+    isApplyingRemote = true;
+    try {
+      lastSyncedTime = Number(data.updatedAt);
+      localStorage.setItem('daymark-updated-at', String(lastSyncedTime));
+      if (data.DB) { DB = data.DB; localStorage.setItem('daymark-data', JSON.stringify(DB)); }
+      if (data.TEMPLATES) { TEMPLATES = data.TEMPLATES; localStorage.setItem('daymark-templates', JSON.stringify(TEMPLATES)); }
+      if (data.RULES) { RULES = data.RULES; localStorage.setItem('daymark-rules', JSON.stringify(RULES)); }
+      if (data.MAJORANT) { MAJORANT = data.MAJORANT; localStorage.setItem('daymark-majorant', JSON.stringify(MAJORANT)); }
+      if (data.PROTOCOL) { PROTOCOL = data.PROTOCOL; localStorage.setItem('daymark-protocol', JSON.stringify(PROTOCOL)); }
+      if (data.SCREEN_SETTINGS) { SCREEN_SETTINGS = data.SCREEN_SETTINGS; localStorage.setItem('daymark-screensettings', JSON.stringify(SCREEN_SETTINGS)); }
+      if (data.POINTS_SETTINGS) { POINTS_SETTINGS = data.POINTS_SETTINGS; localStorage.setItem('daymark-pointssettings', JSON.stringify(POINTS_SETTINGS)); }
+      if (data.PRAYER_REASONS) { PRAYER_REASONS = data.PRAYER_REASONS; localStorage.setItem('daymark-prayerreasons', JSON.stringify(PRAYER_REASONS)); }
+      renderAll();
+    } finally {
+      setTimeout(() => { isApplyingRemote = false; }, 200);
+    }
+  }
+
+  async function pushNow() {
+    if (!dbUrl || isApplyingRemote) return;
+    try {
+      syncBtn.innerHTML = '⬆️';
+      const payload = buildPayload();
+      const res = await fetch(`${dbUrl}/daymark_state.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Push failed');
+      syncBtn.innerHTML = '☁️';
+      syncBtn.classList.add('active');
+    } catch (err) {
+      syncBtn.innerHTML = '⚠️';
+      syncBtn.classList.remove('active');
+    }
+  }
+
+  async function pullNow(forceOverwriteLocal = false) {
+    if (!dbUrl || isApplyingRemote) return false;
+    try {
+      const res = await fetch(`${dbUrl}/daymark_state.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error('Pull failed');
+      const remote = await res.json();
+      if (remote && remote.updatedAt) {
+        if (forceOverwriteLocal || Number(remote.updatedAt) > lastSyncedTime) {
+          applyRemotePayload(remote);
+        }
+      } else if (!remote) {
+        // First time ever: upload current device data to initialize cloud
+        await pushNow();
+      }
+      syncBtn.innerHTML = '☁️';
+      syncBtn.classList.add('active');
+      return true;
+    } catch (err) {
+      syncBtn.innerHTML = '⚠️';
+      syncBtn.classList.remove('active');
+      return false;
+    }
+  }
+
+  function triggerAutoPush() {
+    if (!dbUrl || isApplyingRemote) return;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(pushNow, 250);
+  }
+
+  // Intercept every single save in the app (Tasks, Prayers, Syllabus, Screen, Rules, Protocol)
+  const _saveDB = saveDB;
+  saveDB = function() { _saveDB(); triggerAutoPush(); };
+  const _saveMajorant = saveMajorant;
+  saveMajorant = function() { _saveMajorant(); triggerAutoPush(); };
+  const _saveTemplates = saveTemplates;
+  saveTemplates = function() { _saveTemplates(); triggerAutoPush(); };
+  const _saveRules = saveRules;
+  saveRules = function() { _saveRules(); triggerAutoPush(); };
+  const _saveProtocol = saveProtocol;
+  saveProtocol = function() { _saveProtocol(); triggerAutoPush(); };
+  const _saveScreen = saveScreenSettings;
+  saveScreenSettings = function() { _saveScreen(); triggerAutoPush(); };
+  const _savePoints = savePointsSettings;
+  savePointsSettings = function() { _savePoints(); triggerAutoPush(); };
+  const _saveReasons = savePrayerReasons;
+  savePrayerReasons = function() { _saveReasons(); triggerAutoPush(); };
+
+  syncBtn.addEventListener('click', async () => {
+    const input = prompt(
+      '☁️ Colle ici ton lien Firebase Realtime Database (ex: https://daymark-xxxx.firebaseio.com) sur ton Téléphone ET sur ton PC :',
+      dbUrl
+    );
+    if (input === null) return;
+    const clean = input.trim().replace(/\/+$/, '');
+    if (!clean) {
+      dbUrl = '';
+      localStorage.removeItem('daymark-firebase-url');
+      syncBtn.classList.remove('active');
+      return;
+    }
+    dbUrl = clean;
+    localStorage.setItem('daymark-firebase-url', dbUrl);
+    const ok = await pullNow(true);
+    if (ok) {
+      alert('✅ Liaison Temps Réel PC ↔ Téléphone activée ! Tout changement apparaît en 3 secondes sur l\'autre appareil.');
+    } else {
+      alert('❌ Lien invalide ou base non en "mode test". Vérifie que le lien commence par https:// et finit par .com');
+    }
+  });
+
+  // Poll every 3 seconds so even if both PC and Phone are open side-by-side, they update live!
+  setInterval(() => {
+    if (dbUrl && document.visibilityState === 'visible') pullNow(false);
+  }, 3000);
+  window.addEventListener('focus', () => pullNow(false));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') pullNow(false);
+  });
+
+  if (dbUrl) pullNow(false);
+})();
 </script>
 </body>
 </html>
