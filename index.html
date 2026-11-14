@@ -1515,6 +1515,81 @@ document.querySelectorAll('#insightsSubNav .subnav-btn').forEach(btn => {
 //   the exact Cours or TD from your progress queue (Analyse, Algèbre, MPM)
 //   or tell you "⏰ WA9T ALGO / CHIMIE (Au choix)"!
 // ============================================================================
+// ============================================================================
+// REVISION PLAN (v4) — heures de révision à la maison UNIQUEMENT (🏛️ École intact)
+// Répartition hebdo : Analyse 12h50 · Algèbre 12h40 · MPM 5h15 · Chimie 9h55 · Info 4h45 (Dessin & Club supprimés)
+// ============================================================================
+const REV_NAMES = { ANALYSE: '📐 Analyse 1', ALGEBRE: '🔢 Algèbre 1', MPM: '⚙️ MPM', CHIMIE: '🧪 Chimie', ALGO: '💻 Info (Algo/C)' };
+const REV_MIX = {
+  ANALYSE: [[60, 'Exercices'], [25, 'Correction des erreurs'], [15, 'Révision cours']],
+  ALGEBRE: [[60, 'Exercices / TD'], [25, 'Révision théorèmes & définitions'], [15, 'Correction des erreurs']],
+  MPM:     [[65, 'Exercices'], [25, 'Révision lois & formules'], [10, 'Révision rapide']],
+  CHIMIE:  [[50, 'Révision cours'], [50, 'Exercices']],
+  ALGO:    [[30, 'Révision algos & concepts'], [70, 'Code & exercices']]
+};
+function revMinutes(from, to) {
+  const f = from.split(':').map(Number), t = to.split(':').map(Number);
+  return (t[0] * 60 + t[1]) - (f[0] * 60 + f[1]);
+}
+function revFmt(mins) {
+  return String(Math.floor(mins / 60)).padStart(2, '0') + ':' + String(mins % 60).padStart(2, '0');
+}
+function revMixText(subj, from, to) {
+  const mix = REV_MIX[subj]; if (!mix || !from || !to) return '';
+  const total = revMinutes(from, to); let used = 0;
+  const f = from.split(':').map(Number); const start = f[0] * 60 + f[1];
+  const parts = mix.map((m, i) => {
+    const mins = i === mix.length - 1 ? total - used : Math.round(total * m[0] / 100);
+    const seg = `${revFmt(start + used)}–${revFmt(start + used + mins)} ${m[1]} (${mins}')`;
+    used += mins; return seg;
+  });
+  return parts.join(' → ');
+}
+const REVISION_PLAN = [
+  { d: 'MO', from: '19:00', to: '20:45', s: 'ANALYSE', off: 0 },
+  { d: 'MO', from: '21:25', to: '22:15', s: 'ALGEBRE', off: 0 },
+  { d: 'TU', from: '18:55', to: '20:30', s: 'ALGEBRE', off: 0 },
+  { d: 'TU', from: '21:20', to: '22:15', s: 'MPM', off: 0 },
+  { d: 'WE', from: '08:25', to: '10:30', s: 'ALGEBRE', off: 1, golden: true },
+  { d: 'WE', from: '19:00', to: '20:50', s: 'ANALYSE', off: 1 },
+  { d: 'WE', from: '21:00', to: '22:15', s: 'MPM', off: 1 },
+  { d: 'TH', from: '08:30', to: '10:30', s: 'CHIMIE' },
+  { d: 'TH', from: '10:30', to: '11:50', s: 'ALGO' },
+  { d: 'TH', from: '11:50', to: '12:45', s: 'MPM', off: 0 },
+  { d: 'TH', from: '16:30', to: '17:40', s: 'ALGO' },
+  { d: 'TH', from: '18:30', to: '20:15', s: 'ANALYSE', off: 1 },
+  { d: 'TH', from: '20:15', to: '21:15', s: 'ALGO' },
+  { d: 'TH', from: '21:15', to: '22:15', s: 'CHIMIE' },
+  { d: 'FR', from: '08:30', to: '10:30', s: 'CHIMIE' },
+  { d: 'FR', from: '14:15', to: '16:25', s: 'ALGEBRE', off: 1 },
+  { d: 'FR', from: '16:25', to: '17:30', s: 'CHIMIE' },
+  { d: 'FR', from: '18:00', to: '20:30', s: 'ANALYSE', off: 1 },
+  { d: 'FR', from: '21:00', to: '21:30', s: 'CHIMIE' },
+  { d: 'SA', from: '08:00', to: '10:00', s: 'CHIMIE' },
+  { d: 'SA', from: '10:30', to: '13:00', s: 'ANALYSE', off: 1 },
+  { d: 'SA', from: '14:45', to: '17:15', s: 'ALGEBRE', off: 1 },
+  { d: 'SA', from: '17:30', to: '19:00', s: 'MPM', off: 1 },
+  { d: 'SA', from: '19:15', to: '20:30', s: 'ALGO' },
+  { d: 'SU', from: '09:00', to: '11:30', s: 'ANALYSE', off: 1, label: 'Simulation DS sur feuille blanche' },
+  { d: 'SU', from: '11:30', to: '13:00', s: 'ALGEBRE', off: 1, label: 'Correction stricte + Carnet d\'Astuces' },
+  { d: 'SU', from: '15:00', to: '17:00', s: 'ALGEBRE', off: 1 },
+  { d: 'SU', from: '17:15', to: '17:55', s: 'MPM', off: 1 },
+  { d: 'SU', from: '17:55', to: '19:15', s: 'CHIMIE' }
+];
+function revisionTemplates() {
+  return REVISION_PLAN.map(p => {
+    const choice = (p.s === 'CHIMIE' || p.s === 'ALGO');
+    const t = {
+      id: 'rev-' + p.d + '-' + p.from.replace(':', ''),
+      title: `${REV_NAMES[p.s]} [Révision ${p.from}–${p.to}]`,
+      time: p.from, range: { from: p.from, to: p.to },
+      type: 'weekly', days: [p.d], subject: p.s, essential: !choice
+    };
+    if (choice) t.isChoiceSlot = p.s; else t.dynSubj = p.s, t.dynOffset = p.off || 0;
+    return t;
+  });
+}
+
 function getDefaultEnsamTemplates() {
   return [
     { id: 'ensam-wake', title: '🚿 Réveil tôt + Douche matinale + Préparer le sac', time: '07:15', range: {from:'07:15', to:'07:50'}, type: 'daily', days: null, subject: 'LIFE', essential: true },
@@ -1526,11 +1601,7 @@ function getDefaultEnsamTemplates() {
     { id: 'lun-cook', title: '🍳 Cuisine Déjeuner (7m trajet → Cuisiner & Manger → 7m retour)', time: '12:52', range: {from:'12:52', to:'13:50'}, type: 'weekly', days: ['MO'], subject: 'COOK', essential: true },
     { id: 'lun-alg', title: '🏛️ [École] Cours/TD Algèbre 1 (Imzeguouan · Amphi 2) — 1er rang !', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['MO'], subject: 'ALGEBRE', essential: true },
     { id: 'lun-ana', title: '🏛️ [École] Cours/TD Analyse 1 (Mandyly · Amphi 2) — Noter chaque preuve !', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true },
-    // LUNDI 19:00-20:45 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
-    { id: 'lun-study1', title: '📐 [Révision 19h00–20h45] Analyse 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:45'}, type: 'weekly', days: ['MO'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 0 },
     { id: 'lun-wash', title: '🍽️ Laver la vaisselle du dîner (Sprint 5 minutes)', time: '21:15', type: 'weekly', days: ['MO'], subject: 'COOK', essential: true },
-    // LUNDI 21:25-22:15 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
-    { id: 'lun-study2', title: '🔢 [Révision 21h25–22h15] Algèbre 1 (Progression Auto)', time: '21:25', range: {from:'21:25', to:'22:15'}, type: 'weekly', days: ['MO'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 0 },
 
     // ==================== MARDI ====================
     { id: 'mar-bfast', title: '🍳 Préparer le petit-déjeuner', time: '07:50', type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
@@ -1541,65 +1612,29 @@ function getDefaultEnsamTemplates() {
     { id: 'mar-mtu-school', title: '🏛️ [École Présentiel] Cours MTU (Amphi · 0 révision à la maison)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TU'], subject: 'ENSAM', essential: true },
     { id: 'mar-algo', title: '🏛️ [École] Algorithmique / Programmation C (Amphi 2)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['TU'], subject: 'ALGO', essential: true },
     { id: 'mar-tea', title: '🍵 Préparer le thé après les cours', time: '18:25', type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
-    // MARDI 19:00-20:30 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
-    { id: 'mar-deep-alg', title: '🔢 [Révision 19h00–20h30] Algèbre 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:30'}, type: 'weekly', days: ['TU'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 0 },
     { id: 'mar-dinner', title: '🍳 Préparer le dîner du Mardi', time: '20:35', range: {from:'20:35', to:'21:15'}, type: 'weekly', days: ['TU'], subject: 'COOK', essential: true },
-    // MARDI 21:20-22:15 -> DYNAMIC MPM PROGRESS SLOT
-    { id: 'mar-deep-mpm', title: '⚙️ [Révision 21h20–22h15] MPM (Progression Auto)', time: '21:20', range: {from:'21:20', to:'22:15'}, type: 'weekly', days: ['TU'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 0 },
 
     // ==================== MERCREDI ====================
     { id: 'mer-wash-bf', title: '🍽️ Laver la vaisselle du petit-déjeuner', time: '08:00', type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
-    // MERCREDI 08:30-10:25 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
-    { id: 'mer-gold-alg', title: '🔢 [Matinée Libre 08h30–10h25] Algèbre 1 (Progression Auto)', time: '08:30', range: {from:'08:30', to:'10:25'}, type: 'weekly', days: ['WE'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
     { id: 'mer-chim', title: '🏛️ [École] Chimie Générale (Khallouk · Amphi 2)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
     { id: 'mer-lunch', title: '🍳 Cuisine Déjeuner Mercredi', time: '12:52', range: {from:'12:52', to:'13:50'}, type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
     { id: 'mer-mpm', title: '🏛️ [École] Cours MPM (Sakim · Amphi 3)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['WE'], subject: 'ENSAM', essential: true },
     { id: 'mer-algo', title: '🏛️ [École] Algorithmique / Programmation C (Amphi 3)', time: '16:15', range: {from:'16:15', to:'18:15'}, type: 'weekly', days: ['WE'], subject: 'ALGO', essential: true },
     { id: 'mer-tea', title: '🍵 Thé après l\'école + Vaisselle', time: '18:25', type: 'weekly', days: ['WE'], subject: 'COOK', essential: true },
-    // MERCREDI 19:15-20:50 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
-    { id: 'mer-ana', title: '📐 [Révision 19h15–20h50] Analyse 1 (Progression Auto)', time: '19:15', range: {from:'19:15', to:'20:50'}, type: 'weekly', days: ['WE'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
-    { id: 'mer-club', title: '🤖 Club Mécatronique — Session Online', time: '21:00', range: {from:'21:00', to:'22:00'}, type: 'weekly', days: ['WE'], subject: 'CLUB', essential: true },
 
     // ==================== JEUDI ====================
     { id: 'jeu-bfast', title: '🍳 Préparer le petit-déjeuner + Vaisselle', time: '07:45', type: 'weekly', days: ['TH'], subject: 'COOK', essential: true },
-    { id: 'jeu-tp', title: '🔬 [École] TP MPM / TP Chimie (et révision MPM si sous-groupe libre)', time: '08:30', range: {from:'08:30', to:'12:45'}, type: 'weekly', days: ['TH'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 0 },
     { id: 'jeu-sport', title: '⚽ [École] Sport (Terrain de sport · Sossi)', time: '14:00', range: {from:'14:00', to:'16:00'}, type: 'weekly', days: ['TH'], subject: 'LIFE', essential: false },
     { id: 'jeu-tea', title: '🍵 Thé après les cours + Laver leur vaisselle', time: '16:05', type: 'weekly', days: ['TH'], subject: 'COOK', essential: true },
-    { id: 'jeu-draw', title: '🎨 Session Dessin Créatif (2 Heures de Flow)', time: '16:30', range: {from:'16:30', to:'18:30'}, type: 'weekly', days: ['TH'], subject: 'CLUB', essential: true },
-    // JEUDI 19:00-20:30 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
-    { id: 'jeu-ana', title: '📐 [Révision 19h00–20h30] Analyse 1 (Progression Auto)', time: '19:00', range: {from:'19:00', to:'20:30'}, type: 'weekly', days: ['TH'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
-    // JEUDI 20:35-21:35 -> AU CHOIX ALGO & C
-    { id: 'jeu-algo-choice', title: '⏰ [WA9T ALGO & C — 20h35–21h35] C\'est l\'heure d\'Algo/C : Choisis ton Cours/TP !', time: '20:35', range: {from:'20:35', to:'21:35'}, type: 'weekly', days: ['TH'], subject: 'ALGO', essential: true, isChoiceSlot: 'ALGO' },
-    // JEUDI 21:35-22:15 -> AU CHOIX CHIMIE
-    { id: 'jeu-chim-choice', title: '⏰ [WA9T CHIMIE — 21h35–22h15] C\'est l\'heure de Chimie : Choisis ton Cours/TD !', time: '21:35', range: {from:'21:35', to:'22:15'}, type: 'weekly', days: ['TH'], subject: 'CHIMIE', essential: false, isChoiceSlot: 'CHIMIE' },
 
     // ==================== VENDREDI ====================
-    { id: 'ven-tp1', title: '🔬 [École] TP MPM Gr.3 (08:30-10:30) ou Progression MPM', time: '08:30', range: {from:'08:30', to:'10:30'}, type: 'weekly', days: ['FR'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
-    // VENDREDI 10:45-12:45 -> LANGUES IN SCHOOL SCHEDULE (Not revised at home!)
     { id: 'ven-lang-school', title: '🏛️ [École Présentiel] Cours Langues & Communication (0 révision à la maison)', time: '10:45', range: {from:'10:45', to:'12:45'}, type: 'weekly', days: ['FR'], subject: 'ENSAM', essential: true },
     { id: 'ven-lunch', title: '🍳 Cuisine Déjeuner Vendredi + Prière Jumua', time: '12:50', range: {from:'12:50', to:'13:55'}, type: 'weekly', days: ['FR'], subject: 'COOK', essential: true },
-    // VENDREDI 14:15-17:30 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
-    { id: 'ven-aft', title: '🔢 [Révision 14h15–17h30] Algèbre 1 (Progression Auto / ou TP Gr.4/5)', time: '14:15', range: {from:'14:15', to:'17:30'}, type: 'weekly', days: ['FR'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
-    // VENDREDI 18:30-20:30 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
-    { id: 'ven-rev', title: '📐 [Révision 18h30–20h30] Analyse 1 (Progression Auto)', time: '18:30', range: {from:'18:30', to:'20:30'}, type: 'weekly', days: ['FR'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
-    { id: 'ven-club', title: '🤖 Club Mécatronique — Session Online', time: '21:00', range: {from:'21:00', to:'22:00'}, type: 'weekly', days: ['FR'], subject: 'CLUB', essential: true },
 
     // ==================== SAMEDI ====================
-    { id: 'sam-club', title: '🤖 Club Mécatronique — Atelier Présentiel', time: '08:00', range: {from:'08:00', to:'10:00'}, type: 'weekly', days: ['SA'], subject: 'CLUB', essential: true },
-    // SAMEDI 10:30-13:00 -> DYNAMIC ANALYSE 1 PROGRESS SLOT
-    { id: 'sam-ana', title: '📐 [Marathon 10h30–13h00] Analyse 1 (Progression Auto)', time: '10:30', range: {from:'10:30', to:'13:00'}, type: 'weekly', days: ['SA'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
-    // SAMEDI 14:45-17:15 -> DYNAMIC ALGEBRE 1 PROGRESS SLOT
-    { id: 'sam-alg', title: '🔢 [Marathon 14h45–17h15] Algèbre 1 (Progression Auto)', time: '14:45', range: {from:'14:45', to:'17:15'}, type: 'weekly', days: ['SA'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
-    // SAMEDI 17:30-19:00 -> DYNAMIC MPM PROGRESS SLOT
-    { id: 'sam-mpm', title: '⚙️ [Révision 17h30–19h00] MPM (Progression Auto)', time: '17:30', range: {from:'17:30', to:'19:00'}, type: 'weekly', days: ['SA'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
-    // SAMEDI 19:15-20:30 -> AU CHOIX ALGO & CHIMIE
-    { id: 'sam-algo', title: '⏰ [WA9T ALGO/C & CHIMIE — 19h15–20h30] À toi de choisir quoi réviser !', time: '19:15', range: {from:'19:15', to:'20:30'}, type: 'weekly', days: ['SA'], subject: 'ALGO', essential: false, isChoiceSlot: 'ALGO' },
 
-    // ==================== DIMANCHE ====================
-    { id: 'dim-sim', title: '📐🔢 [09h30–11h30] Simulation DS 2h sur feuille blanche (Analyse / Algèbre / MPM)', time: '09:30', range: {from:'09:30', to:'11:30'}, type: 'weekly', days: ['SU'], subject: 'ANALYSE', essential: true, dynSubj: 'ANALYSE', dynOffset: 1 },
-    { id: 'dim-prep', title: '🔢 [15h00–17h00] Avance Algèbre 1 pour Lundi', time: '15:00', range: {from:'15:00', to:'17:00'}, type: 'weekly', days: ['SU'], subject: 'ALGEBRE', essential: true, dynSubj: 'ALGEBRE', dynOffset: 1 },
-    { id: 'dim-mpm', title: '⚙️ [17h15–18h30] Avance MPM pour Lundi matin', time: '17:15', range: {from:'17:15', to:'18:30'}, type: 'weekly', days: ['SU'], subject: 'MPM', essential: true, dynSubj: 'MPM', dynOffset: 1 },
-    { id: 'dim-chim-choice', title: '⏰ [WA9T CHIMIE — 18h30–19h15] À toi de choisir quoi préparer pour Lundi !', time: '18:30', range: {from:'18:30', to:'19:15'}, type: 'weekly', days: ['SU'], subject: 'CHIMIE', essential: false, isChoiceSlot: 'CHIMIE' }
+    // ==================== DIMANCHE ====================,
+    ...revisionTemplates()
   ];
 }
 
@@ -1665,12 +1700,14 @@ function computeDynamicTaskTitle(tpl) {
   if (tpl.dynSubj) {
     const step = getDynamicStepForSubject(tpl.dynSubj, tpl.dynOffset || 0);
     const timeTag = tpl.range ? `[${tpl.range.from}–${tpl.range.to}]` : '';
-    return `${timeTag} 🎯 ${step.title}`;
+    const mixT = tpl.range ? revMixText(tpl.dynSubj, tpl.range.from, tpl.range.to) : '';
+    return `${timeTag} ${REV_NAMES[tpl.dynSubj]} : ${mixT}`;
   }
   if (tpl.isChoiceSlot) {
     const customNote = (MAJORANT.customFocus && MAJORANT.customFocus[tpl.isChoiceSlot]) || 'À toi de choisir le Cours/TD à travailler !';
     const timeTag = tpl.range ? `[${tpl.range.from}–${tpl.range.to}]` : '';
-    return `⏰ ${timeTag} WA9T ${tpl.isChoiceSlot} (Au choix) : ${customNote}`;
+    const mixC = tpl.range ? revMixText(tpl.isChoiceSlot, tpl.range.from, tpl.range.to) : '';
+    return `${timeTag} ${REV_NAMES[tpl.isChoiceSlot]} : ${mixC}`;
   }
   return tpl.title;
 }
@@ -1744,15 +1781,18 @@ async function loadDB() {
     TEMPLATES = raw2 ? JSON.parse(raw2) : [];
   } catch(e) { TEMPLATES = []; }
 
-  if (!localStorage.getItem('daymark-ensam-v3-progress-loaded') || TEMPLATES.length === 0) {
+  if (!localStorage.getItem('daymark-ensam-v5-hours-loaded') || TEMPLATES.length === 0) {
     TEMPLATES = getDefaultEnsamTemplates();
-    localStorage.setItem('daymark-ensam-v3-progress-loaded', 'true');
+    localStorage.setItem('daymark-ensam-v5-hours-loaded', 'true');
     saveTemplates();
     const today = todayKey();
-    if (DB[today]) {
-      DB[today].skipped = [];
-      DB[today].tasks = DB[today].tasks.filter(t => !t.auto);
-    }
+    Object.keys(DB).forEach(k => {
+      if (k >= today && DB[k] && DB[k].tasks) {
+        DB[k].skipped = [];
+        DB[k].tasks = DB[k].tasks.filter(t => !(t.auto && !t.done));
+      }
+    });
+    saveDB();
   }
 
   try {
@@ -3355,7 +3395,7 @@ function buildDynamicDailySchedule(wd, weekNum) {
       { from: '18:15', to: '19:00', tag: 'CUISINE MERCREDI', subj: 'COOK', title: '🍵 Retour 7m + Thé après les cours & Vaisselle du thé', coach: 'Préparez le thé, lavez les verres et priez Maghrib.' },
       { from: '19:00', to: '20:50', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [19:00–20:50] Analyse 1 : ${ana1.title}`, coach: `🎯 ${ana1.coach}` },
       { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Connectez-vous à l\'heure pour la formation / réunion en ligne du club.' },
-      { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Détente & Sommeil', coach: 'Fin de journée à 22h00 juste après le club.' }
+      { from: '22:15', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Détente & Sommeil', coach: 'Fin de journée à 22h15 après la révision MPM.' }
     ],
     TH: [
       { from: '06:45', to: '07:45', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche Matinale', coach: 'Fraîcheur matinale.' },
@@ -3378,7 +3418,7 @@ function buildDynamicDailySchedule(wd, weekNum) {
       { from: '14:15', to: '17:30', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ALGEBRE', dynSubj: 'ALGEBRE', title: `🔢 [14:15–17:30] Algèbre 1 : ${alg1.title}`, coach: `🎯 Bloc maîtrise Algèbre 1 (ou TP selon groupe) : ${alg1.coach}` },
       { from: '18:00', to: '20:30', tag: `RÉVISION MAISON · SEM.${wk} (PROGRESS)`, subj: 'ANALYSE', dynSubj: 'ANALYSE', title: `📐 [18:00–20:30] Analyse 1 : ${ana1.title}`, coach: `🎯 ${ana1.coach}` },
       { from: '21:00', to: '22:00', tag: 'CLUB MÉCATRONIQUE', subj: 'CLUB', title: '🤖 Club Mécatronique — Session Online (21:00–22:00)', coach: 'Deuxième rendez-vous en ligne de la semaine avec le Club Mécatronique.' },
-      { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil (Atelier présentiel demain à 08h00 !)', coach: 'Dormez tôt pour être en pleine forme à l\'atelier Mécatronique de Samedi 8h00.' }
+      { from: '22:00', to: '23:59', tag: 'SOMMEIL', subj: 'LIFE', title: '🌙 Sommeil', coach: 'Dormez tôt : demain Samedi commence à 08h00 avec Chimie.' }
     ],
     SA: [
       { from: '06:45', to: '07:50', tag: 'ROUTINE MATINALE', subj: 'LIFE', title: '🌅 Réveil + Fajr + Douche + Petit-déjeuner', coach: 'Préparez votre matériel pour l\'atelier présentiel.' },
@@ -3402,7 +3442,22 @@ function buildDynamicDailySchedule(wd, weekNum) {
     ]
   };
 
-  return schedules[wd] || schedules.MO;
+  // v4: remplace tous les créneaux de révision maison par le REVISION_PLAN (🏛️ École intact)
+  let day = (schedules[wd] || schedules.MO).filter(e =>
+    e.subj !== 'CLUB' && !e.dynSubj && !/WA9T/.test(e.tag || '') && !(wd === 'SU' && e.from === '11:30'));
+  REVISION_PLAN.filter(p => p.d === (schedules[wd] ? wd : 'MO')).forEach(p => {
+    if (wk === 12 && p.golden) return; // Sem.12 : TP Chimie à l'école
+    const mix = revMixText(p.s, p.from, p.to);
+    const nm = REV_NAMES[p.s];
+    const isChoice = (p.s === 'CHIMIE' || p.s === 'ALGO');
+    const e = { from: p.from, to: p.to, tag: `RÉVISION MAISON · SEM.${wk}`, subj: p.s,
+      title: `${nm} [${p.from}–${p.to}]${p.label ? ' · ' + p.label : ''}`,
+      coach: `🎯 ${mix}` };
+    if (!isChoice) e.dynSubj = p.s;
+    day.push(e);
+  });
+  day.sort((x, y) => x.from.localeCompare(y.from));
+  return day;
 }
 
 function hmToMinutes(hm) {
